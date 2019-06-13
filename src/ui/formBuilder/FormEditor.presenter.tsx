@@ -69,10 +69,22 @@ const FormEditorPresenter = () => {
         options: ["radio", "radio2", "radio3"]
       }
     },
+    {
+      type: 'numeric',
+      config: {
+        colWidth: "col-12",
+        title: "This is a numeric field",
+        placeholder: "Enter number",
+        tolerance: true,
+        toleranceType: "percent",
+        min: 5,
+        max: 100,
+      }
+    },
   ];
 
-  const Forms  = formProps.map(({type, config}) => {
-     return <FormFieldEditor type={type} config={config} />
+  const Forms  = formProps.map(({type, config}, i) => {
+     return <FormFieldEditor key={i} type={type} config={config} />
   });
 
   return (

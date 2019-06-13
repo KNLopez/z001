@@ -17,8 +17,8 @@ interface FormFieldProps {
     options?: any[];
     tolerance?: boolean;
     toleranceType?: string;
-    max?: string;
-    min?: string;
+    max?: number;
+    min?: number;
   };
 }
 
@@ -59,6 +59,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       formField = (
         <Numeric
           title={config.title}
+          placeholder={config.placeholder || ""}
           tolerance={config.tolerance || false}
           toleranceType={config.toleranceType || ""}
           min={config.min}

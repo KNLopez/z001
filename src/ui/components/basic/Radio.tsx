@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import styles from "./BasicFields.module.css";
 
 interface RadioProps {
@@ -10,8 +10,8 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
   title, options,
 }) => {
 
-  const radio = options.map((option) => (
-    <label> {option}
+  const radio = options.map((option, i) => (
+    <label key={i}> {option}
       <input type="radio" name={title} value={option} />
       <span className={styles.customRadio}/>
     </label>
@@ -20,7 +20,9 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
   return (
     <div className={styles.radioContainer}>
       <h3 className={styles.radioTitle}>{title}</h3>
-      {radio}
+      <div className={styles.radioGroup} >
+        {radio}
+      </div>
     </div>
   );
 };
