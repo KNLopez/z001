@@ -102,9 +102,27 @@ input[type="text"], textarea {
   margin: 0 5px;
 }
 
+/* checkbox */
+.checkBox {
+  padding: 0 0 20px;
+}
+
+/* calendar */
+.DatePickerContainer > div{
+  width: 100%;
+}
+
+.DatePickerContainer input {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
 /* error */
 .formError {
   position: absolute;
   bottom: 0;
   color: red;
 }
+

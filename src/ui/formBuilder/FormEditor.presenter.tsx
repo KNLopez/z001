@@ -1,90 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
+import {useStateValue} from "../../contexts/formContext";
 import FormFieldEditor from "./FormFieldEditor";
 import styles from "./FormBuilder.module.css";
 
-const FormEditorPresenter = () => {
+interface FormEditorPresenter {
+  EditorProps: any[];
+}
 
-  const formProps = [
-    {
-      type: 'section',
-      config: {
-        colWidth: "col-12",
-        subType: "mainSection",
-        title: "This is a main Section"
-      }
-    },
-    {
-      type: 'section',
-      config: {
-        colWidth: "col-12",
-        subType: "subSection",
-        title: "This is a subsection"
-      }
-    },
-    {
-      type: 'singleLine',
-      config: {
-        colWidth: "col-6",
-        title: "This is a short single line",
-        placeholder: "short"
-      }
-    },
-    {
-      type: 'singleLine',
-      config: {
-        colWidth: "col-6",
-        title: "This is a short single line",
-        placeholder: "short"
-      }
-    },
-    {
-      type: 'singleLine',
-      config: {
-        colWidth: "col-12",
-        title: "This is a long single line",
-        placeholder: "long"
-      }
-    },
-    {
-      type: 'textarea',
-      config: {
-        colWidth: "col-12",
-        title: "This is a multiline",
-        placeholder: "long"
-      }
-    },
-    {
-      type: 'section',
-      config: {
-        colWidth: "col-12",
-        subType: "subSection",
-        title: "This is a subsection"
-      }
-    },
-    {
-      type: 'radio',
-      config: {
-        colWidth: "col-12",
-        title: "These are radio buttons",
-        options: ["radio", "radio2", "radio3"]
-      }
-    },
-    {
-      type: 'numeric',
-      config: {
-        colWidth: "col-12",
-        title: "This is a numeric field",
-        placeholder: "Enter number",
-        tolerance: true,
-        toleranceType: "percent",
-        min: 5,
-        max: 100,
-      }
-    },
-  ];
+const FormEditorPresenter: React.FunctionComponent<FormEditorPresenter> = ({ EditorProps }) => {
 
-  const Forms  = formProps.map(({type, config}, i) => {
-     return <FormFieldEditor key={i} type={type} config={config} />
+  const [{elements}]: any = useStateValue();
+
+  const Forms  = elements.map((elements:any, i:any) => {
+    return <FormFieldEditor key={i} type={elements.type} config={elements.config} />
   });
 
   return (

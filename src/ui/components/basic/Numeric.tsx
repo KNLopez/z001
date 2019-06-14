@@ -19,7 +19,7 @@ const Numeric: React.FunctionComponent<NumericProps>  = ({
 
   useEffect(() => {
     if (!(value < (max ? max : Math.max ) && value > (min ? min : Math.min )) && value) {
-      setError(`${value || 0} is beyond threshold`);
+      setError(`${value || 0} is beyond the tolerance values`);
     } else {
       setError("");
     }
@@ -34,8 +34,8 @@ const Numeric: React.FunctionComponent<NumericProps>  = ({
 
   const ToleranceDiv = (
     <div className={styles.tolerance}>
-      <input type="text" defaultValue={(min || 0) + ToleranceSign} disabled={true}/>
-      <input type="text" defaultValue={(max || 0) + ToleranceSign} disabled={true}/>
+      <input type="text" defaultValue={"min: " + (min || 0) + ToleranceSign} disabled={true}/>
+      <input type="text" defaultValue={"max: " + (max || 0) + ToleranceSign} disabled={true}/>
     </div>
   );
 

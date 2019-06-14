@@ -1,11 +1,14 @@
 import React from "react";
 import FormEditorPresenter from "./FormEditor.presenter";
 
+interface FormEditorContainerProps {
+  EditorProps: any[];
+}
 
-const FormBuilder = () => {
+const FormEditorContainer:React.FunctionComponent<FormEditorContainerProps> = ({EditorProps}) => {
   return (
-    <FormEditorPresenter />
+    <FormEditorPresenter EditorProps={EditorProps}/>
   );
 };
 
-export default FormBuilder;
+export default FormEditorContainer;

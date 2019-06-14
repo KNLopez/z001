@@ -1,12 +1,23 @@
 import React from "react";
 import FormHeaderPresenter from "./FormHeader.presenter";
 
-const FormHeaderContainer = () => {
+interface FormHeaderContainerProps {
+  HeaderProps: {
+    formNumber: string;
+    status: string;
+    title: string;
+  };
+}
+
+const FormHeaderContainer: React.FunctionComponent<FormHeaderContainerProps> = ({
+  HeaderProps,
+}) => {
+  const { formNumber, status, title} = HeaderProps
   return (
     <FormHeaderPresenter
-      formNumber={"FORM0001"}
-      status={"DRAFT"}
-      title={"Form Builder"}
+      formNumber={formNumber}
+      status={status}
+      title={title}
     />
   );
 };

@@ -1,4 +1,6 @@
 import React from "react";
+import CheckBox from "../components/basic/Checkbox";
+import DatePicker from "../components/basic/DatePicker";
 import Numeric from "../components/basic/Numeric";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
@@ -19,6 +21,7 @@ interface FormFieldProps {
     toleranceType?: string;
     max?: number;
     min?: number;
+    notes?: string;
   };
 }
 
@@ -65,6 +68,17 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           min={config.min}
           max={config.max}
         />);
+      break;
+    case "checkbox":
+      formField = (
+        <CheckBox
+          title={config.title}
+          notes={config.notes}
+        />);
+      break;
+    case "datepicker":
+      formField = (
+        <DatePicker title={config.title}/>);
       break;
   }
   const width = ` ${styles[config.colWidth]}`;
