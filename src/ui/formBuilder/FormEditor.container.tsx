@@ -5,7 +5,7 @@ interface FormEditorContainerProps {
   EditorProps: any[];
 }
 
-const FormEditorContainer:React.FunctionComponent<FormEditorContainerProps> = ({EditorProps}) => {
+const FormEditorContainer: React.FunctionComponent<FormEditorContainerProps> = ({EditorProps}) => {
   return (
     <FormEditorPresenter EditorProps={EditorProps}/>
   );

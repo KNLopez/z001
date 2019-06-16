@@ -9,19 +9,10 @@ const sampleFormProps = [
     },
   },
   {
-    type: "section",
+    type: "subSection",
     config: {
       colWidth: "col-12",
-      subType: "subSection",
       title: "This is a subsection",
-    },
-  },
-  {
-    type: "section",
-    config: {
-      colWidth: "col-12",
-      subType: "subSection",
-      title: "This is a subsection 2",
     },
   },
   {
@@ -61,7 +52,7 @@ const sampleFormProps = [
     config: {
       colWidth: "col-12",
       subType: "mainSection",
-      title: "This is a subsection",
+      title: "Another Section",
     },
   },
   {
@@ -101,11 +92,17 @@ const sampleFormProps = [
   },
 ];
 
+const ModalState = {
+  show: false,
+  field: "",
+};
+
 const formProps = {
   title: "Form title",
   formNumber: "FORM0001",
   status: "DRAFT",
   elements: sampleFormProps,
+  modalState: ModalState,
 };
 
 export default formProps;

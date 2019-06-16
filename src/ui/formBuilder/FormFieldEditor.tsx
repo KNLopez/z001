@@ -1,20 +1,22 @@
 import React from "react";
+import {useStateValue} from "../../contexts/formContext";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import Numeric from "../components/basic/Numeric";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
-import SectionContainer from "../components/sections/Section.container";
+import Section from "../components/sections/Section";
+import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
 
 interface FormFieldProps {
+  order: string;
   type: string;
   config: {
     colWidth: string,
     title: string;
-    subType?: string;
     placeholder?: string;
     options?: any[];
     tolerance?: boolean;
@@ -26,15 +28,20 @@ interface FormFieldProps {
 }
 
 const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
-  type, config,
+  type, config, order,
 }) => {
   let formField;
   switch (type) {
     case "section":
       formField = (
-        <SectionContainer
+        <Section
           title={config.title}
-          subType={config.subType || ""}
+        />);
+      break;
+    case "subSection":
+      formField = (
+        <SubSection
+          title={config.title}
         />);
       break;
     case "singleLine":
@@ -44,7 +51,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           placeholder={config.placeholder || ""}
         />);
       break;
-    case "textarea":
+    case "multiLine":
       formField = (
         <TextArea
           title={config.title}
@@ -81,6 +88,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
         <DatePicker title={config.title}/>);
       break;
   }
+  const [{}, dispatch]: any = useStateValue();
+
+  const showModal = () => {
+    dispatch({type: "SHOW_MODAL", currentIndex: order});
+  };
+
   const width = ` ${styles[config.colWidth]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
   return (
@@ -94,7 +107,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       </div>
       {formField}
       <div className={styles.moveHandle}><MoveHandle /></div>
-      <div className={styles.addField}>Add Field</div>
+      <div className={styles.addField} onClick={showModal}>Add Field</div>
     </div>
   );
 };

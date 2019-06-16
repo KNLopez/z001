@@ -1,5 +1,6 @@
 import React, {} from "react";
 import {useStateValue} from "../../contexts/formContext";
+import Modal from "../components/modal/Modal";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
 
@@ -16,21 +17,11 @@ const FormBuilderPresenter: React.FunctionComponent<FormBuilderPresenterProps> =
   HeaderProps, EditorProps,
 }) => {
 
-  const [{elements}, dispatch]: any = useStateValue();
-
-  const addField = () => {
-    dispatch({type: "ADD_FIELD", field: {
-      type: "datepicker",
-      config: {
-      colWidth: "col-12",
-      title: "This is a calendar",
-      },
-    }});
-  };
+  const [{modalState}]: any = useStateValue();
 
   return (
     <div className="FormBuilder">
-      <button onClick={addField}> Hello </button>
+      {modalState.show ? <Modal /> : null}
       <FormHeaderContainer HeaderProps={HeaderProps}/>
       <FormEditorContainer EditorProps={EditorProps}/>
     </div>

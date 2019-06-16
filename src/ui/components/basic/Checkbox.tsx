@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import styles from "./BasicFields.module.css";
 
 interface CheckBoxProps {
-  title: string | "string";
+  title: string;
   notes?: string;
 }
 

@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import {useStateValue} from "../../contexts/formContext";
-import FormFieldEditor from "./FormFieldEditor";
 import styles from "./FormBuilder.module.css";
+import FormFieldEditor from "./FormFieldEditor";
 
 interface FormEditorPresenter {
   EditorProps: any[];
@@ -11,13 +11,13 @@ const FormEditorPresenter: React.FunctionComponent<FormEditorPresenter> = ({ Edi
 
   const [{elements}]: any = useStateValue();
 
-  const Forms  = elements.map((elements:any, i:any) => {
-    return <FormFieldEditor key={i} type={elements.type} config={elements.config} />
+  const Forms  = elements.map((elem: any, i: any) => {
+    return <FormFieldEditor key={i} order={i} type={elem.type} config={elem.config} />;
   });
 
   return (
     <div className={styles.formEditorContainer}>
-      { Forms }
+      {Forms}
     </div>
   );
 };
