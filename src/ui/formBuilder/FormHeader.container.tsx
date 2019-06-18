@@ -1,18 +1,12 @@
 import React from "react";
 import FormHeaderPresenter from "./FormHeader.presenter";
+import {useStateValue} from "../../contexts/formContext";
 
-interface FormHeaderContainerProps {
-  HeaderProps: {
-    formNumber: string;
-    status: string;
-    title: string;
-  };
-}
 
-const FormHeaderContainer: React.FunctionComponent<FormHeaderContainerProps> = ({
-  HeaderProps,
+const FormHeaderContainer: React.FunctionComponent = ({
+  
 }) => {
-  const { formNumber, status, title} = HeaderProps
+  const [{title, formNumber, status}]: any = useStateValue();
   return (
     <FormHeaderPresenter
       formNumber={formNumber}

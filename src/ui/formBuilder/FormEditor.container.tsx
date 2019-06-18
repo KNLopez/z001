@@ -1,13 +1,20 @@
-import React from "react";
+import React, {Fragment} from "react";
+import {useStateValue} from "../../contexts/formContext";
 import FormEditorPresenter from "./FormEditor.presenter";
 
-interface FormEditorContainerProps {
-  EditorProps: any[];
-}
+const FormEditorContainer: React.FunctionComponent = ({
+}) => {
+  const [{elements}, dispatch]: any = useStateValue();
 
-const FormEditorContainer: React.FunctionComponent<FormEditorContainerProps> = ({EditorProps}) => {
+  const showModal = () => {
+    dispatch({type: "SHOW_MODAL", currentIndex: 0});
+  };
+
+  const Presenter = elements.length > 0 ?  <FormEditorPresenter EditorProps={elements}/> : <div onClick={showModal}> ADD FIELD</div>;
   return (
-    <FormEditorPresenter EditorProps={EditorProps}/>
+    <Fragment>
+      {Presenter} 
+    </Fragment>
   );
 };
 

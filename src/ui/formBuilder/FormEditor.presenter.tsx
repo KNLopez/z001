@@ -7,10 +7,9 @@ interface FormEditorPresenter {
   EditorProps: any[];
 }
 
-const FormEditorPresenter: React.FunctionComponent<FormEditorPresenter> = ({ EditorProps }) => {
+const FormEditorPresenter: React.FunctionComponent<FormEditorPresenter> = ({  }) => {
 
   const [{elements}]: any = useStateValue();
-
   const Forms  = elements.map((elem: any, i: any) => {
     return <FormFieldEditor key={i} order={i} type={elem.type} config={elem.config} />;
   });

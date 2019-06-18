@@ -94,7 +94,11 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     dispatch({type: "SHOW_MODAL", currentIndex: order});
   };
 
-  const width = ` ${styles[config.colWidth]}`;
+  const removeField = () => {
+    dispatch({type: "DELETE_FIELD", currentIndex: order})
+  }
+
+  const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
   return (
     <div
@@ -103,7 +107,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     >
       <div className={styles.topControls} >
         <div className={styles.edit}>Edit</div>
-        <div className={styles.delete}>Delete</div>
+        <div className={styles.delete} onClick={removeField}>Delete</div>
       </div>
       {formField}
       <div className={styles.moveHandle}><MoveHandle /></div>

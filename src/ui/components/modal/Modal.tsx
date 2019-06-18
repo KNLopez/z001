@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useStateValue} from "../../../contexts/formContext";
 import CheckBoxModal from "./CheckBoxModal";
+import DatePickerModal from "./DatePickerModal";
 import {FieldConstants} from "./FieldConstants";
 import LineFieldModal from "./LineFieldModal";
+import NumericModal from "./NumericModal";
 import styles from "./Modal.module.css";
 import RadioModal from "./RadioModal";
 import SectionModal from "./SectionModal";
@@ -32,7 +34,7 @@ const Modal = () => {
     });
     dispatch({type: "HIDE_MODAL"});
   };
-
+  
   const handleClick = (field: string) => {
     setChosenField(field);
   };
@@ -44,12 +46,12 @@ const Modal = () => {
 
   const sections: BigObject<string> = FieldConstants.sections;
   const sectionButtons = Object.keys(sections).map((value) => {
-    return <button onClick={()=>handleClick(value)} key={value}>{sections[value]}</button>;
+    return <button className={styles[value]} onClick={()=>handleClick(value)} key={value}>{sections[value]}</button>;
   });
 
   const basicFields: BigObject<string> = FieldConstants.basicFields;
   const basicFieldButtons = Object.keys(basicFields).map((value) => {
-    return <button onClick={()=>handleClick(value)} key={value}>{basicFields[value]}</button>;
+    return <button className={styles[value]} onClick={()=>handleClick(value)} key={value}>{basicFields[value]}</button>;
   });
 
   const approvals: BigObject<string> = FieldConstants.approvals;
@@ -103,6 +105,12 @@ const Modal = () => {
       case "radio":
           setModalContent(<RadioModal handleSubmit={addField} />);
           break;
+      case "numeric":
+          setModalContent(<NumericModal  title="Numeric Field" handleSubmit={addField} />);
+          break;
+      case "datepicker":
+        setModalContent(<DatePickerModal  title="Date Picker Field" handleSubmit={addField} />);
+        break;
     }
   }, [chosenField]);
 

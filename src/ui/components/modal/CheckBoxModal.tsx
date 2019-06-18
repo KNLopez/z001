@@ -5,7 +5,7 @@ interface CheckBoxModalProps {
   handleSubmit: ( e: any , config: any) => void;
 }
 
-const SectionModal: React.FunctionComponent<CheckBoxModalProps> = ({
+const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
@@ -34,4 +34,4 @@ const SectionModal: React.FunctionComponent<CheckBoxModalProps> = ({
   );
 };
 
-export default SectionModal;
+export default CheckBoxModal;

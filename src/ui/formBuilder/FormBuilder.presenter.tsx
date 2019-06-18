@@ -1,29 +1,31 @@
-import React, {} from "react";
+import React, { useState, useEffect } from "react";
 import {useStateValue} from "../../contexts/formContext";
 import Modal from "../components/modal/Modal";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
 
+
 interface FormBuilderPresenterProps {
-  HeaderProps: {
-    formNumber: string;
-    status: string;
-    title: string;
-  };
-  EditorProps: any[];
+  formNumber: string;
+  status: string;
+  title: string;
 }
 
 const FormBuilderPresenter: React.FunctionComponent<FormBuilderPresenterProps> = ({
-  HeaderProps, EditorProps,
+  formNumber, status, title
 }) => {
+  const [headerProps] = useState({formNumber, status, title})
+  const [{modalState}, dispatch]: any = useStateValue();
 
-  const [{modalState}]: any = useStateValue();
+  useEffect(()=>{
+    dispatch({type: "SET_FORM_INFO", formNumber, status, title})
+  }, [headerProps])
 
   return (
     <div className="FormBuilder">
       {modalState.show ? <Modal /> : null}
-      <FormHeaderContainer HeaderProps={HeaderProps}/>
-      <FormEditorContainer EditorProps={EditorProps}/>
+      <FormHeaderContainer />
+      <FormEditorContainer />
     </div>
   );
 };
