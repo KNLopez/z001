@@ -7,13 +7,11 @@ interface DatePickerProps {
   title: string;
 }
 
-const DatePicker: React.FunctionComponent<DatePickerProps> = ({
-  title,
-}) => {
+const DatePicker: React.FunctionComponent<DatePickerProps> = ({ title }) => {
   return (
     <div className={styles.DatePickerContainer}>
       <label>{title}</label>
-      <DayPickerInput format={"M-D-YYYY"}/>
+      <DayPickerInput format={"M-D-YYYY"} />
     </div>
   );
 };

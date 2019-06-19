@@ -1,6 +1,4 @@
-
-const sampleFormProps: any[]= [
-];
+const sampleFormProps: any[] = [];
 
 const ModalState = {
   show: false,

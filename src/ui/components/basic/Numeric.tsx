@@ -10,15 +10,22 @@ interface NumericProps {
   max?: number;
 }
 
-const Numeric: React.FunctionComponent<NumericProps>  = ({
-  title, tolerance, placeholder, toleranceType, min, max,
+const Numeric: React.FunctionComponent<NumericProps> = ({
+  title,
+  tolerance,
+  placeholder,
+  toleranceType,
+  min,
+  max,
 }) => {
-
   const [value, setValue] = useState<number>(0);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    if (!(value < (max ? max : Math.max ) && value > (min ? min : Math.min )) && value) {
+    if (
+      !(value < (max ? max : Math.max) && value > (min ? min : Math.min)) &&
+      value
+    ) {
       setError(`${value || 0} is beyond the tolerance values`);
     } else {
       setError("");
@@ -34,8 +41,16 @@ const Numeric: React.FunctionComponent<NumericProps>  = ({
 
   const ToleranceDiv = (
     <div className={styles.tolerance}>
-      <input type="text" defaultValue={"min: " + (min || 0) + ToleranceSign} disabled={true}/>
-      <input type="text" defaultValue={"max: " + (max || 0) + ToleranceSign} disabled={true}/>
+      <input
+        type="text"
+        defaultValue={"min: " + (min || 0) + ToleranceSign}
+        disabled={true}
+      />
+      <input
+        type="text"
+        defaultValue={"max: " + (max || 0) + ToleranceSign}
+        disabled={true}
+      />
     </div>
   );
 
@@ -55,11 +70,7 @@ const Numeric: React.FunctionComponent<NumericProps>  = ({
     </div>
   );
 
-  return (
-    <Fragment>
-      {NumberField}
-    </Fragment>
-  );
+  return <Fragment>{NumberField}</Fragment>;
 };
 
 export default Numeric;
