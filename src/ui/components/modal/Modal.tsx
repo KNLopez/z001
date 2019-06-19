@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useStateValue} from "../../../contexts/formContext";
+import React, {useEffect, useState, useCallback} from "react";
+import {useStateValue} from "../../../state/formContext";
 import CheckBoxModal from "./CheckBoxModal";
 import DatePickerModal from "./DatePickerModal";
 import {FieldConstants} from "./FieldConstants";
 import LineFieldModal from "./LineFieldModal";
-import NumericModal from "./NumericModal";
 import styles from "./Modal.module.css";
+import NumericModal from "./NumericModal";
 import RadioModal from "./RadioModal";
 import SectionModal from "./SectionModal";
 
@@ -16,11 +16,10 @@ interface BigObject<T> {
 const Modal = () => {
   // eslint-disable-next-line
   const [{}, dispatch]: any = useStateValue();
-  const [fieldValue, setFieldValues] = useState<any>({});
   const [chosenField, setChosenField] = useState();
   const [modalStateContent, setModalContent] = useState();
 
-  const addField = (e: any, config: any) => {
+  const addField = useCallback((e: any, config: any) => {
     e.preventDefault();
     if (!config.colWidth) {
       config.colWidth = "col-12";
@@ -33,8 +32,8 @@ const Modal = () => {
       },
     });
     dispatch({type: "HIDE_MODAL"});
-  };
-  
+  }, [chosenField, dispatch]);
+
   const handleClick = (field: string) => {
     setChosenField(field);
   };
@@ -112,7 +111,7 @@ const Modal = () => {
         setModalContent(<DatePickerModal  title="Date Picker Field" handleSubmit={addField} />);
         break;
     }
-  }, [chosenField]);
+  }, [chosenField, modalContent, addField]);
 
   return (
     <div className={styles.modalOverlay}>

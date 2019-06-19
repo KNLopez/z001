@@ -1,66 +1,62 @@
 import React, {useState} from "react";
-import {StateProvider} from "../../contexts/formContext";
-import data from "../../contexts/SampleProps";
-import FormBuilderPresenter from "./FormBuilder.presenter";
-import {useStateValue} from "../../contexts/formContext";
+import {StateProvider} from "../../state/formContext";
+import data from "../../state/SampleProps";
 import styles from "../components/modal/Modal.module.css";
+import FormBuilderPresenter from "./FormBuilder.presenter";
 
-
-const FormBuilderContainer: React.FunctionComponent = ({
-}) => {
+const FormBuilderContainer: React.FunctionComponent = () => {
 
   const initialState = {
     formNumber: "",
     status: "",
-    title: ""
-  }
+    title: "",
+  };
 
   const [formProps, setFormProps] = useState(data);
   const [headerProps, setHeaderProps] = useState(initialState)
   const [withHeader, setwithHeader] = useState(false)
 
   const reducer = (state: any, action: any) => {
-    const elements = [...state.elements]
+    const elements = [...state.elements];
     const index = state.currentIndex;
     switch (action.type) {
       case "ADD_FIELD":
-         elements.splice(index + 1, 0, action.field);
-          
+        elements.splice(index + 1, 0, action.field);
         return {
           ...state,
           elements,
         };
       case "SHOW_MODAL":
-          return {
-            ...state,
-            modalState: { ...state.modalState, show: true },
-            currentIndex: action.currentIndex,
-          };
-      case "HIDE_MODAL":
-          return {
-            ...state,
-            modalState: { ...state.modalState, show: false },
-          };
-
-      case "EDIT_FIELD":
-          elements.splice(index + 1, 1, action.field);
         return {
           ...state,
-          elements
-        }
+          modalState: { ...state.modalState, show: true },
+          currentIndex: action.currentIndex,
+        };
+      case "HIDE_MODAL":
+        return {
+          ...state,
+          modalState: { ...state.modalState, show: false },
+        };
+
+      case "EDIT_FIELD":
+        elements.splice(index + 1, 1, action.field);
+        return {
+          ...state,
+          elements,
+        };
       case "DELETE_FIELD":
-          elements.splice(action.currentIndex, action.currentIndex + 1);
-          return {
-            ...state,
-            elements
-          }
+        elements.splice(action.currentIndex, action.currentIndex + 1);
+        return {
+          ...state,
+          elements,
+        };
       case "SET_FORM_INFO":
-          return {
-            ...state,
-            title: action.title,
-            formNumber: action.formNumber,
-            status: action.status,
-          }
+        return {
+          ...state,
+          title: action.title,
+          formNumber: action.formNumber,
+          status: action.status,
+        };
       default:
         return state;
     }
@@ -77,7 +73,6 @@ const FormBuilderContainer: React.FunctionComponent = ({
     setwithHeader(true);
   };
 
-
   const createForm = (
     <div className={styles.modalOverlay}>
       <div className={styles.modalBody}>
@@ -93,14 +88,15 @@ const FormBuilderContainer: React.FunctionComponent = ({
     </form>
       </div>
     </div>
-  )
+  );
 
   const formBuilderPresenter = (
     <FormBuilderPresenter {...formProps}/>
-  )
+  );
+
   return (
     <StateProvider initialState={formProps} reducer={reducer}>
-      { withHeader ? formBuilderPresenter : createForm }
+      {withHeader ? formBuilderPresenter : createForm}
     </StateProvider>
   );
 };

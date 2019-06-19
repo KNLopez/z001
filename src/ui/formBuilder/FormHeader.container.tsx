@@ -1,11 +1,9 @@
 import React from "react";
+import {useStateValue} from "../../state/formContext";
 import FormHeaderPresenter from "./FormHeader.presenter";
-import {useStateValue} from "../../contexts/formContext";
 
 
-const FormHeaderContainer: React.FunctionComponent = ({
-  
-}) => {
+const FormHeaderContainer = () => {
   const [{title, formNumber, status}]: any = useStateValue();
   return (
     <FormHeaderPresenter

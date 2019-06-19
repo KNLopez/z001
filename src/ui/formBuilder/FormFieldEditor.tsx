@@ -1,5 +1,5 @@
 import React from "react";
-import {useStateValue} from "../../contexts/formContext";
+import {useStateValue} from "../../state/formContext";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import Numeric from "../components/basic/Numeric";
@@ -88,6 +88,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
         <DatePicker title={config.title}/>);
       break;
   }
+// eslint-disable-next-line
   const [{}, dispatch]: any = useStateValue();
 
   const showModal = () => {
@@ -95,8 +96,8 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   };
 
   const removeField = () => {
-    dispatch({type: "DELETE_FIELD", currentIndex: order})
-  }
+    dispatch({type: "DELETE_FIELD", currentIndex: order});
+  };
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
