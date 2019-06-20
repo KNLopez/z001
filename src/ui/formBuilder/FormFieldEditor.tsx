@@ -10,6 +10,7 @@ import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
+import { SHOW_MODAL, DELETE_FIELD } from "../../state/formActions";
 
 interface FormFieldProps {
   order: string;
@@ -81,11 +82,11 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   const [{}, dispatch]: any = useStateValue();
 
   const showModal = () => {
-    dispatch({ type: "SHOW_MODAL", currentIndex: order });
+    dispatch(SHOW_MODAL(order));
   };
 
   const removeField = () => {
-    dispatch({ type: "DELETE_FIELD", currentIndex: order });
+    dispatch(DELETE_FIELD(order));
   };
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;

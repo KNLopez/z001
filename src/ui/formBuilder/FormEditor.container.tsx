@@ -2,12 +2,13 @@ import React, { Fragment } from "react";
 import { useStateValue } from "../../state/formContext";
 import styles from "./FormBuilder.module.css";
 import FormEditorPresenter from "./FormEditor.presenter";
+import { SHOW_MODAL } from "../../state/formActions";
 
 const FormEditorContainer: React.FunctionComponent = () => {
   const [{ elements }, dispatch]: any = useStateValue();
 
   const showModal = () => {
-    dispatch({ type: "SHOW_MODAL", currentIndex: 0 });
+    dispatch(SHOW_MODAL(0));
   };
 
   const placeholder = (

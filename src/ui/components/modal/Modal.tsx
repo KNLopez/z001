@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { ADD_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
 import CheckBoxModal from "./CheckBoxModal";
 import DatePickerModal from "./DatePickerModal";
@@ -25,13 +26,12 @@ const Modal = () => {
       if (!config.colWidth) {
         config.colWidth = "col-12";
       }
-      dispatch({
-        type: "ADD_FIELD",
-        field: {
+      dispatch(
+        ADD_FIELD({
           type: chosenField,
           config,
-        },
-      });
+        }),
+      );
       dispatch({ type: "HIDE_MODAL" });
     },
     [chosenField, dispatch],
@@ -89,10 +89,6 @@ const Modal = () => {
       </button>
     );
   });
-
-  // const fieldButtons = (Object.keys(FieldConstants.sections)).forEach((value: string) => {
-  //   return <button key={value}>{FieldConstants.sections[value]}</button>;
-  // });
 
   const buttonGroup = (title: string, buttons: JSX.Element[]) => (
     <div className={styles.buttonGroup}>

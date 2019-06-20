@@ -7,11 +7,15 @@ interface CheckBoxProps {
 }
 
 const CheckBox: React.FunctionComponent<CheckBoxProps> = ({ title, notes }) => {
+  const input = (
+    <input type="text" className={styles.checkBoxNotes} placeholder={notes} />
+  );
+
   const checkBoxField = (
     <div className={styles.checkBox}>
       <label htmlFor={title}>{title}</label>
       <input name={title} type="checkbox" />
-      {notes ? <span className={styles.checkBoxNotes}> {notes} </span> : null}
+      {notes ? input : null}
     </div>
   );
 

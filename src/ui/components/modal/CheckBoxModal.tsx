@@ -38,7 +38,6 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
           onChange={handleInputChange}
           name="notes"
           placeholder="Enter here"
-          required={true}
         />
         <button>ADD</button>
       </div>
