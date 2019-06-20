@@ -8,6 +8,7 @@ export const FieldConstants = {
     singleLine: "Single Line",
     multiLine: "Multi-line",
     checkbox: "Checkbox",
+    multipleCheckBox: "Multiple Checkbox",
     radio: "Radio",
     numeric: "Numeric",
     datepicker: "Date picker",

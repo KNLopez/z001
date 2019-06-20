@@ -5,11 +5,12 @@ interface SecTionProps {
   title: string;
 }
 
-const Section: React.FunctionComponent<SecTionProps> = ({
-  title,
-}) => {
+const Section: React.FunctionComponent<SecTionProps> = ({ title }) => {
   return (
-    <div className={styles.section}> <h2>{title}</h2> </div>
+    <div className={styles.section}>
+      {" "}
+      <h2>{title}</h2>{" "}
+    </div>
   );
 };
 

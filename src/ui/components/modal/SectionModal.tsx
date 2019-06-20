@@ -1,19 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
 interface SectionModalProps {
   title: string;
-  handleSubmit: ( e: any , config: any) => void;
+  handleSubmit: (e: any, config: any) => void;
 }
 
 const SectionModal: React.FunctionComponent<SectionModalProps> = ({
-  title, handleSubmit,
+  title,
+  handleSubmit,
 }) => {
   const [config, setConfig] = useState();
 
   const handleInputChange = (e: any) => {
-    const {name, value} = e.target;
-    setConfig({...config, [name]: value});
+    const { name, value } = e.target;
+    setConfig({ ...config, [name]: value });
   };
 
   const submitForm = (e: any) => {
@@ -25,9 +26,15 @@ const SectionModal: React.FunctionComponent<SectionModalProps> = ({
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
         <h2>Add {title}</h2>
-      <label>Label</label>
-      <input type="text" onChange={handleInputChange} name="title" placeholder="Enter here" required={true}/>
-      <button>ADD</button>
+        <label>Label</label>
+        <input
+          type="text"
+          onChange={handleInputChange}
+          name="title"
+          placeholder="Enter here"
+          required={true}
+        />
+        <button>ADD</button>
       </div>
     </form>
   );

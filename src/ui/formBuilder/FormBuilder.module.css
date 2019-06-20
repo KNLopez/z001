@@ -40,6 +40,15 @@
   padding: 0 60px;
 }
 
+.formEditorContainer > span {
+  width: 100%;
+  border: 1px dashed #ddd;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .fieldContainer {
   margin-bottom: 20px;
   position: relative;
@@ -49,7 +58,7 @@
 }
 
 .fieldContainer:hover .addField,
-.fieldContainer:hover .moveHandle{
+.fieldContainer:hover .moveHandle {
   display: block;
 }
 
@@ -63,7 +72,7 @@
   position: absolute;
   bottom: -10px;
   width: calc(100% - 20px);
-  color: #1592E6;
+  color: #1592e6;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
@@ -73,8 +82,8 @@
 .addField:before {
   position: absolute;
   content: " ";
-  border-bottom: 2px solid #1592E6;
-  width: calc( 50% - 50px );
+  border-bottom: 2px solid #1592e6;
+  width: calc(50% - 50px);
   left: 0;
   bottom: 60%;
 }
@@ -82,8 +91,8 @@
 .addField:after {
   position: absolute;
   content: " ";
-  border-bottom: 2px solid #1592E6;
-  width: calc( 50% - 50px );
+  border-bottom: 2px solid #1592e6;
+  width: calc(50% - 50px);
   right: 0;
   bottom: 60%;
 }
@@ -98,7 +107,8 @@
   display: none;
 }
 
-.edit, .delete {
+.edit,
+.delete {
   margin-left: 10px;
   cursor: pointer;
 }
@@ -116,7 +126,7 @@
   cursor: grabbing;
 }
 
-.moveHandle svg g{
+.moveHandle svg g {
   fill: #a3a3a3;
 }
 
@@ -143,5 +153,3 @@ label {
   top: -13px;
   font-size: 21px;
 }
-
-

@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useCallback} from "react";
-import {useStateValue} from "../../../state/formContext";
+import React, { useCallback, useEffect, useState } from "react";
+import { useStateValue } from "../../../state/formContext";
 import CheckBoxModal from "./CheckBoxModal";
 import DatePickerModal from "./DatePickerModal";
-import {FieldConstants} from "./FieldConstants";
+import { FieldConstants } from "./FieldConstants";
 import LineFieldModal from "./LineFieldModal";
 import styles from "./Modal.module.css";
 import NumericModal from "./NumericModal";
@@ -19,20 +19,23 @@ const Modal = () => {
   const [chosenField, setChosenField] = useState();
   const [modalStateContent, setModalContent] = useState();
 
-  const addField = useCallback((e: any, config: any) => {
-    e.preventDefault();
-    if (!config.colWidth) {
-      config.colWidth = "col-12";
-    }
-    dispatch({
-      type: "ADD_FIELD",
-      field: {
-        type: chosenField,
-        config,
-      },
-    });
-    dispatch({type: "HIDE_MODAL"});
-  }, [chosenField, dispatch]);
+  const addField = useCallback(
+    (e: any, config: any) => {
+      e.preventDefault();
+      if (!config.colWidth) {
+        config.colWidth = "col-12";
+      }
+      dispatch({
+        type: "ADD_FIELD",
+        field: {
+          type: chosenField,
+          config,
+        },
+      });
+      dispatch({ type: "HIDE_MODAL" });
+    },
+    [chosenField, dispatch],
+  );
 
   const handleClick = (field: string) => {
     setChosenField(field);
@@ -40,27 +43,51 @@ const Modal = () => {
 
   const removeModal = (e: any) => {
     e.stopPropagation();
-    dispatch({type: "HIDE_MODAL"});
+    dispatch({ type: "HIDE_MODAL" });
   };
 
   const sections: BigObject<string> = FieldConstants.sections;
   const sectionButtons = Object.keys(sections).map((value) => {
-    return <button className={styles[value]} onClick={()=>handleClick(value)} key={value}>{sections[value]}</button>;
+    return (
+      <button
+        className={styles[value]}
+        onClick={() => handleClick(value)}
+        key={value}
+      >
+        {sections[value]}
+      </button>
+    );
   });
 
   const basicFields: BigObject<string> = FieldConstants.basicFields;
   const basicFieldButtons = Object.keys(basicFields).map((value) => {
-    return <button className={styles[value]} onClick={()=>handleClick(value)} key={value}>{basicFields[value]}</button>;
+    return (
+      <button
+        className={styles[value]}
+        onClick={() => handleClick(value)}
+        key={value}
+      >
+        {basicFields[value]}
+      </button>
+    );
   });
 
   const approvals: BigObject<string> = FieldConstants.approvals;
   const approvalButtons = Object.keys(approvals).map((value) => {
-    return <button onClick={()=>handleClick(value)} key={value}>{approvals[value]}</button>;
+    return (
+      <button onClick={() => handleClick(value)} key={value}>
+        {approvals[value]}
+      </button>
+    );
   });
 
   const lists: BigObject<string> = FieldConstants.lists;
   const listButtons = Object.keys(lists).map((value) => {
-    return <button onClick={()=>handleClick(value)} key={value}>{lists[value]}</button>;
+    return (
+      <button onClick={() => handleClick(value)} key={value}>
+        {lists[value]}
+      </button>
+    );
   });
 
   // const fieldButtons = (Object.keys(FieldConstants.sections)).forEach((value: string) => {
@@ -87,28 +114,46 @@ const Modal = () => {
     setModalContent(modalContent);
     switch (chosenField) {
       case "singleLine":
-          setModalContent(<LineFieldModal title="Single Line Textfield" handleSubmit={addField} />);
-          break;
+        setModalContent(
+          <LineFieldModal
+            title="Single Line Textfield"
+            handleSubmit={addField}
+          />,
+        );
+        break;
       case "section":
-          setModalContent(<SectionModal title="Section" handleSubmit={addField} />);
-          break;
+        setModalContent(
+          <SectionModal title="Section" handleSubmit={addField} />,
+        );
+        break;
       case "subSection":
-          setModalContent(<SectionModal title="Sub Section" handleSubmit={addField} />);
-          break;
+        setModalContent(
+          <SectionModal title="Sub Section" handleSubmit={addField} />,
+        );
+        break;
       case "multiLine":
-          setModalContent(<LineFieldModal title="Multi-Line Textfield" handleSubmit={addField} />);
-          break;
+        setModalContent(
+          <LineFieldModal
+            title="Multi-Line Textfield"
+            handleSubmit={addField}
+          />,
+        );
+        break;
       case "checkbox":
-          setModalContent(<CheckBoxModal handleSubmit={addField} />);
-          break;
+        setModalContent(<CheckBoxModal handleSubmit={addField} />);
+        break;
       case "radio":
-          setModalContent(<RadioModal handleSubmit={addField} />);
-          break;
+        setModalContent(<RadioModal handleSubmit={addField} />);
+        break;
       case "numeric":
-          setModalContent(<NumericModal  title="Numeric Field" handleSubmit={addField} />);
-          break;
+        setModalContent(
+          <NumericModal title="Numeric Field" handleSubmit={addField} />,
+        );
+        break;
       case "datepicker":
-        setModalContent(<DatePickerModal  title="Date Picker Field" handleSubmit={addField} />);
+        setModalContent(
+          <DatePickerModal title="Date Picker Field" handleSubmit={addField} />,
+        );
         break;
     }
   }, [chosenField, modalContent, addField]);
@@ -116,7 +161,9 @@ const Modal = () => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalBody}>
-        <div className="close" onClick={removeModal}>X</div>
+        <div className="close" onClick={removeModal}>
+          X
+        </div>
         {modalStateContent}
       </div>
     </div>

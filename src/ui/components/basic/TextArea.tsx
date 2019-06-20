@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 
 interface TextAreaProps {
   title: string;
@@ -6,12 +6,13 @@ interface TextAreaProps {
 }
 
 const TextArea: React.FunctionComponent<TextAreaProps> = ({
-  title, placeholder,
+  title,
+  placeholder,
 }) => {
   return (
     <Fragment>
       <label>{title}</label>
-      <textarea placeholder={placeholder}/>
+      <textarea placeholder={placeholder} />
     </Fragment>
   );
 };

@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
 interface RadioModalModalProps {
-  handleSubmit: ( e: any , config: any) => void;
+  handleSubmit: (e: any, config: any) => void;
 }
 
 const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
@@ -11,14 +11,14 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
   const [config, setConfig] = useState();
 
   const handleInputChange = (e: any) => {
-    const {name, value} = e.target;
-    setConfig({...config, [name]: value});
+    const { name, value } = e.target;
+    setConfig({ ...config, [name]: value });
   };
 
-  const handleTextAreaChange = (e:any) => {
-    const {name, value} = e.target;
-    setConfig({...config, [name]: value.split("\n")});
-  }
+  const handleTextAreaChange = (e: any) => {
+    const { name, value } = e.target;
+    setConfig({ ...config, [name]: value.split("\n") });
+  };
 
   const submitForm = (e: any) => {
     e.preventDefault();
@@ -28,18 +28,27 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-      <h2>Add Radio Buttons</h2>
-      <label>Label</label>
-      <input type="text" onChange={handleInputChange} name="title" placeholder="Enter here" required={true}/>
-      <label>Options</label>
-      <textarea
-        onChange={handleTextAreaChange}
-        name="options"
-        placeholder={"Option 1\nOption 2\nOption 3\n[other]"}
-        required={true}
-      />
-      <span> One option per line. Type [other] with brackets to add "other" option</span>
-      <button>ADD</button>
+        <h2>Add Radio Buttons</h2>
+        <label>Label</label>
+        <input
+          type="text"
+          onChange={handleInputChange}
+          name="title"
+          placeholder="Enter here"
+          required={true}
+        />
+        <label>Options</label>
+        <textarea
+          onChange={handleTextAreaChange}
+          name="options"
+          placeholder={"Option 1\nOption 2\nOption 3\n[other]"}
+          required={true}
+        />
+        <span>
+          {" "}
+          One option per line. Type [other] with brackets to add "other" option
+        </span>
+        <button>ADD</button>
       </div>
     </form>
   );

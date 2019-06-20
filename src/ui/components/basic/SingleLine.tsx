@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import styles from "./BasicFields.module.css";
 
 interface SingleLineProps {
@@ -7,20 +7,17 @@ interface SingleLineProps {
 }
 
 const SingleLine: React.FunctionComponent<SingleLineProps> = ({
-  title, placeholder,
+  title,
+  placeholder,
 }) => {
   const singLineField = (
-      <div className={styles.singleLine}>
-        <label htmlFor={title}>{title}</label>
-        <input name={title} type="text" placeholder={placeholder}/>
-      </div>
-    );
-
-  return (
-    <Fragment>
-      {singLineField}
-    </Fragment>
+    <div className={styles.singleLine}>
+      <label htmlFor={title}>{title}</label>
+      <input name={title} type="text" placeholder={placeholder} />
+    </div>
   );
+
+  return <Fragment>{singLineField}</Fragment>;
 };
 
 export default SingleLine;

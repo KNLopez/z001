@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
 interface CheckBoxModalProps {
-  handleSubmit: ( e: any , config: any) => void;
+  handleSubmit: (e: any, config: any) => void;
 }
 
 const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
@@ -11,8 +11,8 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
   const [config, setConfig] = useState();
 
   const handleInputChange = (e: any) => {
-    const {name, value} = e.target;
-    setConfig({...config, [name]: value});
+    const { name, value } = e.target;
+    setConfig({ ...config, [name]: value });
   };
 
   const submitForm = (e: any) => {
@@ -23,12 +23,24 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-      <h2>Add Checkbox</h2>
-      <label>Label</label>
-      <input type="text" onChange={handleInputChange} name="title" placeholder="Enter here" required={true}/>
-      <label>Notes</label>
-      <input type="text" onChange={handleInputChange} name="notes" placeholder="Enter here" required={true}/>
-      <button>ADD</button>
+        <h2>Add Checkbox</h2>
+        <label>Label</label>
+        <input
+          type="text"
+          onChange={handleInputChange}
+          name="title"
+          placeholder="Enter here"
+          required={true}
+        />
+        <label>Notes</label>
+        <input
+          type="text"
+          onChange={handleInputChange}
+          name="notes"
+          placeholder="Enter here"
+          required={true}
+        />
+        <button>ADD</button>
       </div>
     </form>
   );
