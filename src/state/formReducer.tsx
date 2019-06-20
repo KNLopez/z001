@@ -27,7 +27,7 @@ export const formReducer = (state: any, action: any) => {
         elements,
       };
     case "DELETE_FIELD":
-      elements.splice(action.currentIndex, action.currentIndex + 1);
+      elements.splice(action.currentIndex, 1);
       return {
         ...state,
         elements,
