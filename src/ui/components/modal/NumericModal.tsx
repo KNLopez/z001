@@ -30,22 +30,30 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
   };
 
   const tolerance = () => (
-    <div className="toleranceContainer">
-      <div className="radioContainer">
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="toleranceType"
-          value="percent"
-        />
-        %
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="toleranceType"
-          value="number"
-        />
-        number
+    <div className={styles.toleranceContainer}>
+      <div className={styles.radioContainer}>
+        <label>
+          {" "}
+          Percent
+          <input
+            type="radio"
+            onChange={handleInputChange}
+            name="toleranceType"
+            value="percent"
+          />
+          <span className={styles.customRadio} />
+        </label>
+        <label>
+          {" "}
+          Number
+          <input
+            type="radio"
+            onChange={handleInputChange}
+            name="toleranceType"
+            value="number"
+          />
+          <span className={styles.customRadio} />
+        </label>
       </div>
       <input
         onChange={handleInputChange}
@@ -88,8 +96,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
           name="tolerance"
           value="true"
         />{" "}
-        with tolerance?
-        {withTolerance ? tolerance() : null}
+        with tolerance? {withTolerance ? tolerance() : null}
         <button>ADD</button>
       </div>
     </form>

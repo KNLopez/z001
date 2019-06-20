@@ -82,6 +82,70 @@
 .buttonGroup button.checkbox,
 .buttonGroup button.radio,
 .buttonGroup button.numeric,
-.buttonGroup button.datepicker {
+.buttonGroup button.datepicker,
+.buttonGroup button.hyperlink,
+.buttonGroup button.paragraph,
+.buttonGroup button.fileUpload,
+.buttonGroup button.multipleCheckbox {
   background: #222;
+}
+
+.toleranceContainer {
+  margin-top: 20px;
+}
+
+.radioContainer {
+  margin-bottom: 15px;
+  padding: 0 0 20px;
+}
+
+.radioContainer h3 {
+  font-size: 21px;
+  position: absolute;
+  top: -13px;
+}
+
+.radioContainer label {
+  position: relative;
+  top: 5px;
+  margin-right: 20px;
+  padding-left: 40px;
+  text-transform: capitalize;
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+.radioContainer input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+.radioContainer input[type="text"] {
+  margin-top: 20px;
+}
+
+.customRadio {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 3px solid #c40000;
+}
+
+.radioContainer input[type="radio"]:checked ~ .customRadio:after {
+  position: absolute;
+  background-color: #c40000;
+  content: " ";
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
 }

@@ -1,8 +1,13 @@
 import React from "react";
+import { DELETE_FIELD, SHOW_MODAL } from "../../state/formActions";
 import { useStateValue } from "../../state/formContext";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
+import FileUpload from "../components/basic/FileUpload";
+import HyperLink from "../components/basic/HyperLink";
+import MultipleCheckbox from "../components/basic/MultipleCheckbox";
 import Numeric from "../components/basic/Numeric";
+import Paragraph from "../components/basic/Paragraph";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
@@ -10,7 +15,6 @@ import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
-import { SHOW_MODAL, DELETE_FIELD } from "../../state/formActions";
 
 interface FormFieldProps {
   order: string;
@@ -25,6 +29,8 @@ interface FormFieldProps {
     max?: number;
     min?: number;
     notes?: string;
+    url?: string;
+    text?: string;
   };
 }
 
@@ -76,6 +82,20 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       break;
     case "datepicker":
       formField = <DatePicker title={config.title} />;
+      break;
+    case "hyperlink":
+      formField = <HyperLink title={config.title} url={config.url || ""} />;
+      break;
+    case "paragraph":
+      formField = <Paragraph title={config.title} text={config.text || ""} />;
+      break;
+    case "fileUpload":
+      formField = <FileUpload title={config.title} />;
+      break;
+    case "multipleCheckbox":
+      formField = (
+        <MultipleCheckbox title={config.title} options={config.options || []} />
+      );
       break;
   }
   // eslint-disable-next-line

@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react";
 import styles from "./BasicFields.module.css";
 
-interface RadioProps {
+interface MultipleCheckboxProps {
   title: string;
   options: any[];
 }
 
-const RadioField: React.FunctionComponent<RadioProps> = ({
+const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
   title,
   options,
 }) => {
@@ -14,10 +14,6 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
 
   const chosenHandler = (e: any) => {
     chooseOther(true);
-  };
-
-  const removeChosenHandler = (e: any) => {
-    chooseOther(false);
   };
 
   const radio = options.map((option, i) => {
@@ -29,11 +25,11 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
             Other
             <input
               onChange={chosenHandler}
-              type="radio"
+              type="checkbox"
               name={title}
               value={option}
             />
-            <span className={styles.customRadio} />
+            <span className={styles.customCheck} />
           </label>
           {otherChosen ? (
             <input type="text" placeholder="Enter choice" />
@@ -45,23 +41,18 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
       <label key={i}>
         {" "}
         {option}
-        <input
-          type="radio"
-          name={title}
-          value={option}
-          onChange={removeChosenHandler}
-        />
-        <span className={styles.customRadio} />
+        <input type="checkbox" name={title} value={option} />
+        <span className={styles.customCheck} />
       </label>
     );
   });
 
   return (
-    <div className={styles.radioContainer}>
-      <h3 className={styles.radioTitle}>{title}</h3>
-      <div className={styles.radioGroup}>{radio}</div>
+    <div className={styles.checkboxContainer}>
+      <h3 className={styles.checkBoxTitle}>{title}</h3>
+      <div className={styles.checkBoxGroup}>{radio}</div>
     </div>
   );
 };
 
-export default RadioField;
+export default MultipleCheckbox;

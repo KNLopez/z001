@@ -42,7 +42,7 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
           placeholder="Enter here"
           required={true}
         />
-        <div>
+        <div className={styles.radioContainer}>
           <label>
             {" "}
             Short

@@ -4,7 +4,11 @@ import { useStateValue } from "../../../state/formContext";
 import CheckBoxModal from "./CheckBoxModal";
 import DatePickerModal from "./DatePickerModal";
 import { FieldConstants } from "./FieldConstants";
+import HyperLinkModal from "./HyperLinkModal";
+import FileUploadModal from "./FileUploadModal";
 import LineFieldModal from "./LineFieldModal";
+import MultipleCheckboxModal from "./MultipleCheckboxModal";
+import ParagraphModal from "./ParagraphModal";
 import styles from "./Modal.module.css";
 import NumericModal from "./NumericModal";
 import RadioModal from "./RadioModal";
@@ -147,6 +151,18 @@ const Modal = () => {
         setModalContent(
           <DatePickerModal title="Date Picker Field" handleSubmit={addField} />,
         );
+        break;
+      case "hyperlink":
+        setModalContent(<HyperLinkModal handleSubmit={addField} />);
+        break;
+      case "paragraph":
+        setModalContent(<ParagraphModal handleSubmit={addField} />);
+        break;
+      case "fileUpload":
+        setModalContent(<FileUploadModal handleSubmit={addField} />);
+        break;
+      case "multipleCheckbox":
+        setModalContent(<MultipleCheckboxModal handleSubmit={addField} />);
         break;
     }
   }, [chosenField, modalContent, addField]);

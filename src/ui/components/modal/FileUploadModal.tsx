@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
 interface DatePickerModalProps {
-  title: string;
   handleSubmit: (e: any, config: any) => void;
 }
 
 const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
-  title,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
@@ -25,7 +23,7 @@ const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2> {title}</h2>
+        <h2>File Upload</h2>
         <label>Label</label>
         <input
           type="text"
