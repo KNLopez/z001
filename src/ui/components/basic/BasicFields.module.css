@@ -179,6 +179,11 @@ textarea {
 .checkBox label {
   position: relative;
   top: 0;
+  padding-left: 30px;
+}
+
+.checkBox input {
+  margin-top: 10px;
 }
 
 /* calendar */
