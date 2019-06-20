@@ -109,11 +109,20 @@ textarea {
 }
 
 /* checkbox */
-.checkBoxContainer {
-  display: block;
+.multipleCheckBoxContainer {
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.checkBoxGroup {
+  margin-top: 30px;
+}
+
+.multipleCheckBoxContainer label {
+  position: relative;
+  display: inline-block;
+  padding: 0 20px 0 30px;
 }
 
 .checkBoxContainer input {
