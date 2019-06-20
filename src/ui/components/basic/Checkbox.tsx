@@ -23,8 +23,11 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({ title, notes }) => {
 
   const checkBoxField = (
     <div className={styles.checkBox}>
-      <input name={title} type="checkbox" onChange={handleCheck} />
-      <label htmlFor={title}>{title}</label>
+      <label htmlFor={title} className={styles.checkBoxContainer}>
+        {title}
+        <input id={title} name={title} type="checkbox" onChange={handleCheck} />
+        <span className={styles.innerCheck} />
+      </label>
       {note && notes ? input : null}
     </div>
   );
