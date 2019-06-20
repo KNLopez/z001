@@ -8,7 +8,7 @@ interface HyperLinkProps {
 
 const HyperLink: React.FunctionComponent<HyperLinkProps> = ({ title, url }) => {
   const hyperLinkField = (
-    <div className={styles.singleLine}>
+    <div className={styles.hyperlink}>
       <h3>
         <a href={url}>{title}</a>
       </h3>

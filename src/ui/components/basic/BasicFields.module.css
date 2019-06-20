@@ -205,3 +205,17 @@ textarea {
   bottom: 0;
   color: red;
 }
+
+/* hyperlink */
+.hyperlink {
+  padding-bottom: 10px;
+}
+
+.hyperlink a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.hyperlink a:hover {
+  text-decoration: underline;
+}
