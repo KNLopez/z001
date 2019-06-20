@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
+import { SHOW_MODAL } from "../../state/formActions";
 import { useStateValue } from "../../state/formContext";
 import styles from "./FormBuilder.module.css";
 import FormEditorPresenter from "./FormEditor.presenter";
-import { SHOW_MODAL } from "../../state/formActions";
 
 const FormEditorContainer: React.FunctionComponent = () => {
   const [{ elements }, dispatch]: any = useStateValue();

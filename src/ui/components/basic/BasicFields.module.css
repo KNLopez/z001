@@ -61,6 +61,10 @@ textarea {
   cursor: pointer;
 }
 
+.radioContainer input[type="text"] {
+  margin-top: 20px;
+}
+
 .customRadio {
   cursor: pointer;
   position: absolute;
