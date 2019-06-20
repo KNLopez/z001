@@ -154,7 +154,7 @@ const Modal = () => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalBody}>
-        <div className="close" onClick={removeModal}>
+        <div className={styles.close} onClick={removeModal}>
           X
         </div>
         {modalStateContent}
