@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-AWS_DIR="${BITBUCKET_CLONE_DIR}/aws"
+BASE="${BITBUCKET_CLONE_DIR}"
+AWS_DIR="${BASE}/aws"
 ENVIRONMENT_DIR="${AWS_DIR}/environments"
 BASH_SCRIPTS_DIR="${AWS_DIR}/bash_scripts"
 PYTHON_SCRIPTS_DIR="${AWS_DIR}/python_scripts"
@@ -32,9 +33,15 @@ yarn build
 echo "-------- Executing Tests --------"
 
 yarn test --outputFile "${AWS_DIR}/result.json" --json --no-watch --reporters="jest-junit"
-rm -rf "${AWS_DIR}/test-reports"
+if [ -d "${AWS_DIR}/test-reports"]; then
+	rm -rf "${AWS_DIR}/test-reports"
+fi 
+
 mkdir "${AWS_DIR}/test-reports"
-mv junit.xml "${AWS_DIR}/test-reports/junit.xml"
+
+if [ -f "${BASE}/junit.xml" ]; then 
+	mv "${BASE}/junit.xml" "${AWS_DIR}/test-reports/junit.xml"
+fi
 
 # Process test results
 echo "-------- Processing Test Results --------"
