@@ -20,11 +20,10 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
     if (option === "[other]") {
       return (
         <Fragment>
-          <label key={i} htmlFor={option} className={styles.checkBoxContainer}>
+          <label key={i} className={styles.checkBoxContainer}>
             {" "}
             Other
             <input
-              id={option}
               onChange={chosenHandler}
               type="checkbox"
               name={title}
@@ -39,10 +38,10 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
       );
     } else {
       return (
-        <label key={i} htmlFor={option} className={styles.checkBoxContainer}>
+        <label key={i} className={styles.checkBoxContainer}>
           {" "}
           {option}
-          <input id={option} name={option} type="checkbox" value={option} />
+          <input name={option} type="checkbox" value={option} />
           <span className={styles.innerCheck} />
         </label>
       );
