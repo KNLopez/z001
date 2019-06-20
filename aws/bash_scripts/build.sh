@@ -34,7 +34,7 @@ echo "-------- Building Application --------"
 
 docker build -f ./docker/Dockerfile -t "${IMAGE_NAME}" .
 
-Deploy
+# Deploy
 if [ "${DTD}" == "true" ]; then
 	echo "-------- Pushing Image to AWS ECR --------"
 
