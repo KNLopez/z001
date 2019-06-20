@@ -8,7 +8,8 @@
   float: left;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   width: 100%;
   height: 50px;
   margin-bottom: 20px;
@@ -22,8 +23,9 @@ textarea {
   margin-bottom: 20px;
 }
 
-input[type="text"], textarea {
-  background: #F2F2F2;
+input[type="text"],
+textarea {
+  background: #f2f2f2;
   border: 0;
   border-radius: 3px;
   font-size: 14px;
@@ -35,7 +37,7 @@ input[type="text"], textarea {
   padding: 0 0 20px;
 }
 
-.radioContainer h3{
+.radioContainer h3 {
   font-size: 21px;
   position: absolute;
   top: -13px;
@@ -68,18 +70,18 @@ input[type="text"], textarea {
   width: 30px;
   background-color: #fff;
   border-radius: 50%;
-  border: 3px solid #C40000;
+  border: 3px solid #c40000;
 }
 
 .radioContainer input[type="radio"]:checked ~ .customRadio:after {
   position: absolute;
-  background-color: #C40000;
+  background-color: #c40000;
   content: " ";
   top: 4px;
-	left: 4px;
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
 }
 
 /* numeric */
@@ -107,8 +109,13 @@ input[type="text"], textarea {
   padding: 0 0 20px;
 }
 
+.checkBox label {
+  position: relative;
+  top: 0;
+}
+
 /* calendar */
-.DatePickerContainer > div{
+.DatePickerContainer > div {
   width: 100%;
 }
 
@@ -125,4 +132,3 @@ input[type="text"], textarea {
   bottom: 0;
   color: red;
 }
-

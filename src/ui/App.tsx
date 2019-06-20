@@ -4,7 +4,6 @@ import FormBuilderContainer from "./formBuilder/FormBuilder.container";
 import StatusPresenter from "./formBuilder/Status.presenter";
 
 const App: React.FunctionComponent = () => {
-  console.log(window.location.pathname);
   if (window.location.pathname === "/status") {
     return (
       <div className="App" style={AppStyles}>

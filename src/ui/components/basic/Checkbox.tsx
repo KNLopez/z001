@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import styles from "./BasicFields.module.css";
 
 interface CheckBoxProps {
@@ -7,15 +7,25 @@ interface CheckBoxProps {
 }
 
 const CheckBox: React.FunctionComponent<CheckBoxProps> = ({ title, notes }) => {
+  const [note, showNote] = useState(false);
+
+  const handleCheck = (e: any) => {
+    if (e.target.checked) {
+      showNote(true);
+    } else {
+      showNote(false);
+    }
+  };
+
   const input = (
     <input type="text" className={styles.checkBoxNotes} placeholder={notes} />
   );
 
   const checkBoxField = (
     <div className={styles.checkBox}>
+      <input name={title} type="checkbox" onChange={handleCheck} />
       <label htmlFor={title}>{title}</label>
-      <input name={title} type="checkbox" />
-      {notes ? input : null}
+      {note ? input : null}
     </div>
   );
 

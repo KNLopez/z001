@@ -20,22 +20,19 @@ const Modal = () => {
   const [chosenField, setChosenField] = useState();
   const [modalStateContent, setModalContent] = useState();
 
-  const addField = useCallback(
-    (e: any, config: any) => {
-      e.preventDefault();
-      if (!config.colWidth) {
-        config.colWidth = "col-12";
-      }
-      dispatch(
-        ADD_FIELD({
-          type: chosenField,
-          config,
-        }),
-      );
-      dispatch({ type: "HIDE_MODAL" });
-    },
-    [chosenField, dispatch],
-  );
+  const addField = (e: any, config: any) => {
+    e.preventDefault();
+    if (!config.colWidth) {
+      config.colWidth = "col-12";
+    }
+    dispatch(
+      ADD_FIELD({
+        type: chosenField,
+        config,
+      }),
+    );
+    dispatch({ type: "HIDE_MODAL" });
+  };
 
   const handleClick = (field: string) => {
     setChosenField(field);
