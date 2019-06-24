@@ -121,7 +121,9 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       className={styles.fieldContainer + width + sectionStyle}
     >
       <div className={styles.topControls}>
-        <div className={styles.edit}>Edit</div>
+        <div className={styles.edit} onClick={editField}>
+          Edit
+        </div>
         <div className={styles.delete} onClick={removeField}>
           Delete
         </div>

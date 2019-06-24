@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Modal.module.css";
 
 interface SectionModalProps {
@@ -13,6 +13,12 @@ const SectionModal: React.FunctionComponent<SectionModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -35,8 +41,9 @@ const SectionModal: React.FunctionComponent<SectionModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

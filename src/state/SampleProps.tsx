@@ -11,6 +11,7 @@ const formProps = {
   status: "",
   elements: sampleFormProps,
   modalState: ModalState,
+  currentField: "",
 };
 
 export default formProps;

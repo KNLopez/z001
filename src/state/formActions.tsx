@@ -18,9 +18,29 @@ export const HIDE_MODAL = () => {
   };
 };
 
-export const EDIT_FIELD = (type: string, config: any, order: string) => {
+export const EDIT_FIELD = (
+  fieldType: string,
+  config: any,
+  currentIndex: number | string,
+) => {
   return {
     type: "EDIT_FIELD",
+    fieldType,
+    config,
+    currentIndex,
+  };
+};
+
+export const UPDATE_FIELD = (
+  fieldType: string,
+  config: any,
+  currentIndex: number | string,
+) => {
+  return {
+    type: "UPDATE_FIELD",
+    fieldType,
+    config,
+    currentIndex,
   };
 };
 

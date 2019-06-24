@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { ADD_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
 
@@ -11,25 +11,27 @@ interface BigObject<T> {
   [index: string]: T;
 }
 
-const Modal = () => {
+const NewFieldModal = () => {
   // eslint-disable-next-line
   const [{}, dispatch]: any = useStateValue();
   const [chosenField, setChosenField] = useState();
   const [modalStateContent, setModalContent] = useState();
 
-  const addField = (e: any, config: any) => {
-    e.preventDefault();
-    if (!config.colWidth) {
-      config.colWidth = "col-12";
-    }
-    dispatch(
-      ADD_FIELD({
-        type: chosenField,
-        config,
-      }),
-    );
-    dispatch({ type: "HIDE_MODAL" });
-  };
+  const addField = useCallback(
+    (e: any, config: any) => {
+      e.preventDefault();
+      if (!config.colWidth) {
+        config.colWidth = "col-12";
+      }
+      dispatch(
+        ADD_FIELD({
+          type: chosenField,
+          config,
+        }),
+      );
+    },
+    [chosenField, dispatch],
+  );
 
   const handleClick = (field: string) => {
     setChosenField(field);
@@ -107,4 +109,4 @@ const Modal = () => {
   return <Fragment>{modalStateContent}</Fragment>;
 };
 
-export default Modal;
+export default NewFieldModal;

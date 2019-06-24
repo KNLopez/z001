@@ -7,14 +7,13 @@ export const formReducer = (state: any, action: any) => {
       return {
         ...state,
         elements,
+        modalState: { ...state.modalState, show: false },
       };
     case "SHOW_MODAL":
-      const currentField = action.currentField || "";
       return {
         ...state,
         modalState: { ...state.modalState, show: true },
         currentIndex: action.currentIndex,
-        currentField,
       };
     case "HIDE_MODAL":
       return {
@@ -24,10 +23,29 @@ export const formReducer = (state: any, action: any) => {
       };
 
     case "EDIT_FIELD":
-      elements.splice(index + 1, 1, action.field);
       return {
         ...state,
         elements,
+        modalState: { ...state.modalState, show: true },
+        currentField: {
+          currentIndex: action.currentIndex,
+          type: action.fieldType,
+          config: action.config,
+        },
+      };
+
+    case "UPDATE_FIELD":
+      const updatedField = {
+        type: action.fieldType,
+        config: action.config,
+        order: action.currentIndex,
+      };
+      elements.splice(action.currentIndex, 1, updatedField);
+      return {
+        ...state,
+        elements,
+        modalState: { ...state.modalState, show: false },
+        currentField: "",
       };
     case "DELETE_FIELD":
       elements.splice(action.currentIndex, 1);
