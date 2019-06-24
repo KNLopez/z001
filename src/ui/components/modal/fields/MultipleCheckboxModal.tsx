@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Modal.module.css";
 
 interface MultipleCheckboxModalProps {
   handleSubmit: (e: any, config: any) => void;
-  currentConfig?: {};
+  currentConfig?: { options: any };
 }
 
 const MultipleCheckboxModal: React.FunctionComponent<
   MultipleCheckboxModalProps
 > = ({ handleSubmit, currentConfig }) => {
   const [config, setConfig] = useState();
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -37,6 +43,7 @@ const MultipleCheckboxModal: React.FunctionComponent<
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
         <label>Options</label>
         <textarea
@@ -44,12 +51,13 @@ const MultipleCheckboxModal: React.FunctionComponent<
           name="options"
           placeholder={"Option 1\nOption 2\nOption 3\n[other]"}
           required={true}
+          defaultValue={currentConfig ? currentConfig.options.join("\n") : null}
         />
         <span>
           {" "}
           One option per line. Type [other] with brackets to add "other" option
         </span>
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Modal.module.css";
 
 interface NumericModalProps {
-  currentConfig?: {};
+  currentConfig?: { tolerance: boolean };
   title: string;
   handleSubmit: (e: any, config: any) => void;
 }
@@ -14,6 +14,13 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
 }) => {
   const [config, setConfig] = useState();
   const [withTolerance, setTolerance] = useState(false);
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+      setTolerance(currentConfig.tolerance);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -42,6 +49,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
             onChange={handleInputChange}
             name="toleranceType"
             value="percent"
+            checked={config ? "percent" === config.toleranceType : false}
           />
           <span className={styles.customRadio} />
         </label>
@@ -53,6 +61,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
             onChange={handleInputChange}
             name="toleranceType"
             value="number"
+            checked={config ? "number" === config.toleranceType : false}
           />
           <span className={styles.customRadio} />
         </label>
@@ -62,12 +71,14 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
         type="text"
         name="min"
         placeholder="Enter minimum value"
+        defaultValue={config ? config.min : null}
       />
       <input
         onChange={handleInputChange}
         type="text"
         name="max"
         placeholder="Enter maximum value"
+        defaultValue={config ? config.max : null}
       />
     </div>
   );
@@ -75,7 +86,9 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2>Add {title}</h2>
+        <h2>
+          {currentConfig ? "Edit" : "Add"} {title}
+        </h2>
         <label>Label</label>
         <input
           type="text"
@@ -83,6 +96,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
         <label>Placeholder</label>
         <input
@@ -91,15 +105,16 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
           name="placeholder"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.placeholder : null}
         />
         <input
           type="checkbox"
           onChange={toleranceCheck}
           name="tolerance"
-          value="true"
+          defaultChecked={config ? config.tolerance : null}
         />{" "}
         with tolerance? {withTolerance ? tolerance() : null}
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

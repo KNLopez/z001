@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Modal.module.css";
 
 interface FileUploadModalProps {
@@ -11,6 +11,12 @@ const FileUploadModal: React.FunctionComponent<FileUploadModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -33,6 +39,7 @@ const FileUploadModal: React.FunctionComponent<FileUploadModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
         <div className={styles.radioContainer}>
           <label>
@@ -44,6 +51,7 @@ const FileUploadModal: React.FunctionComponent<FileUploadModalProps> = ({
               name="colWidth"
               value="col-6"
               required={true}
+              checked={config ? "col-6" === config.colWidth : false}
             />
             <span className={styles.customRadio} />
           </label>
@@ -56,11 +64,12 @@ const FileUploadModal: React.FunctionComponent<FileUploadModalProps> = ({
               name="colWidth"
               value="col-12"
               required={true}
+              checked={config ? "col-12" === config.colWidth : false}
             />
             <span className={styles.customRadio} />
           </label>
         </div>
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Modal.module.css";
 
 interface RadioModalModalProps {
-  currentConfig: {};
+  currentConfig: { options: any };
   handleSubmit: (e: any, config: any) => void;
 }
 
@@ -11,6 +11,13 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+      console.log(currentConfig.options);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -30,7 +37,7 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2>Add Radio Buttons</h2>
+        <h2>{currentConfig ? "Edit" : "Add"} Radio Buttons</h2>
         <label>Label</label>
         <input
           type="text"
@@ -38,6 +45,7 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
         <label>Options</label>
         <textarea
@@ -45,12 +53,13 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
           name="options"
           placeholder={"Option 1\nOption 2\nOption 3\n[other]"}
           required={true}
+          defaultValue={currentConfig ? currentConfig.options.join("\n") : null}
         />
         <span>
           {" "}
           One option per line. Type [other] with brackets to add "other" option
         </span>
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

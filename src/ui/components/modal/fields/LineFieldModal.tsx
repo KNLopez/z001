@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Modal.module.css";
 
 interface LineFieldModalProps {
@@ -13,6 +13,12 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
+
+  useEffect(() => {
+    if (currentConfig) {
+      setConfig(currentConfig);
+    }
+  }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -35,6 +41,7 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.title : null}
         />
         <label> Placeholder Text</label>
         <input
@@ -43,6 +50,7 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
           name="placeholder"
           placeholder="Enter here"
           required={true}
+          defaultValue={config ? config.placeholder : null}
         />
         <div className={styles.radioContainer}>
           <label>
@@ -54,6 +62,7 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
               name="colWidth"
               value="col-6"
               required={true}
+              checked={config ? "col-6" === config.colWidth : false}
             />
             <span className={styles.customRadio} />
           </label>
@@ -66,11 +75,12 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
               name="colWidth"
               value="col-12"
               required={true}
+              checked={config ? "col-12" === config.colWidth : false}
             />
             <span className={styles.customRadio} />
           </label>
         </div>
-        <button>ADD</button>
+        <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );

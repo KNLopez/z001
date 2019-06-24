@@ -105,7 +105,7 @@ const NewFieldModal = () => {
     } else {
       setModalContent(modalContent);
     }
-  }, [chosenField, modalContent, addField]);
+  }, [chosenField]);
   return <Fragment>{modalStateContent}</Fragment>;
 };
 
