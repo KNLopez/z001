@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import styles from "./Modal.module.css";
+import styles from "../Modal.module.css";
 
-interface DatePickerModalProps {
-  title: string;
+interface HyperLinkModalProps {
   handleSubmit: (e: any, config: any) => void;
 }
 
-const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
-  title,
+const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
@@ -25,13 +23,21 @@ const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2> {title}</h2>
+        <h2>Hyperlink</h2>
         <label>Label</label>
         <input
           type="text"
           onChange={handleInputChange}
           name="title"
           placeholder="Enter here"
+          required={true}
+        />
+        <label>URL</label>
+        <input
+          type="text"
+          onChange={handleInputChange}
+          name="url"
+          placeholder="Enter link here"
           required={true}
         />
         <div className={styles.radioContainer}>
@@ -66,4 +72,4 @@ const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   );
 };
 
-export default DatePickerModal;
+export default HyperLinkModal;

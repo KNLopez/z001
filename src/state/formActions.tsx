@@ -18,7 +18,7 @@ export const HIDE_MODAL = () => {
   };
 };
 
-export const EDIT_FIELD = () => {
+export const EDIT_FIELD = (type: string, config: any, order: string) => {
   return {
     type: "EDIT_FIELD",
   };

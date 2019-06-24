@@ -6,9 +6,9 @@ const ModalState = {
 };
 
 const formProps = {
-  title: "Form title",
-  formNumber: "FORM0001",
-  status: "DRAFT",
+  title: "",
+  formNumber: "",
+  status: "",
   elements: sampleFormProps,
   modalState: ModalState,
 };

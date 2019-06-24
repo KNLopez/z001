@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./Modal.module.css";
+import styles from "../Modal.module.css";
 
-interface LineFieldModalProps {
+interface DatePickerModalProps {
   title: string;
   handleSubmit: (e: any, config: any) => void;
 }
 
-const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
+const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   title,
   handleSubmit,
 }) => {
@@ -31,14 +31,6 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
           type="text"
           onChange={handleInputChange}
           name="title"
-          placeholder="Enter here"
-          required={true}
-        />
-        <label> Placeholder Text</label>
-        <input
-          type="text"
-          onChange={handleInputChange}
-          name="placeholder"
           placeholder="Enter here"
           required={true}
         />
@@ -74,4 +66,4 @@ const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
   );
 };
 
-export default LineFieldModal;
+export default DatePickerModal;

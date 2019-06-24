@@ -1,5 +1,5 @@
 import React from "react";
-import { DELETE_FIELD, SHOW_MODAL } from "../../state/formActions";
+import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
 import { useStateValue } from "../../state/formContext";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
@@ -103,6 +103,10 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
 
   const showModal = () => {
     dispatch(SHOW_MODAL(order));
+  };
+
+  const editField = () => {
+    dispatch(EDIT_FIELD(type, config, order));
   };
 
   const removeField = () => {

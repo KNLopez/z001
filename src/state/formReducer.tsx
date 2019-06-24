@@ -9,15 +9,18 @@ export const formReducer = (state: any, action: any) => {
         elements,
       };
     case "SHOW_MODAL":
+      const currentField = action.currentField || "";
       return {
         ...state,
         modalState: { ...state.modalState, show: true },
         currentIndex: action.currentIndex,
+        currentField,
       };
     case "HIDE_MODAL":
       return {
         ...state,
         modalState: { ...state.modalState, show: false },
+        currentField: "",
       };
 
     case "EDIT_FIELD":

@@ -124,6 +124,24 @@ textarea {
   display: inline-block;
   padding: 0 20px 0 30px;
   margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.multipleCheckBoxContainer .checkBoxContainer .innerCheck:after {
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.multipleCheckBoxContainer .checkBoxContainer .innerCheck {
+  height: 18px;
+  width: 18px;
 }
 
 .checkBoxContainer input {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import styles from "./Modal.module.css";
+import styles from "../Modal.module.css";
 
-interface HyperLinkModalProps {
+interface LineFieldModalProps {
+  title: string;
   handleSubmit: (e: any, config: any) => void;
 }
 
-const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
+const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
+  title,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
@@ -23,7 +25,7 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2>Hyperlink</h2>
+        <h2> {title}</h2>
         <label>Label</label>
         <input
           type="text"
@@ -32,12 +34,12 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
           placeholder="Enter here"
           required={true}
         />
-        <label>URL</label>
+        <label> Placeholder Text</label>
         <input
           type="text"
           onChange={handleInputChange}
-          name="url"
-          placeholder="Enter link here"
+          name="placeholder"
+          placeholder="Enter here"
           required={true}
         />
         <div className={styles.radioContainer}>
@@ -72,4 +74,4 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
   );
 };
 
-export default HyperLinkModal;
+export default LineFieldModal;
