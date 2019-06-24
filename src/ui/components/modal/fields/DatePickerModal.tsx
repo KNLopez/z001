@@ -3,11 +3,13 @@ import styles from "../Modal.module.css";
 
 interface DatePickerModalProps {
   title: string;
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   title,
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

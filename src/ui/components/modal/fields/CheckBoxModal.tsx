@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
 interface CheckBoxModalProps {
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

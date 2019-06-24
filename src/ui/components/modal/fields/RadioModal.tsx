@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
 interface RadioModalModalProps {
+  currentConfig: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

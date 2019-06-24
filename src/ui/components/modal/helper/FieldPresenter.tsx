@@ -13,12 +13,12 @@ import SectionModal from "../fields/SectionModal";
 interface FieldPresenter {
   chosenField: string;
   clickHandler: any;
-  config?: any;
+  currentConfig?: any;
 }
 
 const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
   chosenField,
-  config,
+  currentConfig,
   clickHandler,
 }) => {
   let modalStateContent;
@@ -27,18 +27,27 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       modalStateContent = (
         <LineFieldModal
           title="Single Line Textfield"
+          currentConfig={currentConfig}
           handleSubmit={clickHandler}
         />
       );
       break;
     case "section":
       modalStateContent = (
-        <SectionModal title="Section" handleSubmit={clickHandler} />
+        <SectionModal
+          title="Section"
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
       );
       break;
     case "subSection":
       modalStateContent = (
-        <SectionModal title="Sub Section" handleSubmit={clickHandler} />
+        <SectionModal
+          title="Sub Section"
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
       );
       break;
     case "multiLine":
@@ -46,39 +55,72 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         <LineFieldModal
           title="Multi-Line Textfield"
           handleSubmit={clickHandler}
+          currentConfig={currentConfig}
         />
       );
       break;
     case "checkbox":
-      modalStateContent = <CheckBoxModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <CheckBoxModal
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
+      );
       break;
     case "radio":
-      modalStateContent = <RadioModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <RadioModal handleSubmit={clickHandler} currentConfig={currentConfig} />
+      );
       break;
     case "numeric":
       modalStateContent = (
-        <NumericModal title="Numeric Field" handleSubmit={clickHandler} />
+        <NumericModal
+          title="Numeric Field"
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
       );
       break;
     case "datepicker":
       modalStateContent = (
         <DatePickerModal
           title="Date Picker Field"
+          currentConfig={currentConfig}
           handleSubmit={clickHandler}
         />
       );
       break;
     case "hyperlink":
-      modalStateContent = <HyperLinkModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <HyperLinkModal
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
+      );
       break;
     case "paragraph":
-      modalStateContent = <ParagraphModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <ParagraphModal
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
+      );
       break;
     case "fileUpload":
-      modalStateContent = <FileUploadModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <FileUploadModal
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
+      );
       break;
     case "multipleCheckbox":
-      modalStateContent = <MultipleCheckboxModal handleSubmit={clickHandler} />;
+      modalStateContent = (
+        <MultipleCheckboxModal
+          handleSubmit={clickHandler}
+          currentConfig={currentConfig}
+        />
+      );
       break;
   }
   return <div>{modalStateContent}</div>;

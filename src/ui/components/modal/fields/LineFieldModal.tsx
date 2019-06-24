@@ -3,11 +3,13 @@ import styles from "../Modal.module.css";
 
 interface LineFieldModalProps {
   title: string;
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const LineFieldModal: React.FunctionComponent<LineFieldModalProps> = ({
   title,
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

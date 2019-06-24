@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
 interface HyperLinkModalProps {
+  currentConfig: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

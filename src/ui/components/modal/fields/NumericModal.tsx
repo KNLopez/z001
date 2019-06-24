@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
 interface NumericModalProps {
+  currentConfig?: {};
   title: string;
   handleSubmit: (e: any, config: any) => void;
 }
 
 const NumericModal: React.FunctionComponent<NumericModalProps> = ({
+  currentConfig,
   title,
   handleSubmit,
 }) => {

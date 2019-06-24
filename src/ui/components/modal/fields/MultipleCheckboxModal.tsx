@@ -3,11 +3,12 @@ import styles from "../Modal.module.css";
 
 interface MultipleCheckboxModalProps {
   handleSubmit: (e: any, config: any) => void;
+  currentConfig?: {};
 }
 
 const MultipleCheckboxModal: React.FunctionComponent<
   MultipleCheckboxModalProps
-> = ({ handleSubmit }) => {
+> = ({ handleSubmit, currentConfig }) => {
   const [config, setConfig] = useState();
 
   const handleInputChange = (e: any) => {

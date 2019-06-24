@@ -3,11 +3,13 @@ import styles from "../Modal.module.css";
 
 interface SectionModalProps {
   title: string;
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
 const SectionModal: React.FunctionComponent<SectionModalProps> = ({
   title,
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();

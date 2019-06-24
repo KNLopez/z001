@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
-interface DatePickerModalProps {
+interface FileUploadModalProps {
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
-const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
+const FileUploadModal: React.FunctionComponent<FileUploadModalProps> = ({
+  currentConfig,
   handleSubmit,
 }) => {
   const [config, setConfig] = useState();
@@ -64,4 +66,4 @@ const DatePickerModal: React.FunctionComponent<DatePickerModalProps> = ({
   );
 };
 
-export default DatePickerModal;
+export default FileUploadModal;

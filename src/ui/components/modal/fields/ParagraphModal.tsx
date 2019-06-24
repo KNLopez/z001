@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styles from "../Modal.module.css";
 
-interface HyperLinkModalProps {
+interface ParagraphModalProps {
+  currentConfig?: {};
   handleSubmit: (e: any, config: any) => void;
 }
 
-const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
+const ParagraphModal: React.FunctionComponent<ParagraphModalProps> = ({
   handleSubmit,
+  currentConfig,
 }) => {
   const [config, setConfig] = useState();
 
@@ -72,4 +74,4 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
   );
 };
 
-export default HyperLinkModal;
+export default ParagraphModal;
