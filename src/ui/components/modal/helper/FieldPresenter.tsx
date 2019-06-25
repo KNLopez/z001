@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ApprovalsModal from "../fields/ApprovalsModal";
 import CheckBoxModal from "../fields/CheckBoxModal";
 import DatePickerModal from "../fields/DatePickerModal";
 import FileUploadModal from "../fields/FileUploadModal";
@@ -121,6 +122,24 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       case "multipleCheckbox":
         setModalContent(
           <MultipleCheckboxModal
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "qa":
+        setModalContent(
+          <ApprovalsModal
+            title="Quality Assurance"
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "operations":
+        setModalContent(
+          <ApprovalsModal
+            title="Operations"
             handleSubmit={clickHandler}
             currentConfig={currentConfig}
           />,

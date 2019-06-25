@@ -64,7 +64,11 @@ const NewFieldModal = () => {
   const approvals: BigObject<string> = FieldConstants.approvals;
   const approvalButtons = Object.keys(approvals).map((value) => {
     return (
-      <button onClick={() => handleClick(value)} key={value}>
+      <button
+        className={styles[value]}
+        onClick={() => handleClick(value)}
+        key={value}
+      >
         {approvals[value]}
       </button>
     );
@@ -73,7 +77,11 @@ const NewFieldModal = () => {
   const lists: BigObject<string> = FieldConstants.lists;
   const listButtons = Object.keys(lists).map((value) => {
     return (
-      <button onClick={() => handleClick(value)} key={value}>
+      <button
+        className={styles[value]}
+        onClick={() => handleClick(value)}
+        key={value}
+      >
         {lists[value]}
       </button>
     );

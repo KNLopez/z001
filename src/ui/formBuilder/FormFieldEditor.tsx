@@ -11,6 +11,7 @@ import Paragraph from "../components/basic/Paragraph";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
+import ActionButton from "../components/buttons/ActionButton";
 import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
@@ -100,6 +101,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       formField = (
         <MultipleCheckbox title={config.title} options={config.options || []} />
       );
+      break;
+    case "qa":
+      formField = <ActionButton title={config.title} />;
+      break;
+    case "operations":
+      formField = <ActionButton title={config.title} />;
       break;
   }
   // eslint-disable-next-line

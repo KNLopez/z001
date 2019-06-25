@@ -75,21 +75,6 @@
   text-align: center;
 }
 
-.buttonGroup button.section,
-.buttonGroup button.subSection,
-.buttonGroup button.singleLine,
-.buttonGroup button.multiLine,
-.buttonGroup button.checkbox,
-.buttonGroup button.radio,
-.buttonGroup button.numeric,
-.buttonGroup button.datepicker,
-.buttonGroup button.hyperlink,
-.buttonGroup button.paragraph,
-.buttonGroup button.fileUpload,
-.buttonGroup button.multipleCheckbox {
-  background: #222;
-}
-
 .toleranceContainer {
   margin-top: 20px;
 }
@@ -148,4 +133,32 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
+}
+.buttonGroup button {
+  color: #fff;
+  border-radius: 3px;
+  border: 0;
+  padding: 9px 20px;
+  cursor: pointer;
+}
+
+.buttonGroup button:hover {
+  background: #555;
+}
+
+.buttonGroup button.section,
+.buttonGroup button.subSection,
+.buttonGroup button.singleLine,
+.buttonGroup button.multiLine,
+.buttonGroup button.checkbox,
+.buttonGroup button.radio,
+.buttonGroup button.numeric,
+.buttonGroup button.datepicker,
+.buttonGroup button.hyperlink,
+.buttonGroup button.paragraph,
+.buttonGroup button.fileUpload,
+.buttonGroup button.multipleCheckbox,
+.buttonGroup button.qa,
+.buttonGroup button.operations {
+  background: #c40000;
 }
