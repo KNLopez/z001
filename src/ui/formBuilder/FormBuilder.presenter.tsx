@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {useStateValue} from "../../state/formContext";
+import React, { useEffect, useState } from "react";
+import { useStateValue } from "../../state/formContext";
 import Modal from "../components/modal/Modal";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
-
 
 interface FormBuilderPresenterProps {
   formNumber: string;
@@ -11,14 +10,14 @@ interface FormBuilderPresenterProps {
   title: string;
 }
 
-const FormBuilderPresenter: React.FunctionComponent<FormBuilderPresenterProps> = ({
-  formNumber, status, title
-}) => {
-  const [headerProps] = useState({formNumber, status, title})
-  const [{modalState}, dispatch]: any = useStateValue();
+const FormBuilderPresenter: React.FunctionComponent<
+  FormBuilderPresenterProps
+> = ({ formNumber, status, title }) => {
+  const [headerProps] = useState({ formNumber, status, title });
+  const [{ modalState }, dispatch]: any = useStateValue();
 
   useEffect(() => {
-    dispatch({type: "SET_FORM_INFO", formNumber, status, title})
+    dispatch({ type: "SET_FORM_INFO", formNumber, status, title });
   }, [headerProps, formNumber, dispatch, status, title]);
 
   return (

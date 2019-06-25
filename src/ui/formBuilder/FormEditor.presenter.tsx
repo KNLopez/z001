@@ -70,8 +70,6 @@ const FormEditorPresenter: React.FunctionComponent<
     );
   });
 
-  console.log("Fields", fields);
-
   return (
     <div className={styles.formEditorContainer} onDragOver={dragOver}>
       {Forms}

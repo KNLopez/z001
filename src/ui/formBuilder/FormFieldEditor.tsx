@@ -119,15 +119,15 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
+  const containerStyle =
+    styles.fieldContainer + width + sectionStyle + " dragContainer";
   return (
     <div
       data-id={order}
       draggable={true}
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
-      className={
-        styles.fieldContainer + width + sectionStyle + " dragContainer"
-      }
+      className={containerStyle}
     >
       <div className={styles.topControls}>
         <div className={styles.edit} onClick={editField}>
