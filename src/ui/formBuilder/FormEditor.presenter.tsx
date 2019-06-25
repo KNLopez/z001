@@ -33,16 +33,16 @@ const FormEditorPresenter: React.FunctionComponent<
   const dragEnd = (e: any) => {
     const tempFields = fields;
     dragged.style.display = "block";
-    if (container.className.includes("dragContainer")) {
+    if (container && container.className.includes("dragContainer")) {
       container.parentNode.removeChild(placeholder);
+      const from = Number(dragged.dataset.id);
+      let to = Number(container.dataset.id);
+      if (from < to) {
+        to--;
+      }
+      tempFields.splice(to, 0, tempFields.splice(from, 1)[0]);
+      dispatch({ type: "UPDATE_DRAG_DROP_FIELDS", fields: [...tempFields] });
     }
-    const from = Number(dragged.dataset.id);
-    let to = Number(container.dataset.id);
-    if (from < to) {
-      to--;
-    }
-    tempFields.splice(to, 0, tempFields.splice(from, 1)[0]);
-    dispatch({ type: "UPDATE_DRAG_DROP_FIELDS", fields: [...tempFields] });
   };
 
   const dragOver = (e: any) => {
