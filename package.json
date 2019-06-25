@@ -9,6 +9,7 @@
     "@types/react-dom": "16.8.4",
     "gh-pages": "^2.0.1",
     "jest-junit": "^6.4.0",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",

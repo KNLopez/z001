@@ -1,17 +1,18 @@
 import React from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
+import { formatDate, parseDate } from "react-day-picker/moment";
 import "react-day-picker/lib/style.css";
 import styles from "./BasicFields.module.css";
 
-interface DatePickerProps {
-  title: string;
-}
-
-const DatePicker: React.FunctionComponent<DatePickerProps> = ({ title }) => {
+const DatePicker = ({ title }) => {
   return (
     <div className={styles.DatePickerContainer}>
       <label>{title}</label>
-      <DayPickerInput format={"M-D-YYYY"} />
+      <DayPickerInput
+        formatDate={formatDate}
+        parseDate={parseDate}
+        placeholder={`${formatDate(new Date())}`}
+      />
     </div>
   );
 };

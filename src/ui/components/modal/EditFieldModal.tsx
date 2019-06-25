@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { useStateValue } from "../../../state/formContext";
 import { UPDATE_FIELD } from "../../../state/formActions";
+import { useStateValue } from "../../../state/formContext";
 import FieldPresenter from "./helper/FieldPresenter";
 
 const EditFieldModal: React.FunctionComponent = () => {

@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { ADD_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
-
 import { FieldConstants } from "./fields/FieldConstants";
-
-import styles from "./Modal.module.css";
 import FieldPresenter from "./helper/FieldPresenter";
+import styles from "./Modal.module.css";
 
 interface BigObject<T> {
   [index: string]: T;
