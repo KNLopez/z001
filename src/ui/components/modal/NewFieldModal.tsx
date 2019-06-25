@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useState, useCallback } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { ADD_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
-import { FieldConstants } from "./fields/FieldConstants";
+import { FieldConstants } from "./FieldConstants";
 import FieldPresenter from "./helper/FieldPresenter";
 import styles from "./Modal.module.css";
 
