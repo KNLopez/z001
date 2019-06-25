@@ -60,6 +60,11 @@ export const formReducer = (state: any, action: any) => {
         formNumber: action.formNumber,
         status: action.status,
       };
+    case "UPDATE_DRAG_DROP_FIELDS":
+      return {
+        ...state,
+        elements: action.fields,
+      };
     default:
       return state;
   }

@@ -153,3 +153,33 @@ label {
   top: -13px;
   font-size: 21px;
 }
+
+.formEditorContainer .placeholder {
+  border: 2px dashed #c40000;
+  display: block;
+  float: left;
+  height: 50px;
+  background: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+  width: 700px;
+  margin-left: -60px;
+  margin-right: -60px;
+}
+
+.placeholder:before {
+  content: "Drop here";
+  color: #c40000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.last {
+  height: 50px;
+  width: 720px;
+  float: left;
+  margin-left: -60px;
+}

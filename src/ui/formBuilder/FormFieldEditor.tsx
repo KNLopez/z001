@@ -32,12 +32,16 @@ interface FormFieldProps {
     url?: string;
     text?: string;
   };
+  onDragStart: any;
+  onDragEnd: any;
 }
 
 const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   type,
   config,
   order,
+  onDragEnd,
+  onDragStart,
 }) => {
   let formField;
   switch (type) {
@@ -117,8 +121,13 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
   return (
     <div
+      data-id={order}
       draggable={true}
-      className={styles.fieldContainer + width + sectionStyle}
+      onDragEnd={onDragEnd}
+      onDragStart={onDragStart}
+      className={
+        styles.fieldContainer + width + sectionStyle + " dragContainer"
+      }
     >
       <div className={styles.topControls}>
         <div className={styles.edit} onClick={editField}>

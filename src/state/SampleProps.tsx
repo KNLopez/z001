@@ -1,4 +1,26 @@
-const sampleFormProps: any[] = [];
+const sampleFormProps: any[] = [
+  {
+    type: "section",
+    config: {
+      title: "First Section",
+      colWidth: "col-12",
+    },
+  },
+  {
+    type: "section",
+    config: {
+      title: "Testing Drag and Drop",
+      colWidth: "col-12",
+    },
+  },
+  {
+    type: "section",
+    config: {
+      title: "Testing 3rd",
+      colWidth: "col-12",
+    },
+  },
+];
 
 const ModalState = {
   show: false,
