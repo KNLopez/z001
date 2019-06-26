@@ -56,7 +56,11 @@ const FormEditorPresenter: React.FunctionComponent<
     if (e.target.className === "placeholder") {
       return;
     }
-    if (e.target.className.includes("dragContainer")) {
+    if (
+      e.target.className &&
+      typeof e.target.className.includes !== "undefined" &&
+      e.target.className.includes("dragContainer")
+    ) {
       container = e.target;
       container.parentNode.insertBefore(placeholder, container);
     }
