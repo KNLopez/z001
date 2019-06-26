@@ -9,6 +9,20 @@ export const formReducer = (state: any, action: any) => {
         elements,
         modalState: { ...state.modalState, show: false },
       };
+    case "ADD_LIST":
+      const listField = {
+        type: action.fieldType,
+        config: {
+          colWidth: "col-6",
+          title: action.fieldType,
+        },
+      };
+      elements.splice(index + 1, 0, listField);
+      return {
+        ...state,
+        elements,
+        modalState: { ...state.modalState, show: false },
+      };
     case "SHOW_MODAL":
       return {
         ...state,
@@ -47,12 +61,14 @@ export const formReducer = (state: any, action: any) => {
         modalState: { ...state.modalState, show: false },
         currentField: "",
       };
+
     case "DELETE_FIELD":
       elements.splice(action.currentIndex, 1);
       return {
         ...state,
         elements,
       };
+
     case "SET_FORM_INFO":
       return {
         ...state,
@@ -60,6 +76,7 @@ export const formReducer = (state: any, action: any) => {
         formNumber: action.formNumber,
         status: action.status,
       };
+
     case "UPDATE_DRAG_DROP_FIELDS":
       return {
         ...state,

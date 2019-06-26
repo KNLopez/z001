@@ -5,11 +5,13 @@ import DatePickerModal from "../fields/DatePickerModal";
 import FileUploadModal from "../fields/FileUploadModal";
 import HyperLinkModal from "../fields/HyperLinkModal";
 import LineFieldModal from "../fields/LineFieldModal";
+import ListsModal from "../fields/ListsModal";
 import MultipleCheckboxModal from "../fields/MultipleCheckboxModal";
 import NumericModal from "../fields/NumericModal";
 import ParagraphModal from "../fields/ParagraphModal";
 import RadioModal from "../fields/RadioModal";
 import SectionModal from "../fields/SectionModal";
+import { useStateValue } from "../../../../state/formContext";
 
 interface FieldPresenter {
   chosenField: string;
@@ -23,6 +25,7 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
   clickHandler,
 }) => {
   const [modalStateContent, setModalContent] = useState();
+  const [{}, dispatch]: any = useStateValue();
   useEffect(() => {
     switch (chosenField) {
       case "singleLine":
@@ -140,6 +143,23 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         setModalContent(
           <ApprovalsModal
             title="Operations"
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "standards":
+      case "finishedGoods":
+      case "lots":
+      case "mpis":
+      case "parts":
+      case "sops":
+      case "suppliers":
+        dispatch({ type: "ADD_LIST", fieldType: chosenField });
+        break;
+      case "custom":
+        setModalContent(
+          <ListsModal
             handleSubmit={clickHandler}
             currentConfig={currentConfig}
           />,

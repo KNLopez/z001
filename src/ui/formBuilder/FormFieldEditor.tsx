@@ -5,6 +5,7 @@ import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import FileUpload from "../components/basic/FileUpload";
 import HyperLink from "../components/basic/HyperLink";
+import Lists from "../components/lists/Lists";
 import MultipleCheckbox from "../components/basic/MultipleCheckbox";
 import Numeric from "../components/basic/Numeric";
 import Paragraph from "../components/basic/Paragraph";
@@ -107,6 +108,15 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       break;
     case "operations":
       formField = <ActionButton title={config.title} />;
+      break;
+    case "standards":
+    case "finishedGoods":
+    case "lots":
+    case "mpis":
+    case "parts":
+    case "sops":
+    case "suppliers":
+      formField = <Lists title={config.title} />;
       break;
   }
   // eslint-disable-next-line

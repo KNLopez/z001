@@ -32,7 +32,9 @@ const FormEditorPresenter: React.FunctionComponent<
 
   const dragEnd = (e: any) => {
     const tempFields = fields;
-    dragged.style.display = "block";
+    if (dragged) {
+      dragged.style.display = "block";
+    }
     if (container && container.className.includes("dragContainer")) {
       container.parentNode.removeChild(placeholder);
       const from = Number(dragged.dataset.id);
@@ -47,7 +49,10 @@ const FormEditorPresenter: React.FunctionComponent<
 
   const dragOver = (e: any) => {
     e.preventDefault();
-    dragged.style.display = "none";
+    if (dragged) {
+      dragged.style.display = "none";
+    }
+
     if (e.target.className === "placeholder") {
       return;
     }

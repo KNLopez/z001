@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Modal.module.css";
 
-interface RadioModalModalProps {
-  currentConfig: { options: any };
+interface ListsModalProps {
+  currentConfig?: { options: any };
   handleSubmit: (e: any, config: any) => void;
 }
 
-const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
+const ListsModal: React.FunctionComponent<ListsModalProps> = ({
   currentConfig,
   handleSubmit,
 }) => {
@@ -36,8 +36,8 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2>{currentConfig ? "Edit" : "Add"} Radio Buttons</h2>
-        <label>Label</label>
+        <h2> Custom List </h2>
+        <label>Title</label>
         <input
           type="text"
           onChange={handleInputChange}
@@ -58,10 +58,38 @@ const RadioModal: React.FunctionComponent<RadioModalModalProps> = ({
           {" "}
           One option per line. Type [other] with brackets to add "other" option
         </span>
+        <div className={styles.radioContainer}>
+          <label>
+            {" "}
+            Short
+            <input
+              type="radio"
+              onChange={handleInputChange}
+              name="colWidth"
+              value="col-6"
+              required={true}
+              checked={config ? "col-6" === config.colWidth : false}
+            />
+            <span className={styles.customRadio} />
+          </label>
+          <label>
+            {" "}
+            Long
+            <input
+              type="radio"
+              onChange={handleInputChange}
+              name="colWidth"
+              value="col-12"
+              required={true}
+              checked={config ? "col-12" === config.colWidth : false}
+            />
+            <span className={styles.customRadio} />
+          </label>
+        </div>
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
   );
 };
 
-export default RadioModal;
+export default ListsModal;

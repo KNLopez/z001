@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { UPDATE_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
-import FieldPresenter from "./helper/FieldPresenter";
+import FieldPresenter from "./helper/ModalFieldPresenter";
 
 const EditFieldModal: React.FunctionComponent = () => {
   // eslint-disable-next-line
