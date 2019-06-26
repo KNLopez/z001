@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useStateValue } from "../../../state/formContext";
-import styles from "./Section.module.css";
+import styles from "../basic/BasicFields.module.css";
 import { CLOSE_SECTION } from "../../../state/formActions";
 
 interface CloseSectionProps {
@@ -45,7 +45,9 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
 
   const diffContainer = (
     <div>
-      <h3> Section Closed </h3>
+      <h4>
+        <strong> Section Closed</strong>{" "}
+      </h4>
       <ul> {diffList} </ul>
     </div>
   );
