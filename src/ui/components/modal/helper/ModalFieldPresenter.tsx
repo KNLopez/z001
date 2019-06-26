@@ -165,6 +165,17 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
           />,
         );
         break;
+      case "closeSection":
+        dispatch({
+          type: "ADD_FIELD",
+          field: {
+            type: "closeSection",
+            closed: false,
+            diff: [],
+            config: { colWidth: "col-12" },
+          },
+        });
+        break;
     }
   }, [chosenField]);
 

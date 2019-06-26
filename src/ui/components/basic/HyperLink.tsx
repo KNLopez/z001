@@ -4,9 +4,14 @@ import styles from "./BasicFields.module.css";
 interface HyperLinkProps {
   title: string;
   url: string;
+  closed: boolean;
 }
 
-const HyperLink: React.FunctionComponent<HyperLinkProps> = ({ title, url }) => {
+const HyperLink: React.FunctionComponent<HyperLinkProps> = ({
+  title,
+  url,
+  closed,
+}) => {
   const hyperLinkField = (
     <div className={styles.hyperlink}>
       <h3>

@@ -71,6 +71,8 @@ const FormEditorPresenter: React.FunctionComponent<
       <FormFieldEditor
         onDragStart={dragStart}
         onDragEnd={dragEnd}
+        closed={elem.closed}
+        diff={elem.diff}
         key={i}
         order={i}
         type={elem.type}

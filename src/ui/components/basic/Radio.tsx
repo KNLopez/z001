@@ -4,11 +4,13 @@ import styles from "./BasicFields.module.css";
 interface RadioProps {
   title: string;
   options: any[];
+  closed: boolean;
 }
 
 const RadioField: React.FunctionComponent<RadioProps> = ({
   title,
   options,
+  closed,
 }) => {
   const [otherChosen, chooseOther] = useState(false);
 

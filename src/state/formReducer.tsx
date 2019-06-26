@@ -45,6 +45,7 @@ export const formReducer = (state: any, action: any) => {
           currentIndex: action.currentIndex,
           type: action.fieldType,
           config: action.config,
+          closed: action.closed,
         },
       };
 
@@ -53,6 +54,7 @@ export const formReducer = (state: any, action: any) => {
         type: action.fieldType,
         config: action.config,
         order: action.currentIndex,
+        closed: action.closed,
       };
       elements.splice(action.currentIndex, 1, updatedField);
       return {
@@ -61,9 +63,38 @@ export const formReducer = (state: any, action: any) => {
         modalState: { ...state.modalState, show: false },
         currentField: "",
       };
-
+    case "RECORD_UPDATES":
+      const diff = {
+        date: action.date,
+        changes: [action.prevConfig, action.newConfig],
+      };
+      elements[
+        elements.findIndex(
+          (item, i) => i >= index && item.type === "closeSection",
+        )
+      ].diff.push(diff);
+      return {
+        ...state,
+        elements,
+      };
     case "DELETE_FIELD":
       elements.splice(action.currentIndex, 1);
+      return {
+        ...state,
+        elements,
+      };
+
+    case "CLOSE_SECTION":
+      let flag = false;
+      elements.reduceRight((acc, elem, i) => {
+        if (i <= index + 1 && !flag) {
+          elem.closed = true;
+          if (elem.type === "section") {
+            flag = true;
+          }
+        }
+        return elem;
+      }, []);
       return {
         ...state,
         elements,

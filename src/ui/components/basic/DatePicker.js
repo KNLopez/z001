@@ -4,7 +4,7 @@ import { formatDate, parseDate } from "react-day-picker/moment";
 import "react-day-picker/lib/style.css";
 import styles from "./BasicFields.module.css";
 
-const DatePicker = ({ title }) => {
+const DatePicker = ({ title, closed }) => {
   return (
     <div className={styles.DatePickerContainer}>
       <label>{title}</label>

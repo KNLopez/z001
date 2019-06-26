@@ -4,11 +4,13 @@ import styles from "./BasicFields.module.css";
 interface MultipleCheckboxProps {
   title: string;
   options: any[];
+  closed: boolean;
 }
 
 const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
   title,
   options,
+  closed,
 }) => {
   const [otherChosen, chooseOther] = useState(false);
 

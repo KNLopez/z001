@@ -3,9 +3,13 @@ import styles from "./BasicFields.module.css";
 
 interface FileUploadProps {
   title: string;
+  closed: boolean;
 }
 
-const FileUpload: React.FunctionComponent<FileUploadProps> = ({ title }) => {
+const FileUpload: React.FunctionComponent<FileUploadProps> = ({
+  title,
+  closed,
+}) => {
   const hyperLinkField = (
     <div className={styles.singleLine}>
       <label>{title}</label>

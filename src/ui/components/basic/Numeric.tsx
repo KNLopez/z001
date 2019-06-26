@@ -8,6 +8,7 @@ interface NumericProps {
   toleranceType: string;
   min?: number;
   max?: number;
+  closed: boolean;
 }
 
 const Numeric: React.FunctionComponent<NumericProps> = ({
@@ -17,6 +18,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   toleranceType,
   min,
   max,
+  closed,
 }) => {
   const [value, setValue] = useState<number>(0);
   const [error, setError] = useState<string>("");

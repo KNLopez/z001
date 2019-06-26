@@ -4,9 +4,14 @@ import styles from "./BasicFields.module.css";
 interface CheckBoxProps {
   title: string;
   notes?: string;
+  closed: boolean;
 }
 
-const CheckBox: React.FunctionComponent<CheckBoxProps> = ({ title, notes }) => {
+const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
+  title,
+  notes,
+  closed,
+}) => {
   const [note, showNote] = useState(false);
 
   const handleCheck = (e: any) => {

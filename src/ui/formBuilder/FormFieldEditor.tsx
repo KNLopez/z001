@@ -15,12 +15,15 @@ import ActionButton from "../components/buttons/ActionButton";
 import Lists from "../components/lists/Lists";
 import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
+import CloseSection from "../components/sections/CloseSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
 
 interface FormFieldProps {
   order: string;
   type: string;
+  closed: boolean;
+  diff?: any;
   config: {
     colWidth: string;
     title: string;
@@ -40,35 +43,46 @@ interface FormFieldProps {
 
 const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   type,
+  closed,
   config,
   order,
   onDragEnd,
   onDragStart,
+  diff,
 }) => {
   let formField;
   switch (type) {
     case "section":
-      formField = <Section title={config.title} />;
+      formField = <Section title={config.title} closed={closed} />;
       break;
     case "subSection":
-      formField = <SubSection title={config.title} />;
+      formField = <SubSection title={config.title} closed={closed} />;
       break;
     case "singleLine":
       formField = (
         <SingleLine
           title={config.title}
           placeholder={config.placeholder || ""}
+          closed={closed}
         />
       );
       break;
     case "multiLine":
       formField = (
-        <TextArea title={config.title} placeholder={config.placeholder || ""} />
+        <TextArea
+          title={config.title}
+          placeholder={config.placeholder || ""}
+          closed={closed}
+        />
       );
       break;
     case "radio":
       formField = (
-        <RadioField title={config.title} options={config.options || []} />
+        <RadioField
+          title={config.title}
+          options={config.options || []}
+          closed={closed}
+        />
       );
       break;
     case "numeric":
@@ -80,34 +94,51 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           toleranceType={config.toleranceType || ""}
           min={config.min}
           max={config.max}
+          closed={closed}
         />
       );
       break;
     case "checkbox":
-      formField = <CheckBox title={config.title} notes={config.notes} />;
+      formField = (
+        <CheckBox title={config.title} notes={config.notes} closed={closed} />
+      );
       break;
     case "datepicker":
-      formField = <DatePicker title={config.title} />;
+      formField = <DatePicker title={config.title} closed={closed} />;
       break;
     case "hyperlink":
-      formField = <HyperLink title={config.title} url={config.url || ""} />;
+      formField = (
+        <HyperLink
+          title={config.title}
+          url={config.url || ""}
+          closed={closed}
+        />
+      );
       break;
     case "paragraph":
-      formField = <Paragraph title={config.title} text={config.text || ""} />;
+      formField = (
+        <Paragraph
+          title={config.title}
+          text={config.text || ""}
+          closed={closed}
+        />
+      );
       break;
     case "fileUpload":
-      formField = <FileUpload title={config.title} />;
+      formField = <FileUpload title={config.title} closed={closed} />;
       break;
     case "multipleCheckbox":
       formField = (
-        <MultipleCheckbox title={config.title} options={config.options || []} />
+        <MultipleCheckbox
+          title={config.title}
+          options={config.options || []}
+          closed={closed}
+        />
       );
       break;
     case "qa":
-      formField = <ActionButton title={config.title} />;
-      break;
     case "operations":
-      formField = <ActionButton title={config.title} />;
+      formField = <ActionButton title={config.title} closed={closed} />;
       break;
     case "standards":
     case "finishedGoods":
@@ -116,10 +147,18 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "parts":
     case "sops":
     case "suppliers":
-      formField = <Lists title={config.title} />;
+      formField = <Lists title={config.title} closed={closed} />;
       break;
     case "custom":
-      formField = <Lists title={config.title} options={config.options} />;
+      formField = (
+        <Lists title={config.title} options={config.options} closed={closed} />
+      );
+      break;
+
+    case "closeSection":
+      formField = (
+        <CloseSection currentIndex={order} diff={diff} closed={closed} />
+      );
       break;
   }
   // eslint-disable-next-line
@@ -130,7 +169,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   };
 
   const editField = () => {
-    dispatch(EDIT_FIELD(type, config, order));
+    dispatch(EDIT_FIELD(type, config, order, closed));
   };
 
   const removeField = () => {

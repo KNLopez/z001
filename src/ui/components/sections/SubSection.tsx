@@ -3,9 +3,13 @@ import styles from "./Section.module.css";
 
 interface SubSectionProps {
   title: string;
+  closed: boolean;
 }
 
-const SubSection: React.FunctionComponent<SubSectionProps> = ({ title }) => {
+const SubSection: React.FunctionComponent<SubSectionProps> = ({
+  title,
+  closed,
+}) => {
   return (
     <div className={styles.subSection}>
       {" "}

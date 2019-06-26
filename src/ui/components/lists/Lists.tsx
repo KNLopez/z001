@@ -5,6 +5,7 @@ import { FieldConstants } from "../modal/FieldConstants";
 interface ListsProps {
   title: string;
   options?: any;
+  closed: boolean;
 }
 
 interface BigObject<T> {

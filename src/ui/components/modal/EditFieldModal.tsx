@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { UPDATE_FIELD } from "../../../state/formActions";
+import { RECORD_UPDATES, UPDATE_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
-import FieldPresenter from "./helper/ModalFieldPresenter";
+import ModalFieldPresenter from "./helper/ModalFieldPresenter";
 
 const EditFieldModal: React.FunctionComponent = () => {
   // eslint-disable-next-line
@@ -12,13 +12,23 @@ const EditFieldModal: React.FunctionComponent = () => {
     if (!config.colWidth) {
       config.colWidth = "col-12";
     }
+    if (currentField.closed) {
+      dispatch(
+        RECORD_UPDATES(currentField.config, config, currentField.currentIndex),
+      );
+    }
     dispatch(
-      UPDATE_FIELD(currentField.type, config, currentField.currentIndex),
+      UPDATE_FIELD(
+        currentField.type,
+        config,
+        currentField.currentIndex,
+        currentField.closed,
+      ),
     );
   };
 
   const modalStateContent = (
-    <FieldPresenter
+    <ModalFieldPresenter
       chosenField={currentField.type}
       currentConfig={currentField.config}
       clickHandler={updateField}

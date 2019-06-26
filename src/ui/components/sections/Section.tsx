@@ -3,9 +3,10 @@ import styles from "./Section.module.css";
 
 interface SecTionProps {
   title: string;
+  closed: boolean;
 }
 
-const Section: React.FunctionComponent<SecTionProps> = ({ title }) => {
+const Section: React.FunctionComponent<SecTionProps> = ({ title, closed }) => {
   return (
     <div className={styles.section}>
       {" "}
