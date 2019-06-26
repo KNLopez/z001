@@ -5,7 +5,6 @@ import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import FileUpload from "../components/basic/FileUpload";
 import HyperLink from "../components/basic/HyperLink";
-import Lists from "../components/lists/Lists";
 import MultipleCheckbox from "../components/basic/MultipleCheckbox";
 import Numeric from "../components/basic/Numeric";
 import Paragraph from "../components/basic/Paragraph";
@@ -13,6 +12,7 @@ import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
 import ActionButton from "../components/buttons/ActionButton";
+import Lists from "../components/lists/Lists";
 import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
@@ -117,6 +117,9 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "sops":
     case "suppliers":
       formField = <Lists title={config.title} />;
+      break;
+    case "custom":
+      formField = <Lists title={config.title} options={config.options} />;
       break;
   }
   // eslint-disable-next-line

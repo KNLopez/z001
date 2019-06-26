@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useStateValue } from "../../../../state/formContext";
 import ApprovalsModal from "../fields/ApprovalsModal";
 import CheckBoxModal from "../fields/CheckBoxModal";
 import DatePickerModal from "../fields/DatePickerModal";
@@ -11,7 +12,6 @@ import NumericModal from "../fields/NumericModal";
 import ParagraphModal from "../fields/ParagraphModal";
 import RadioModal from "../fields/RadioModal";
 import SectionModal from "../fields/SectionModal";
-import { useStateValue } from "../../../../state/formContext";
 
 interface FieldPresenter {
   chosenField: string;
@@ -166,7 +166,7 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         );
         break;
     }
-  }, [chosenField, modalStateContent, clickHandler, currentConfig]);
+  }, [chosenField]);
 
   return <div>{modalStateContent}</div>;
 };

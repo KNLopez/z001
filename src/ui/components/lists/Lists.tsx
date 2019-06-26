@@ -4,7 +4,7 @@ import { FieldConstants } from "../modal/FieldConstants";
 
 interface ListsProps {
   title: string;
-  options?: [];
+  options?: any;
 }
 
 interface BigObject<T> {
@@ -13,6 +13,7 @@ interface BigObject<T> {
 
 const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
   const [choices, setChoices] = useState([]);
+  const [stringTitle, setStringTitle] = useState();
   useEffect(() => {
     if (options) {
       setChoices(options);
@@ -20,10 +21,16 @@ const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
   }, [options]);
 
   const lists: BigObject<string> = FieldConstants.lists;
-  const stringTitle = lists[title];
+  useEffect(() => {
+    if (Object.keys(lists).includes(title)) {
+      setStringTitle(lists[title]);
+    } else {
+      setStringTitle(title);
+    }
+  }, [stringTitle]);
 
-  const selectOptions = choices.map((choice: string) => (
-    <option>{choice}</option>
+  const selectOptions = choices.map((choice: string, i) => (
+    <option key={i}>{choice}</option>
   ));
 
   const listField = (

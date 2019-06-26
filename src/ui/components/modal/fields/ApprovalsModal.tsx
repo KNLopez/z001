@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Modal.module.css";
 
 interface ApprovalsModalProps {
@@ -12,7 +12,6 @@ const ApprovalsModal: React.FunctionComponent<ApprovalsModalProps> = ({
   handleSubmit,
   title,
 }) => {
-  const initialState = { colWidth: "col-6" };
   const [config, setConfig] = useState();
 
   useEffect(() => {
