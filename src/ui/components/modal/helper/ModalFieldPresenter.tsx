@@ -131,22 +131,24 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         );
         break;
       case "qa":
-        setModalContent(
-          <ApprovalsModal
-            title="Quality Assurance"
-            handleSubmit={clickHandler}
-            currentConfig={currentConfig}
-          />,
-        );
+        dispatch({
+          type: "ADD_FIELD",
+          field: {
+            type: chosenField,
+            closed: false,
+            config: { colWidth: "col-12", title: "Quality Assurance" },
+          },
+        });
         break;
       case "operations":
-        setModalContent(
-          <ApprovalsModal
-            title="Operations"
-            handleSubmit={clickHandler}
-            currentConfig={currentConfig}
-          />,
-        );
+        dispatch({
+          type: "ADD_FIELD",
+          field: {
+            type: chosenField,
+            closed: false,
+            config: { colWidth: "col-12", title: "Operations" },
+          },
+        });
         break;
       case "standards":
       case "finishedGoods":
@@ -169,7 +171,7 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         dispatch({
           type: "ADD_FIELD",
           field: {
-            type: "closeSection",
+            type: chosenField,
             closed: false,
             diff: [],
             config: { colWidth: "col-12" },
