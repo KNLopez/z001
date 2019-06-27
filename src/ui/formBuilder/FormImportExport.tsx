@@ -55,7 +55,12 @@ const FormImportExport: React.FunctionComponent = () => {
         <form onSubmit={exportTemplate}>
           <div className={modalStyles.modalFormContainer}>
             <h2>Export Template</h2>
-            <input type="text" value={fileName} onChange={handleChange} />
+            <input
+              type="text"
+              value={fileName}
+              placeholder="Enter file name"
+              onChange={handleChange}
+            />
             <button>Download</button>
           </div>
         </form>
