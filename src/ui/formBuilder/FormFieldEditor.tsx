@@ -8,6 +8,7 @@ import HyperLink from "../components/basic/HyperLink";
 import MultipleCheckbox from "../components/basic/MultipleCheckbox";
 import Numeric from "../components/basic/Numeric";
 import Paragraph from "../components/basic/Paragraph";
+import MultipleHyperLink from "../components/basic/MultipleHyperLink";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
@@ -37,6 +38,7 @@ interface FormFieldProps {
     url?: string;
     text?: string;
     textType?: string;
+    links?: any[];
   };
   onDragStart: any;
   onDragEnd: any;
@@ -112,6 +114,15 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
         <HyperLink
           title={config.title}
           url={config.url || ""}
+          closed={closed}
+        />
+      );
+      break;
+    case "multipleHyperlink":
+      formField = (
+        <MultipleHyperLink
+          title={config.title}
+          links={config.links || []}
           closed={closed}
         />
       );

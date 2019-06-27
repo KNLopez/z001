@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useStateValue } from "../../../../state/formContext";
-import ApprovalsModal from "../fields/ApprovalsModal";
 import CheckBoxModal from "../fields/CheckBoxModal";
 import DatePickerModal from "../fields/DatePickerModal";
 import FileUploadModal from "../fields/FileUploadModal";
@@ -8,6 +7,7 @@ import HyperLinkModal from "../fields/HyperLinkModal";
 import LineFieldModal from "../fields/LineFieldModal";
 import ListsModal from "../fields/ListsModal";
 import MultipleCheckboxModal from "../fields/MultipleCheckboxModal";
+import MultipleHyperLinkModal from "../fields/MultipleHyperLinkModal";
 import NumericModal from "../fields/NumericModal";
 import ParagraphModal from "../fields/ParagraphModal";
 import RadioModal from "../fields/RadioModal";
@@ -101,6 +101,14 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       case "hyperlink":
         setModalContent(
           <HyperLinkModal
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "multipleHyperlink":
+        setModalContent(
+          <MultipleHyperLinkModal
             handleSubmit={clickHandler}
             currentConfig={currentConfig}
           />,

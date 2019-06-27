@@ -238,6 +238,16 @@ textarea {
   text-decoration: underline;
 }
 
+/* multiple hyperlink */
+.MultipleHyperLinkContainer {
+  padding-bottom: 20px;
+}
+
+.hyperLinksContainer a {
+  display: block;
+  color: #4a90e2;
+}
+
 .actionButton {
   background: #c40000;
   display: block;
