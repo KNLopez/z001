@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useStateValue } from "../../state/formContext";
 import Modal from "../components/modal/Modal";
+import styles from "./FormBuilder.module.css";
+import FormViewerContainer from "./FormViewer.container";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
 import FormImportExport from "./FormImportExport";
@@ -16,17 +18,32 @@ const FormBuilderPresenter: React.FunctionComponent<
 > = ({ formNumber, status, title }) => {
   const [headerProps] = useState({ formNumber, status, title });
   const [{ modalState }, dispatch]: any = useStateValue();
+  const [viewFormMode, setViewFormMode] = useState(false);
 
   useEffect(() => {
     dispatch({ type: "SET_FORM_INFO", formNumber, status, title });
   }, [headerProps, formNumber, dispatch, status, title]);
 
-  return (
-    <div className="FormBuilder">
-      {modalState.show ? <Modal /> : null}
-      <FormHeaderContainer />
+  const builderContainer = (
+    <Fragment>
       <FormEditorContainer />
       <FormImportExport />
+    </Fragment>
+  );
+
+  const toggleView = () => {
+    setViewFormMode(!viewFormMode);
+  };
+
+  return (
+    <div className="FormBuilder">
+      <FormHeaderContainer />
+      {modalState.show ? <Modal /> : null}
+      {viewFormMode ? <FormViewerContainer /> : builderContainer}
+
+      <button onClick={toggleView} className={styles.viewForm}>
+        VIEW {viewFormMode ? "BUILDER" : "FORM"}
+      </button>
     </div>
   );
 };

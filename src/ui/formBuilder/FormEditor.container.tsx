@@ -17,12 +17,7 @@ const FormEditorContainer: React.FunctionComponent = () => {
     </div>
   );
 
-  const Presenter =
-    elements.length > 0 ? (
-      <FormEditorPresenter EditorProps={elements} />
-    ) : (
-      placeholder
-    );
+  const Presenter = elements.length > 0 ? <FormEditorPresenter /> : placeholder;
   return <Fragment>{Presenter}</Fragment>;
 };
 

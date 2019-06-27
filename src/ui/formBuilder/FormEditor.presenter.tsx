@@ -3,16 +3,10 @@ import { useStateValue } from "../../state/formContext";
 import styles from "./FormBuilder.module.css";
 import FormFieldEditor from "./FormFieldEditor";
 
-interface FormEditorPresenter {
-  EditorProps: any[];
-}
-
 const placeholder = document.createElement("div");
 placeholder.className = styles.placeholder;
 
-const FormEditorPresenter: React.FunctionComponent<
-  FormEditorPresenter
-> = () => {
+const FormEditorPresenter: React.FunctionComponent = () => {
   const [{ elements }, dispatch]: any = useStateValue();
   const [fields, setFields] = useState(elements);
 
