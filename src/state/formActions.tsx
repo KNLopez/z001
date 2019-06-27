@@ -70,6 +70,13 @@ export const RECORD_UPDATES = (
   };
 };
 
+export const UPLOAD_TEMPLATE = (elements: any) => {
+  return {
+    type: "UPLOAD_TEMPLATE",
+    elements,
+  };
+};
+
 export const DELETE_FIELD = (currentIndex: number | string) => {
   return {
     type: "DELETE_FIELD",

@@ -183,3 +183,23 @@ label {
   float: left;
   margin-left: -60px;
 }
+
+/* importer exporter */
+.formImportExportContainer {
+  position: fixed;
+  left: calc(50vw + 380px);
+}
+
+.formImportExportContainer a {
+  color: #c40000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.svgClass {
+  fill: #c40000;
+  margin-right: 10px;
+}

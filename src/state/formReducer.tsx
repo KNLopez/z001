@@ -108,6 +108,12 @@ export const formReducer = (state: any, action: any) => {
         status: action.status,
       };
 
+    case "UPLOAD_TEMPLATE":
+      return {
+        ...state,
+        elements: action.elements,
+      };
+
     case "UPDATE_DRAG_DROP_FIELDS":
       return {
         ...state,

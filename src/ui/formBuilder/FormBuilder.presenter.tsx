@@ -3,6 +3,7 @@ import { useStateValue } from "../../state/formContext";
 import Modal from "../components/modal/Modal";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
+import FormImportExport from "./FormImportExport";
 
 interface FormBuilderPresenterProps {
   formNumber: string;
@@ -25,6 +26,7 @@ const FormBuilderPresenter: React.FunctionComponent<
       {modalState.show ? <Modal /> : null}
       <FormHeaderContainer />
       <FormEditorContainer />
+      <FormImportExport />
     </div>
   );
 };
