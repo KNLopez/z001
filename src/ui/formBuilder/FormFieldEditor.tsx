@@ -198,6 +198,22 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     dispatch(DELETE_FIELD(order));
   };
 
+  const editTemp = (
+    <div className={styles.edit} onClick={editField}>
+      Edit
+    </div>
+  );
+
+  const showEdit = [
+    "standards",
+    "finishedGoods",
+    "lots",
+    "mpis",
+    "parts",
+    "sops",
+    "suppliers",
+  ].includes(type);
+
   const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
   const containerStyle =
@@ -211,9 +227,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       className={containerStyle}
     >
       <div className={styles.topControls}>
-        <div className={styles.edit} onClick={editField}>
-          Edit
-        </div>
+        {!showEdit ? editTemp : null}
         <div className={styles.delete} onClick={removeField}>
           Delete
         </div>
