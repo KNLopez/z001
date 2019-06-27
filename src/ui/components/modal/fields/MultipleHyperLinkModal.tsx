@@ -3,7 +3,7 @@ import styles from "../Modal.module.css";
 
 interface MultipleHyperLinkModalProps {
   handleSubmit: (e: any, config: any) => void;
-  currentConfig?: { options: any };
+  currentConfig?: { links: any };
 }
 
 const MultipleHyperLinkModal: React.FunctionComponent<
@@ -51,7 +51,7 @@ const MultipleHyperLinkModal: React.FunctionComponent<
           name="links"
           placeholder={"link 1\nlink 2\nlink 3\n"}
           required={true}
-          defaultValue={currentConfig ? currentConfig.options.join("\n") : null}
+          defaultValue={currentConfig ? currentConfig.links.join("\n") : null}
         />
         <span> One hyperlink per line.</span>
         <button>{currentConfig ? "Save" : "Add"}</button>
