@@ -38,7 +38,6 @@ interface FormFieldProps {
     url?: string;
     text?: string;
     textType?: string;
-    links?: any[];
   };
 }
 
@@ -120,7 +119,6 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
         <MultipleHyperLink
           editMode={editMode}
           title={config.title}
-          links={config.links || []}
           closed={closed}
         />
       );

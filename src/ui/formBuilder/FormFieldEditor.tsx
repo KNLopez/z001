@@ -124,7 +124,6 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
         <MultipleHyperLink
           editMode={true}
           title={config.title}
-          links={config.links || []}
           closed={closed}
         />
       );
