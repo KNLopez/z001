@@ -33,7 +33,7 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
         <input name={title} type="checkbox" onChange={handleCheck} />
         <span className={styles.innerCheck} />
       </label>
-      {note && notes ? input : null}
+      {note && notes && notes.length > 0 ? input : null}
     </div>
   );
 

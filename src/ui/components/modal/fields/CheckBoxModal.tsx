@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../Modal.module.css";
 
 interface CheckBoxModalProps {
-  currentConfig?: {};
+  currentConfig?: { notes: string; title: string };
   handleSubmit: (e: any, config: any) => void;
 }
 
@@ -10,7 +10,7 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
   currentConfig,
   handleSubmit,
 }) => {
-  const [config, setConfig] = useState();
+  const [config, setConfig] = useState({ notes: "", title: "" });
 
   useEffect(() => {
     if (currentConfig) {
@@ -19,8 +19,7 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
   }, [currentConfig]);
 
   const handleInputChange = (e: any) => {
-    const { name, value } = e.target;
-    setConfig({ ...config, [name]: value });
+    setConfig({ ...config, [e.target.name]: e.target.value });
   };
 
   const submitForm = (e: any) => {
@@ -39,7 +38,7 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
           name="title"
           placeholder="Enter here"
           required={true}
-          defaultValue={config ? config.title : null}
+          defaultValue={config.title}
         />
         <label>Notes</label>
         <input
@@ -47,7 +46,7 @@ const CheckBoxModal: React.FunctionComponent<CheckBoxModalProps> = ({
           onChange={handleInputChange}
           name="notes"
           placeholder="Enter here"
-          defaultValue={config ? config.notes : null}
+          value={config.notes}
         />
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
