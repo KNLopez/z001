@@ -2,24 +2,29 @@ import React, { Fragment } from "react";
 import styles from "./BasicFields.module.css";
 
 interface ParagraphProps {
-  title: string;
   text: string;
+  textType: string;
   closed: boolean;
 }
 
-const HyperLink: React.FunctionComponent<ParagraphProps> = ({
-  title,
+const Paragraph: React.FunctionComponent<ParagraphProps> = ({
   text,
   closed,
+  textType,
 }) => {
-  const hyperLinkField = (
-    <div className={styles.singleLine}>
-      <h3>{title}</h3>
-      <p>{text}</p>
-    </div>
+  let textContainer;
+
+  if (textType === "heading") {
+    textContainer = <h2>{text}</h2>;
+  } else {
+    textContainer = <p>{text}</p>;
+  }
+
+  const ParagraphField = (
+    <div className={styles.singleLine}>{textContainer}</div>
   );
 
-  return <Fragment>{hyperLinkField}</Fragment>;
+  return <Fragment>{ParagraphField}</Fragment>;
 };
 
-export default HyperLink;
+export default Paragraph;

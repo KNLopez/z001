@@ -134,6 +134,12 @@
   height: 16px;
   border-radius: 50%;
 }
+
+.subTitle {
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
 .buttonGroup button {
   color: #fff;
   border-radius: 3px;

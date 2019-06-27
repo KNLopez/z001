@@ -13,9 +13,9 @@ import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
 import ActionButton from "../components/buttons/ActionButton";
 import Lists from "../components/lists/Lists";
+import CloseSection from "../components/sections/CloseSection";
 import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
-import CloseSection from "../components/sections/CloseSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
 
@@ -36,6 +36,7 @@ interface FormFieldProps {
     notes?: string;
     url?: string;
     text?: string;
+    textType?: string;
   };
   onDragStart: any;
   onDragEnd: any;
@@ -118,7 +119,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "paragraph":
       formField = (
         <Paragraph
-          title={config.title}
+          textType={config.textType || ""}
           text={config.text || ""}
           closed={closed}
         />

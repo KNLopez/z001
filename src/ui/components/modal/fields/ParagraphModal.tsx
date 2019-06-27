@@ -32,24 +32,43 @@ const ParagraphModal: React.FunctionComponent<ParagraphModalProps> = ({
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
         <h2>Paragraph</h2>
-        <label>Title</label>
-        <input
-          type="text"
-          onChange={handleInputChange}
-          name="title"
-          placeholder="Enter here"
-          required={true}
-          defaultValue={config ? config.title : null}
-        />
-        <label>text</label>
-        <input
-          type="text"
+        <textarea
           onChange={handleInputChange}
           name="text"
           placeholder="Enter text here"
           required={true}
           defaultValue={config ? config.text : null}
         />
+        <h4 className={styles.subTitle}>Text type</h4>
+        <div className={styles.radioContainer}>
+          <label>
+            {" "}
+            Heading
+            <input
+              type="radio"
+              onChange={handleInputChange}
+              name="textType"
+              value="heading"
+              required={true}
+              checked={config ? "heading" === config.textType : false}
+            />
+            <span className={styles.customRadio} />
+          </label>
+          <label>
+            {" "}
+            Body
+            <input
+              type="radio"
+              onChange={handleInputChange}
+              name="textType"
+              value="body"
+              required={true}
+              checked={config ? "body" === config.textType : false}
+            />
+            <span className={styles.customRadio} />
+          </label>
+        </div>
+        <h4 className={styles.subTitle}>Column width</h4>
         <div className={styles.radioContainer}>
           <label>
             {" "}
