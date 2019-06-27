@@ -40,20 +40,24 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
 
   const ToleranceDiv = (
     <div className={styles.tolerance}>
-      <input
-        name="min"
-        onChange={handleChange}
-        type="number"
-        placeholder={min}
-      />
-      <div className={styles.toleranceSign}>{ToleranceSign}</div>
-      <input
-        name="max"
-        onChange={handleChange}
-        type="number"
-        placeholder={max}
-      />
-      <div className={styles.toleranceSign}>{ToleranceSign}</div>
+      <div className={styles.toleranceSign}>
+        <input
+          name="min"
+          onChange={handleChange}
+          type="number"
+          placeholder={min}
+        />
+        <span>{ToleranceSign}</span>
+      </div>
+      <div className={styles.toleranceSign}>
+        <input
+          name="max"
+          onChange={handleChange}
+          type="number"
+          placeholder={max}
+        />
+        <span>{ToleranceSign}</span>
+      </div>
     </div>
   );
 
