@@ -37,7 +37,7 @@ const ParagraphModal: React.FunctionComponent<ParagraphModalProps> = ({
           name="text"
           placeholder="Enter text here"
           required={true}
-          defaultValue={config ? config.text : null}
+          value={config ? config.text : ""}
         />
         <h4 className={styles.subTitle}>Text type</h4>
         <div className={styles.radioContainer}>
