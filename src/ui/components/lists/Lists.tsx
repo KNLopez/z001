@@ -15,6 +15,7 @@ interface BigObject<T> {
 const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
   const [choices, setChoices] = useState([]);
   const [stringTitle, setStringTitle] = useState();
+  const [other, setOther] = useState(false);
   useEffect(() => {
     if (options) {
       setChoices(options);
@@ -31,16 +32,30 @@ const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
   }, [stringTitle]);
 
   const selectOptions = choices.map((choice: string, i) => (
-    <option key={i}>{choice}</option>
+    <option key={i} value={choice}>
+      {choice}
+    </option>
   ));
+
+  const handeSelectChange = (e: any) => {
+    console.log(e.target.value);
+    if (e.target.value === "[other]") {
+      setOther(true);
+    } else {
+      setOther(false);
+    }
+  };
 
   const listField = (
     <div className={styles.select}>
       <label htmlFor={stringTitle}>{stringTitle}</label>
-      <select>
+      <select onChange={handeSelectChange}>
         <option>Please select from {stringTitle}</option>
         {selectOptions}
       </select>
+      {other ? (
+        <input type="text" placeholder="Please fill in your other option" />
+      ) : null}
     </div>
   );
 
