@@ -5,12 +5,14 @@ import { CLOSE_SECTION } from "../../../state/formActions";
 
 interface CloseSectionProps {
   closed: boolean;
+  editMode: boolean;
   diff: any;
   currentIndex: any;
 }
 
 const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   closed,
+  editMode,
   diff,
   currentIndex,
 }) => {
@@ -26,7 +28,10 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   };
 
   const button = (
-    <button onClick={closeSection} className={styles.actionButton}>
+    <button
+      onClick={editMode ? closeSection : undefined}
+      className={styles.actionButton}
+    >
       Close Section
     </button>
   );

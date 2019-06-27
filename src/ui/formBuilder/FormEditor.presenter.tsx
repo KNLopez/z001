@@ -77,6 +77,7 @@ const FormEditorPresenter: React.FunctionComponent<
         order={i}
         type={elem.type}
         config={elem.config}
+        editMode={true}
       />
     );
   });

@@ -50,34 +50,6 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
           required={true}
           defaultValue={config ? config.url : null}
         />
-        <div className={styles.radioContainer}>
-          <label>
-            {" "}
-            Short
-            <input
-              type="radio"
-              onChange={handleInputChange}
-              name="colWidth"
-              value="col-6"
-              required={true}
-              checked={config ? "col-6" === config.colWidth : false}
-            />
-            <span className={styles.customRadio} />
-          </label>
-          <label>
-            {" "}
-            Long
-            <input
-              type="radio"
-              onChange={handleInputChange}
-              name="colWidth"
-              value="col-12"
-              required={true}
-              checked={config ? "col-12" === config.colWidth : false}
-            />
-            <span className={styles.customRadio} />
-          </label>
-        </div>
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>

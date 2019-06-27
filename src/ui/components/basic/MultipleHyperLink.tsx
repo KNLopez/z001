@@ -5,10 +5,12 @@ interface MultipleHyperLinkProps {
   title: string;
   links: any[];
   closed: boolean;
+  editMode: boolean;
 }
 
 const MultipleHyperLink: React.FunctionComponent<MultipleHyperLinkProps> = ({
   title,
+  editMode,
   links,
   closed,
 }) => {

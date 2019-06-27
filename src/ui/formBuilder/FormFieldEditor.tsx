@@ -25,6 +25,7 @@ interface FormFieldProps {
   type: string;
   closed: boolean;
   diff?: any;
+  editMode: boolean;
   config: {
     colWidth: string;
     title: string;
@@ -52,6 +53,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   onDragEnd,
   onDragStart,
   diff,
+  editMode,
 }) => {
   let formField;
   switch (type) {
@@ -121,6 +123,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "multipleHyperlink":
       formField = (
         <MultipleHyperLink
+          editMode={true}
           title={config.title}
           links={config.links || []}
           closed={closed}
@@ -137,7 +140,9 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       );
       break;
     case "fileUpload":
-      formField = <FileUpload title={config.title} closed={closed} />;
+      formField = (
+        <FileUpload editMode={true} title={config.title} closed={closed} />
+      );
       break;
     case "multipleCheckbox":
       formField = (
@@ -169,7 +174,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
 
     case "closeSection":
       formField = (
-        <CloseSection currentIndex={order} diff={diff} closed={closed} />
+        <CloseSection
+          editMode={true}
+          currentIndex={order}
+          diff={diff}
+          closed={closed}
+        />
       );
       break;
   }

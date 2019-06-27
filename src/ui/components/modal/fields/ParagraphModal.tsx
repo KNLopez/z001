@@ -68,35 +68,6 @@ const ParagraphModal: React.FunctionComponent<ParagraphModalProps> = ({
             <span className={styles.customRadio} />
           </label>
         </div>
-        <h4 className={styles.subTitle}>Column width</h4>
-        <div className={styles.radioContainer}>
-          <label>
-            {" "}
-            Short
-            <input
-              type="radio"
-              onChange={handleInputChange}
-              name="colWidth"
-              value="col-6"
-              required={true}
-              checked={config ? "col-6" === config.colWidth : false}
-            />
-            <span className={styles.customRadio} />
-          </label>
-          <label>
-            {" "}
-            Long
-            <input
-              type="radio"
-              onChange={handleInputChange}
-              name="colWidth"
-              value="col-12"
-              required={true}
-              checked={config ? "col-12" === config.colWidth : false}
-            />
-            <span className={styles.customRadio} />
-          </label>
-        </div>
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
