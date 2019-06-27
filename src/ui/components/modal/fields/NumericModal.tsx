@@ -70,14 +70,14 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
         onChange={handleInputChange}
         type="text"
         name="min"
-        placeholder="Enter minimum value"
+        placeholder="Enter minimum value placeholder"
         defaultValue={config ? config.min : null}
       />
       <input
         onChange={handleInputChange}
         type="text"
         name="max"
-        placeholder="Enter maximum value"
+        placeholder="Enter maximum value palceholder"
         defaultValue={config ? config.max : null}
       />
     </div>

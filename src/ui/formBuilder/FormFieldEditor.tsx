@@ -33,8 +33,8 @@ interface FormFieldProps {
     options?: any[];
     tolerance?: boolean;
     toleranceType?: string;
-    max?: number;
-    min?: number;
+    max?: string;
+    min?: string;
     notes?: string;
     url?: string;
     text?: string;

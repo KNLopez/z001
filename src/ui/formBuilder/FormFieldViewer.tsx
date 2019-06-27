@@ -32,8 +32,8 @@ interface FormFieldProps {
     options?: any[];
     tolerance?: boolean;
     toleranceType?: string;
-    max?: number;
-    min?: number;
+    max?: string;
+    min?: string;
     notes?: string;
     url?: string;
     text?: string;
@@ -178,36 +178,6 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
       );
       break;
   }
-  // eslint-disable-next-line
-  const [{}, dispatch]: any = useStateValue();
-
-  const showModal = () => {
-    dispatch(SHOW_MODAL(order));
-  };
-
-  const editField = () => {
-    dispatch(EDIT_FIELD(type, config, order, closed));
-  };
-
-  const removeField = () => {
-    dispatch(DELETE_FIELD(order));
-  };
-
-  const editTemp = (
-    <div className={styles.edit} onClick={editField}>
-      Edit
-    </div>
-  );
-
-  const showEdit = [
-    "standards",
-    "finishedGoods",
-    "lots",
-    "mpis",
-    "parts",
-    "sops",
-    "suppliers",
-  ].includes(type);
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";

@@ -6,8 +6,8 @@ interface NumericProps {
   placeholder?: string;
   tolerance: boolean;
   toleranceType: string;
-  min?: number;
-  max?: number;
+  min?: string;
+  max?: string;
   closed: boolean;
 }
 
@@ -20,23 +20,20 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   max,
   closed,
 }) => {
-  const [value, setValue] = useState<number>(0);
-  const [error, setError] = useState<string>("");
-
-  useEffect(() => {
-    if (
-      !(value < (max ? max : Math.max) && value > (min ? min : Math.min)) &&
-      value
-    ) {
-      setError(`${value || 0} is beyond the tolerance values`);
-    } else {
-      setError("");
-    }
-  }, [value, error, max, min]);
+  const [values, setValue] = useState({ value: 0, min: 0, max: 0 });
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
-    setValue(newValue);
+    setValue({ ...values, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    setError(!performCheck(values));
+  }, [values]);
+
+  const performCheck = (stateValues: any) => {
+    const { min, max, value } = stateValues;
+    return Number(min) <= Number(value) && Number(max) >= Number(value);
   };
 
   const ToleranceSign = toleranceType === "percent" ? "%" : "";
@@ -44,15 +41,19 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   const ToleranceDiv = (
     <div className={styles.tolerance}>
       <input
-        type="text"
-        defaultValue={"min: " + (min || 0) + ToleranceSign}
-        disabled={true}
+        name="min"
+        onChange={handleChange}
+        type="number"
+        placeholder={min}
       />
+      <div className={styles.toleranceSign}>{ToleranceSign}</div>
       <input
-        type="text"
-        defaultValue={"max: " + (max || 0) + ToleranceSign}
-        disabled={true}
+        name="max"
+        onChange={handleChange}
+        type="number"
+        placeholder={max}
       />
+      <div className={styles.toleranceSign}>{ToleranceSign}</div>
     </div>
   );
 
@@ -62,13 +63,17 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
       <input
         onChange={handleChange}
         type="number"
-        name={title}
+        name="value"
         placeholder={placeholder}
-        min={min || undefined}
-        max={max || undefined}
+        min={values.min || undefined}
+        max={values.max || undefined}
       />
       {tolerance ? ToleranceDiv : null}
-      {error ? <span className={styles.formError}>{error}</span> : null}
+      {error ? (
+        <span className={styles.formError}>
+          The value {values.value} is beyond the tolerance level
+        </span>
+      ) : null}
     </div>
   );
 
