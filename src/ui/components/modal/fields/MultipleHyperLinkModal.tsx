@@ -22,11 +22,6 @@ const MultipleHyperLinkModal: React.FunctionComponent<
     setConfig({ ...config, [name]: value });
   };
 
-  const handleTextAreaChange = (e: any) => {
-    const { name, value } = e.target;
-    setConfig({ ...config, [name]: value.split("\n") });
-  };
-
   const submitForm = (e: any) => {
     e.preventDefault();
     handleSubmit(e, config);
@@ -45,15 +40,6 @@ const MultipleHyperLinkModal: React.FunctionComponent<
           required={true}
           defaultValue={config ? config.title : null}
         />
-        <label>Options</label>
-        <textarea
-          onChange={handleTextAreaChange}
-          name="links"
-          placeholder={"link 1\nlink 2\nlink 3\n"}
-          required={true}
-          defaultValue={currentConfig ? currentConfig.links.join("\n") : null}
-        />
-        <span> One hyperlink per line.</span>
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>

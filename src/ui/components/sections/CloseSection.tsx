@@ -29,7 +29,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
 
   const button = (
     <button
-      onClick={editMode ? closeSection : undefined}
+      onClick={editMode ? undefined : closeSection}
       className={styles.actionButton}
     >
       Close Section

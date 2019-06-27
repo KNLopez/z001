@@ -39,7 +39,6 @@ interface FormFieldProps {
     url?: string;
     text?: string;
     textType?: string;
-    links?: any[];
   };
   onDragStart: any;
   onDragEnd: any;
