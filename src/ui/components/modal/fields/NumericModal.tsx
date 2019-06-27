@@ -30,7 +30,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
   const toleranceCheck = (e: any) => {
     const { name, checked } = e.target;
     setConfig({ ...config, [name]: checked });
-    setTolerance(true);
+    setTolerance(checked);
   };
 
   const submitForm = (e: any) => {
@@ -38,7 +38,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
     handleSubmit(e, config);
   };
 
-  const tolerance = () => (
+  const tolerance = (
     <div className={styles.toleranceContainer}>
       <div className={styles.radioContainer}>
         <label>
@@ -111,9 +111,9 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
           type="checkbox"
           onChange={toleranceCheck}
           name="tolerance"
-          defaultChecked={config ? config.tolerance : null}
+          checked={config ? config.tolerance : null}
         />{" "}
-        with tolerance? {withTolerance ? tolerance() : null}
+        with tolerance? {withTolerance ? tolerance : null}
         <button>{currentConfig ? "Save" : "Add"}</button>
       </div>
     </form>
