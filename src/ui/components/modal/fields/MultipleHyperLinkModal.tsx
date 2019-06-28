@@ -30,7 +30,7 @@ const MultipleHyperLinkModal: React.FunctionComponent<
   return (
     <form onSubmit={submitForm}>
       <div className={styles.modalFormContainer}>
-        <h2>Add Hyperlinks</h2>
+        <h2>Multiple Hyperlink</h2>
         <label>Label</label>
         <input
           type="text"

@@ -29,7 +29,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
 
   useEffect(() => {
     setError(!performCheck(values));
-  }, [values]);
+  }, [values.value]);
 
   const performCheck = (stateValues: any) => {
     const { min, max, value } = stateValues;
