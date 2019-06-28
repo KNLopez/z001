@@ -149,8 +149,9 @@
 
 /* input styles */
 label {
-  position: absolute;
+  position: relative;
   top: -13px;
+  width: 100%;
   font-size: 21px;
 }
 

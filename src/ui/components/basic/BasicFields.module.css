@@ -42,8 +42,10 @@ textarea {
 
 .radioContainer h3 {
   font-size: 21px;
-  position: absolute;
+  position: relative;
   top: -13px;
+  width: 100%;
+  word-break: break-all;
 }
 
 .radioContainer label {
@@ -56,6 +58,7 @@ textarea {
   padding-top: 5px;
   margin-bottom: 20px;
   display: inline-block;
+  width: auto;
 }
 
 .radioContainer input[type="radio"] {
@@ -94,7 +97,7 @@ textarea {
 }
 
 /* numeric */
-.numericField {
+.numericFieldsContainer {
   display: flex;
 }
 
@@ -133,6 +136,13 @@ textarea {
   padding-bottom: 20px;
 }
 
+.multipleCheckBoxContainer h3 {
+  position: relative;
+  top: -13px;
+  width: 100%;
+  word-break: break-all;
+}
+
 .checkBoxGroup {
   margin-top: 30px;
 }
@@ -143,6 +153,7 @@ textarea {
   padding: 0 20px 0 30px;
   margin-bottom: 10px;
   font-size: 16px;
+  width: auto;
 }
 
 .multipleCheckBoxContainer .checkBoxContainer .innerCheck:after {
@@ -217,6 +228,7 @@ textarea {
   position: relative;
   top: 0;
   padding-left: 30px;
+  width: auto;
 }
 
 .checkBox input {

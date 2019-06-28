@@ -64,20 +64,22 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   const NumberField = (
     <div className={styles.numericField}>
       <label>{title}</label>
-      <input
-        onChange={handleChange}
-        type="number"
-        name="value"
-        placeholder={placeholder}
-        min={values.min || undefined}
-        max={values.max || undefined}
-      />
-      {tolerance ? ToleranceDiv : null}
-      {error && values.min && Number(values.max) > 0 ? (
-        <span className={styles.formError}>
-          The value {values.value} is beyond the tolerance level
-        </span>
-      ) : null}
+      <div className={styles.numericFieldsContainer}>
+        <input
+          onChange={handleChange}
+          type="number"
+          name="value"
+          placeholder={placeholder}
+          min={values.min || undefined}
+          max={values.max || undefined}
+        />
+        {tolerance ? ToleranceDiv : null}
+        {error && values.min && Number(values.max) > 0 ? (
+          <span className={styles.formError}>
+            The value {values.value} is beyond the tolerance level
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 
