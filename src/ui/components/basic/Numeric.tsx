@@ -20,7 +20,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   max,
   closed,
 }) => {
-  const [values, setValue] = useState({ value: 0, min, max });
+  const [values, setValue] = useState({ value: 0, minValue: 0, maxValue: 0 });
   const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,11 +29,13 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
 
   useEffect(() => {
     setError(!performCheck(values));
-  }, [values.value]);
+  }, [values]);
 
   const performCheck = (stateValues: any) => {
-    const { min, max, value } = stateValues;
-    return Number(min) <= Number(value) && Number(max) >= Number(value);
+    const { minValue, maxValue, value } = stateValues;
+    return (
+      Number(minValue) <= Number(value) && Number(maxValue) >= Number(value)
+    );
   };
 
   const ToleranceSign = toleranceType === "percent" ? "%" : "";
@@ -42,7 +44,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
     <div className={styles.tolerance}>
       <div className={styles.toleranceSign}>
         <input
-          name="min"
+          name="minValue"
           onChange={handleChange}
           type="number"
           placeholder={min}
@@ -51,7 +53,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
       </div>
       <div className={styles.toleranceSign}>
         <input
-          name="max"
+          name="maxValue"
           onChange={handleChange}
           type="number"
           placeholder={max}
@@ -70,11 +72,11 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           type="number"
           name="value"
           placeholder={placeholder}
-          min={values.min || undefined}
-          max={values.max || undefined}
+          min={values.minValue || undefined}
+          max={values.maxValue || undefined}
         />
         {tolerance ? ToleranceDiv : null}
-        {error && values.min && Number(values.max) > 0 ? (
+        {error && values.minValue && values.value && values.maxValue ? (
           <span className={styles.formError}>
             The value {values.value} is beyond the tolerance level
           </span>
