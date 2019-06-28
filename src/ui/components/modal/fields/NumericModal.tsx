@@ -49,6 +49,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
             onChange={handleInputChange}
             name="toleranceType"
             value="percent"
+            required={withTolerance}
             checked={config ? "percent" === config.toleranceType : false}
           />
           <span className={styles.customRadio} />
@@ -61,6 +62,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
             onChange={handleInputChange}
             name="toleranceType"
             value="number"
+            required={withTolerance}
             checked={config ? "number" === config.toleranceType : false}
           />
           <span className={styles.customRadio} />
@@ -71,6 +73,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
         type="text"
         name="min"
         placeholder="Enter minimum value placeholder"
+        required={withTolerance}
         defaultValue={config ? config.min : null}
       />
       <input
@@ -78,6 +81,7 @@ const NumericModal: React.FunctionComponent<NumericModalProps> = ({
         type="text"
         name="max"
         placeholder="Enter maximum value palceholder"
+        required={withTolerance}
         defaultValue={config ? config.max : null}
       />
     </div>
