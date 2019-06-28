@@ -76,7 +76,11 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           max={values.maxValue || undefined}
         />
         {tolerance ? ToleranceDiv : null}
-        {error && values.minValue && values.value && values.maxValue ? (
+        {error &&
+        tolerance &&
+        values.minValue &&
+        values.value &&
+        values.maxValue ? (
           <span className={styles.formError}>
             The value {values.value} is beyond the tolerance level
           </span>
