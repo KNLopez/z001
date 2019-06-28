@@ -90,7 +90,8 @@ const FileUpload: React.FunctionComponent<FileUploadProps> = ({
     <div className={styles.fileUploadContainer}>
       <label>{title}</label>
       <div className={styles.uploadInput} onClick={handleClick}>
-        <UploadIcon className={styles.uploadInputSvg} /> UPLOAD FILES
+        <UploadIcon className={styles.uploadInputSvg} />{" "}
+        {files.length > 0 ? "ADD FILES" : "UPLOAD FILES"}
       </div>
       <input
         type="file"
