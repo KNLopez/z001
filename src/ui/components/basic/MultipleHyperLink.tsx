@@ -24,12 +24,20 @@ const MultipleHyperLink: React.FunctionComponent<MultipleHyperLinkProps> = ({
       </a>
     ));
 
-  const toggleShowInput = () => {
+  const toggleShowInput = (e: any) => {
     setShowInput(!showInput);
   };
 
   const handleChange = (e: any) => {
-    setHyperLink(e.target.value);
+    if (
+      e.target.value.includes("https://") ||
+      e.target.value.includes("http://")
+    ) {
+      const newUrl = e.target.value.replace(/(^\w+:|^)\/\//, "");
+      setHyperLink(newUrl);
+    } else {
+      setHyperLink(e.target.value);
+    }
   };
 
   const addLink = () => {

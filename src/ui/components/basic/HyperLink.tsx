@@ -15,7 +15,7 @@ const HyperLink: React.FunctionComponent<HyperLinkProps> = ({
   const hyperLinkField = (
     <div className={styles.hyperlink}>
       <h3>
-        <a href={`/${url}`} target="_blank">
+        <a href={`https://${url}`} target="_blank">
           {title}
         </a>
       </h3>

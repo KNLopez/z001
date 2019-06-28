@@ -20,7 +20,15 @@ const HyperLinkModal: React.FunctionComponent<HyperLinkModalProps> = ({
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
-    setConfig({ ...config, [name]: value });
+    if (
+      name === "url" &&
+      (value.includes("https://") || value.includes("http://"))
+    ) {
+      const newUrl = value.replace(/(^\w+:|^)\/\//, "");
+      setConfig({ ...config, url: newUrl });
+    } else {
+      setConfig({ ...config, [name]: value });
+    }
   };
 
   const submitForm = (e: any) => {
