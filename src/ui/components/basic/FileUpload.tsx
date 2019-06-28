@@ -71,7 +71,7 @@ const FileUpload: React.FunctionComponent<FileUploadProps> = ({
   const fileDivs =
     files &&
     files.map((file: any, i: any) => {
-      const image = fileImage(file.name.slice(-3));
+      const image = fileImage(file.name.split(".").slice(-1)[0]);
       return (
         <div key={i} className={styles.fileViewContainer}>
           <div data-id={i} className={styles.removeFile} onClick={removeFile}>
