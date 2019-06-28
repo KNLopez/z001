@@ -20,7 +20,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   max,
   closed,
 }) => {
-  const [values, setValue] = useState({ value: 0, min: 0, max: 0 });
+  const [values, setValue] = useState({ value: 0, min, max });
   const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +73,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
         max={values.max || undefined}
       />
       {tolerance ? ToleranceDiv : null}
-      {error ? (
+      {error && values.min && Number(values.max) > 0 ? (
         <span className={styles.formError}>
           The value {values.value} is beyond the tolerance level
         </span>
