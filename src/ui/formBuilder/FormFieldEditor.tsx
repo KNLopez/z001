@@ -19,6 +19,7 @@ import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
+import MultiplePackaging from "../components/basic/MultiplePackaging";
 
 interface FormFieldProps {
   order: string;
@@ -147,6 +148,15 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
         <MultipleCheckbox
           title={config.title}
           options={config.options || []}
+          closed={closed}
+        />
+      );
+      break;
+    case "multiplePackaging":
+      formField = (
+        <MultiplePackaging
+          editMode={true}
+          title={config.title}
           closed={closed}
         />
       );

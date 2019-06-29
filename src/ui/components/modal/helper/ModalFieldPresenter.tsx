@@ -12,6 +12,7 @@ import NumericModal from "../fields/NumericModal";
 import ParagraphModal from "../fields/ParagraphModal";
 import RadioModal from "../fields/RadioModal";
 import SectionModal from "../fields/SectionModal";
+import MultiplePackagingModal from "../fields/MultiplePackagingModal";
 
 interface FieldPresenter {
   chosenField: string;
@@ -133,6 +134,14 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       case "multipleCheckbox":
         setModalContent(
           <MultipleCheckboxModal
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "multiplePackaging":
+        setModalContent(
+          <MultiplePackagingModal
             handleSubmit={clickHandler}
             currentConfig={currentConfig}
           />,

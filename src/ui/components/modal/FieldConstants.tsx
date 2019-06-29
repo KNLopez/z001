@@ -17,6 +17,7 @@ export const FieldConstants = {
     fileUpload: "File Upload",
     hyperlink: "Hyperlink",
     multipleHyperlink: "Multiple Hyperlink",
+    multiplePackaging: "Multiple Packaging",
   },
   approvals: {
     qa: "Quality Assurance",
