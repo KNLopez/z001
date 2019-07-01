@@ -442,6 +442,7 @@ input[type="text"].halfInput {
   margin-left: 10px;
   color: #c40000;
 }
+
 .package:hover span {
   display: inline;
 }
@@ -455,4 +456,9 @@ input[type="text"].halfInput {
 
 .linksContainer {
   margin-top: 10px;
+}
+
+/* paragraph */
+.paragraph {
+  white-space: pre-line;
 }

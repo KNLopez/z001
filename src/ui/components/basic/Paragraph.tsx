@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import styles from "./BasicFields.module.css";
 
 interface ParagraphProps {
-  text: string;
+  text: any;
   textType: string;
   closed: boolean;
 }
@@ -15,13 +15,13 @@ const Paragraph: React.FunctionComponent<ParagraphProps> = ({
   let textContainer;
 
   if (textType === "heading") {
-    textContainer = <h2>{text}</h2>;
+    textContainer = <h2 dangerouslySetInnerHTML={{ __html: text }} />;
   } else {
-    textContainer = <p>{text}</p>;
+    textContainer = <p dangerouslySetInnerHTML={{ __html: text }} />;
   }
 
   const ParagraphField = (
-    <div className={styles.singleLine}>{textContainer}</div>
+    <div className={styles.paragraph}>{textContainer}</div>
   );
 
   return <Fragment>{ParagraphField}</Fragment>;
