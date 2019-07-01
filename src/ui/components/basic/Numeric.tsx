@@ -11,6 +11,12 @@ interface NumericProps {
   closed: boolean;
 }
 
+interface Values {
+  value?: string;
+  maxValue?: string;
+  minValue?: string;
+}
+
 const Numeric: React.FunctionComponent<NumericProps> = ({
   title,
   tolerance,
@@ -20,11 +26,23 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   max,
   closed,
 }) => {
-  const [values, setValue] = useState({ value: 0, minValue: 0, maxValue: 0 });
+  const [values, setValue] = useState<Values>({
+    value: "",
+    minValue: "",
+    maxValue: "",
+  });
   const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue({ ...values, [e.target.name]: e.target.value });
+    const { value } = e.target;
+    let newValue = value;
+    if (value !== "") {
+      newValue = Number(value.replace(/\D/g, "")).toLocaleString();
+    }
+    setValue({
+      ...values,
+      [e.target.name]: newValue,
+    });
   };
 
   useEffect(() => {
@@ -34,7 +52,8 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   const performCheck = (stateValues: any) => {
     const { minValue, maxValue, value } = stateValues;
     return (
-      Number(minValue) <= Number(value) && Number(maxValue) >= Number(value)
+      Number(minValue.replace(/\D/g, "")) <= Number(value.replace(/\D/g, "")) &&
+      Number(maxValue.replace(/\D/g, "")) >= Number(value.replace(/\D/g, ""))
     );
   };
 
@@ -46,8 +65,9 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
         <input
           name="minValue"
           onChange={handleChange}
-          type="number"
+          type="text"
           placeholder={min}
+          value={values.minValue}
         />
         <span>{ToleranceSign}</span>
       </div>
@@ -55,12 +75,22 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
         <input
           name="maxValue"
           onChange={handleChange}
-          type="number"
+          type="text"
           placeholder={max}
+          value={values.maxValue}
         />
         <span>{ToleranceSign}</span>
       </div>
     </div>
+  );
+
+  const showErrorMessage =
+    error && tolerance && values.minValue && values.value && values.maxValue;
+
+  const errorMessage = (
+    <span className={styles.formError}>
+      The value {values.value} is beyond the tolerance level
+    </span>
   );
 
   const NumberField = (
@@ -69,22 +99,15 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
       <div className={styles.numericFieldsContainer}>
         <input
           onChange={handleChange}
-          type="number"
+          type="text"
           name="value"
           placeholder={placeholder}
           min={values.minValue || undefined}
           max={values.maxValue || undefined}
+          value={values.value}
         />
         {tolerance ? ToleranceDiv : null}
-        {error &&
-        tolerance &&
-        values.minValue &&
-        values.value &&
-        values.maxValue ? (
-          <span className={styles.formError}>
-            The value {values.value} is beyond the tolerance level
-          </span>
-        ) : null}
+        {showErrorMessage ? errorMessage : null}
       </div>
     </div>
   );

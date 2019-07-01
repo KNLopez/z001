@@ -101,7 +101,7 @@ textarea {
   display: flex;
 }
 
-.numericField input[type="number"] {
+.numericField input[type="text"] {
   flex: 1;
 }
 
@@ -111,7 +111,7 @@ textarea {
   padding: 0 5px;
 }
 
-.numericField .tolerance input[type="number"] {
+.numericField .tolerance input[type="text"] {
   flex: 1;
   padding-right: 25px;
 }
