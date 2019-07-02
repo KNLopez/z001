@@ -48,11 +48,11 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
       case "toleranceType":
         return "tolerance type";
       case "max":
-        return "Maximum tolerance value placeholder text";
+        return "maximum tolerance value placeholder text";
       case "min":
-        return "Minimum tolerance value placeholder text";
+        return "minimum tolerance value placeholder text";
       case "notes":
-        return "Option notes";
+        return "checkbox input placeholder";
       case "url":
         return "hyperlink";
       case "text":
