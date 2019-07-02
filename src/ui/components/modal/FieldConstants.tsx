@@ -18,6 +18,7 @@ export const FieldConstants = {
     hyperlink: "Hyperlink",
     multipleHyperlink: "Multiple Hyperlink",
     multiplePackaging: "Multiple Packaging",
+    approvalCollection: "Approval Collection",
   },
   approvals: {
     qa: "Quality Assurance",

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { CLOSE_SECTION } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
 import styles from "../basic/BasicFields.module.css";
-import { CLOSE_SECTION } from "../../../state/formActions";
 
 interface CloseSectionProps {
   closed: boolean;
@@ -39,14 +39,27 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   let diffList = [];
   if (diff) {
     diffList = diff.map((diffItem: any, i: string) => {
-      return (
-        <li key={i}>
-          {diffItem.date}, changes:{diffItem.changes[0].title},{" "}
-          {diffItem.changes[1].title}
-        </li>
-      );
+      return Object.keys(diffItem.changes[1]).map((diffItemKey) => {
+        console.log(
+          diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey],
+        );
+
+        if (
+          diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey]
+        ) {
+          return (
+            <li key={i}>
+              {diffItem.date}, <strong>John</strong>: changed:{" "}
+              {diffItem.changes[0][diffItemKey]} to{" "}
+              {diffItem.changes[1][diffItemKey]}
+            </li>
+          );
+        }
+      });
     });
   }
+
+  console.log(diffList);
 
   const diffContainer = (
     <div>

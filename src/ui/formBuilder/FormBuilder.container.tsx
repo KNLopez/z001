@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StateProvider } from "../../state/formContext";
+import data from "../../state/FormProps";
 import { formReducer } from "../../state/formReducer";
-import data from "../../state/SampleProps";
 import styles from "../components/modal/Modal.module.css";
 import FormBuilderPresenter from "./FormBuilder.presenter";
 

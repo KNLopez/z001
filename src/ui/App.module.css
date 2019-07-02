@@ -152,6 +152,16 @@ template {
   font-family: "Lato", sans-serif;
 }
 
+button {
+  background: #c40000;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+  border: 0;
+  padding: 9px 40px;
+  margin: 0 5px 20px 0;
+}
+
 h1,
 h2,
 h3,

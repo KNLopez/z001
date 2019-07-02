@@ -13,6 +13,7 @@ import ParagraphModal from "../fields/ParagraphModal";
 import RadioModal from "../fields/RadioModal";
 import SectionModal from "../fields/SectionModal";
 import MultiplePackagingModal from "../fields/MultiplePackagingModal";
+import ApprovalCollectionModal from "../fields/ApprovalCollectionModal";
 
 interface FieldPresenter {
   chosenField: string;
@@ -142,6 +143,14 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       case "multiplePackaging":
         setModalContent(
           <MultiplePackagingModal
+            handleSubmit={clickHandler}
+            currentConfig={currentConfig}
+          />,
+        );
+        break;
+      case "approvalCollection":
+        setModalContent(
+          <ApprovalCollectionModal
             handleSubmit={clickHandler}
             currentConfig={currentConfig}
           />,
