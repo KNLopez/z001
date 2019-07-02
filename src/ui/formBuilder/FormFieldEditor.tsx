@@ -161,6 +161,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           closed={closed}
         />
       );
+      break;
     case "approvalCollection":
       formField = (
         <ApprovalCollection

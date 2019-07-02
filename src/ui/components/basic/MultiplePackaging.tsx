@@ -39,6 +39,8 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
 
   const packagingInput = (
     <div className={styles.inputContainer}>
+      <p>([unit 1 value] [unit 1 name] is equal to [unit 2 value] [ unit 2 name])</p>
+      {" "}
       <input
         className={styles.halfInput}
         type="text"
