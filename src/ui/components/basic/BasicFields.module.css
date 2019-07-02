@@ -462,3 +462,22 @@ input[type="text"].halfInput {
 .paragraph {
   white-space: pre-line;
 }
+
+/* diff container */
+.diffContainer {
+  font-size: 14px;
+}
+
+.diffContainer ul li {
+  margin: 5px;
+  line-height: 2;
+}
+
+.diffContainer del {
+  color: #c40000;
+}
+
+.diffContainer .newText {
+  color: rgb(22, 189, 35);
+  font-weight: 800;
+}

@@ -35,31 +35,61 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
       Close Section
     </button>
   );
+  const getText = (key: string) => {
+    switch (key) {
+      case "title":
+        return "field title";
+      case "placeholder":
+        return "placeholder text";
+      case "options":
+        return "select options";
+      case "tolerance":
+        return "tolerance";
+      case "toleranceType":
+        return "tolerance type";
+      case "max":
+        return "Maximum tolerance value placeholder text";
+      case "min":
+        return "Minimum tolerance value placeholder text";
+      case "notes":
+        return "Option notes";
+      case "url":
+        return "hyperlink";
+      case "text":
+        return "text";
+      case "textType":
+        return "type of text";
+      default:
+        return "field";
+    }
+  };
 
   let diffList = [];
   if (diff) {
     diffList = diff.map((diffItem: any, i: string) => {
-      return Object.keys(diffItem.changes[1]).map((diffItemKey) => {
-        console.log(
-          diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey],
-        );
-
+      const list = Object.keys(diffItem.changes[1]).map((diffItemKey) => {
         if (
           diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey]
         ) {
           return (
             <li key={i}>
-              {diffItem.date}, <strong>John</strong>: changed:{" "}
-              {diffItem.changes[0][diffItemKey]} to{" "}
-              {diffItem.changes[1][diffItemKey]}
+              Changed the {getText(diffItemKey)} from{" "}
+              <del>{diffItem.changes[0][diffItemKey]}</del> to{" "}
+              <span className={styles.newText}>
+                {diffItem.changes[1][diffItemKey]}
+              </span>
             </li>
           );
         }
       });
+
+      return (
+        <div key={i} className={styles.diffContainer}>
+          {diffItem.date}, <strong>John</strong>:<ul>{list}</ul>
+        </div>
+      );
     });
   }
-
-  console.log(diffList);
 
   const diffContainer = (
     <div>
