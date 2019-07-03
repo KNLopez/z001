@@ -85,7 +85,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
 
       return (
         <div key={i} className={styles.diffContainer}>
-          {diffItem.date}, <strong>John</strong>:<ul>{list}</ul>
+          {diffItem.date}, {diffItem.time}, <strong>John</strong>:<ul>{list}</ul>
         </div>
       );
     });
