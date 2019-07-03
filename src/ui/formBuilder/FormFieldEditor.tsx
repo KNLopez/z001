@@ -215,13 +215,6 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   const removeField = () => {
     dispatch(DELETE_FIELD(order));
   };
-
-  const editTemp = (
-    <div className={styles.edit} onClick={editField}>
-      Edit
-    </div>
-  );
-
   const showEdit = [
     "standards",
     "finishedGoods",
@@ -230,26 +223,37 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     "parts",
     "sops",
     "suppliers",
+    "closeSection",
   ].includes(type);
+
+  const editTemp = (
+    <div className={styles.edit} onClick={editField}>
+      Edit
+    </div>
+  );
+
+  const topControls = (
+    <div className={styles.topControls}>
+      {!showEdit ? editTemp : null}
+      <div className={styles.delete} onClick={removeField}>
+        Delete
+      </div>
+    </div>
+  );
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;
   const sectionStyle = type === "section" ? ` ${styles[type]}` : "";
   const containerStyle =
     styles.fieldContainer + width + sectionStyle + " dragContainer";
+  const hideTopControls = closed && type === "closeSection";
   return (
     <div
       data-id={order}
       draggable={true}
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
-      className={containerStyle}
-    >
-      <div className={styles.topControls}>
-        {!showEdit ? editTemp : null}
-        <div className={styles.delete} onClick={removeField}>
-          Delete
-        </div>
-      </div>
+      className={containerStyle}>
+      {hideTopControls ? null : topControls}
       {formField}
       <div className={styles.moveHandle}>
         <MoveHandle />

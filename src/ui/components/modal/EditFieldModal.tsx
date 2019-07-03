@@ -55,7 +55,7 @@ const EditFieldModal: React.FunctionComponent = () => {
           X
         </div>
         <form onSubmit={submitReason}>
-          <h3>
+          <h3 style={{ marginBottom: "10px" }}>
             This section is closed, please provide a reason for editing this
             field.
           </h3>
