@@ -1,11 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { RECORD_UPDATES, UPDATE_FIELD } from "../../../state/formActions";
 import { useStateValue } from "../../../state/formContext";
 import ModalFieldPresenter from "./helper/ModalFieldPresenter";
+import styles from "./Modal.module.css";
 
 const EditFieldModal: React.FunctionComponent = () => {
   // eslint-disable-next-line
   const [{ currentField }, dispatch]: any = useStateValue();
+  const [reason, setReason] = useState();
+  const [withReason, setWithReason] = useState(false);
 
   const updateField = (e: any, config: any) => {
     e.preventDefault();
@@ -14,7 +17,12 @@ const EditFieldModal: React.FunctionComponent = () => {
     }
     if (currentField.closed) {
       dispatch(
-        RECORD_UPDATES(currentField.config, config, currentField.currentIndex),
+        RECORD_UPDATES(
+          currentField.config,
+          config,
+          currentField.currentIndex,
+          reason,
+        ),
       );
     }
     dispatch(
@@ -27,6 +35,42 @@ const EditFieldModal: React.FunctionComponent = () => {
     );
   };
 
+  const hideModal = (e: any) => {
+    e.stopPropagation();
+    dispatch({ type: "HIDE_MODAL" });
+  };
+
+  const submitReason = () => {
+    setWithReason(true);
+  };
+
+  const handleReasonChange = (e: any) => {
+    setReason(e.target.value);
+  };
+
+  const reasonModal = (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalBody}>
+        <div className={styles.close} onClick={hideModal}>
+          X
+        </div>
+        <form onSubmit={submitReason}>
+          <h3>
+            This section is closed, please provide a reason for editing this
+            field.
+          </h3>
+          <textarea
+            value={reason}
+            onChange={handleReasonChange}
+            placeholder="Please include a reason"
+            required={true}
+          />
+          <button> Save Reason </button>
+        </form>
+      </div>
+    </div>
+  );
+
   const modalStateContent = (
     <ModalFieldPresenter
       chosenField={currentField.type}
@@ -35,7 +79,11 @@ const EditFieldModal: React.FunctionComponent = () => {
     />
   );
 
-  return <Fragment>{modalStateContent}</Fragment>;
+  const showReasonModal = currentField.closed && !withReason;
+
+  return (
+    <Fragment>{showReasonModal ? reasonModal : modalStateContent}</Fragment>
+  );
 };
 
 export default EditFieldModal;

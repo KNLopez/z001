@@ -65,6 +65,7 @@ export const formReducer = (state: any, action: any) => {
       };
     case "RECORD_UPDATES":
       const diff = {
+        reason: action.reason,
         date: action.date,
         time: action.time,
         changes: [action.prevConfig, action.newConfig],

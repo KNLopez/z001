@@ -30,8 +30,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   const button = (
     <button
       onClick={editMode ? undefined : closeSection}
-      className={styles.actionButton}
-    >
+      className={styles.actionButton}>
       Close Section
     </button>
   );
@@ -67,7 +66,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   let diffList = [];
   if (diff) {
     diffList = diff.map((diffItem: any, i: string) => {
-      const list = Object.keys(diffItem.changes[1]).map((diffItemKey) => {
+      const list = Object.keys(diffItem.changes[1]).map(diffItemKey => {
         if (
           diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey]
         ) {
@@ -85,7 +84,11 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
 
       return (
         <div key={i} className={styles.diffContainer}>
-          {diffItem.date}, {diffItem.time}, <strong>John</strong>:<ul>{list}</ul>
+          {diffItem.date}, {diffItem.time}, <strong>John</strong>:
+          <ul>
+            {list}
+            <strong>Justification:</strong> {diffItem.reason}
+          </ul>
         </div>
       );
     });

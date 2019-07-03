@@ -59,9 +59,13 @@ export const RECORD_UPDATES = (
   prevConfig: any,
   newConfig: any,
   currentIndex: number | string,
+  reason: string,
 ) => {
   const date = new Date().toLocaleDateString();
-  const time = new Date().toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"});;
+  const time = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return {
     type: "RECORD_UPDATES",
     prevConfig,
@@ -69,6 +73,7 @@ export const RECORD_UPDATES = (
     date,
     time,
     currentIndex,
+    reason,
   };
 };
 
