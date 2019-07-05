@@ -58,7 +58,7 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
   };
 
   const handleDayChange = (day: any) => {
-    setTask({ ...task, due_date: day.toLocaleDateString() });
+    setTask({ ...task, due_date: day ? day.toLocaleDateString() : "" });
   };
 
   const form = (
