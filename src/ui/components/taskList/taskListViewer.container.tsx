@@ -49,8 +49,6 @@ const TaskListViewer: React.FunctionComponent<TaskListPresenterProps> = ({
     },
   );
 
-  console.log(taskList);
-
   return (
     <div className={styles.implementationPlanContainer + " " + styles.userView}>
       <div className={styles.topImplementationContainer}>
