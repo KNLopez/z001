@@ -1,0 +1,153 @@
+.implementationPlanContainer {
+  width: 100%;
+}
+
+.topImplementationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.implementationPlanTitle {
+  flex: 1;
+}
+
+.controls {
+  text-align: right;
+  flex: 1;
+  cursor: pointer;
+  color: #c40000;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.controls:hover {
+  color: #d31b1b;
+  text-decoration: underline;
+}
+
+.formContainer {
+  display: flex;
+  background: #F2F2F2;
+  padding: 15px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.formContainer label {
+  top: 0;
+  font-size: 14px;
+}
+
+.formContainer input,
+.formContainer select {
+  background: #fff;
+  font-size: 14px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 0 10px;
+  width: 100%;
+
+}
+
+.formRow {
+  display: flex;
+  width: 100%;
+}
+
+.formColumn {
+  padding: 0 10px;
+  flex: .9;
+  justify-content: space-between;
+}
+
+.formButtonContainer {
+  float: right;
+}
+
+.formContainer .buttonCancel {
+  background: transparent;
+  color: #c40000;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.formButtonContainer button {
+  margin: 0;
+}
+
+.formButtonContainer .saveButton {
+  cursor: pointer;
+}
+
+.formButtonContainer .saveButton:hover {
+  background: #d31b1b;
+}
+
+.formContainer .buttonCancel:hover {
+  text-decoration: underline;
+}
+
+.singleTaskContainer {
+  background: #f2f2f2;
+  position: relative;
+  padding: 15px;
+  padding-right: 50px;
+  margin-bottom: 10px;
+}
+
+.taskControls {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.singleTaskContainer h3 {
+  font-size: 218x;
+}
+
+.singleTaskContainer h3,
+.singleTaskContainer p {
+  width: 100%;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+.singleTaskContainer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.singleTaskContainer svg {
+  margin: 5px 10px;
+  cursor: pointer;
+}
+
+.singleTaskContainer .deleteControl {
+  fill: #c40000;
+}
+
+.singleTaskContainer .editControl {
+  fill: #3572e2;
+}
+
+.taskBottomInfo {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.taskBottomInfo span strong {
+  color: rgba(71, 71, 71, 0.486);
+  font-weight: 800;
+}
+
+.taskBottomInfo span {
+  font-weight: 100;
+  flex: 1;
+  color: rgba(71, 71, 71, 0.486);
+  word-break: break-all;
+  margin-right: 10px;
+}

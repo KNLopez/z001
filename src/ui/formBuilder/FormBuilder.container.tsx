@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { StateProvider } from "../../state/formContext";
-import data from "../../state/FormProps";
 import { formReducer } from "../../state/formReducer";
 import styles from "../components/modal/Modal.module.css";
 import FormBuilderPresenter from "./FormBuilder.presenter";
 
-const FormBuilderContainer: React.FunctionComponent = () => {
+interface FormBuilderProps {
+  data: any;
+}
+
+const FormBuilderContainer: React.FunctionComponent<FormBuilderProps> = ({
+  data,
+}) => {
   const initialState = {
     formNumber: "",
     status: "",
