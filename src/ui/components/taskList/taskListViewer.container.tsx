@@ -1,19 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import TaskUser from "./TaskUser";
+import { ApplicationState } from "../../../state/reducers";
+import styles from "./Tasks.module.css";
 
-interface StateProps {
+interface LocalProps {
   currentUser: string;
 }
 
-// const mapStateToProps = (state: ApplicationState): StateProps => ({
-//   currentUserEmail: authSelectors.currentUserEmail(state),
-// });
+interface StateProps {
+  tasks: any;
+}
 
-export type TaskListViewerProps = StateProps;
+const mapStateToProps = (state: ApplicationState): StateProps => ({
+  tasks: state,
+});
 
-const TaskListViewer: React.FunctionComponent<TaskListViewerProps> = ({
+export type TaskListPresenterProps = LocalProps & StateProps;
+
+const TaskListViewer: React.FunctionComponent<TaskListPresenterProps> = ({
   currentUser,
+  tasks,
 }) => {
-  return <div />;
+  const [newTasks, setNewTasks] = useState(tasks);
+
+  useEffect(() => {
+    setNewTasks(tasks);
+  }, [tasks]);
+
+  const taskList = newTasks.map(
+    (
+      { title, description, assignee, due_date, status, attachments }: any,
+      i: any,
+    ) => {
+      return (
+        <TaskUser
+          title={title}
+          description={description}
+          assignee={assignee}
+          due_date={due_date}
+          status={status}
+          attachments={attachments}
+          id={i}
+          key={i}
+          currentUser={currentUser}
+        />
+      );
+    },
+  );
+
+  console.log(taskList);
+
+  return (
+    <div className={styles.implementationPlanContainer + " " + styles.userView}>
+      <div className={styles.topImplementationContainer}>
+        <h2 className={styles.implementationPlanTitle}>Implementation Plan</h2>
+      </div>
+      {taskList}
+    </div>
+  );
 };
 
-export default TaskListViewer;
+export default connect(mapStateToProps)(TaskListViewer);

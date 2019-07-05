@@ -3,7 +3,7 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../../state/reducers";
-import Task from "./Task";
+import TaskAdmin from "./TaskAdmin";
 import styles from "./Tasks.module.css";
 
 interface LocalProps {
@@ -103,7 +103,7 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
   );
 
   const taskList = tasks.map((task: any, i: any) => (
-    <Task key={i} id={i} task={task} />
+    <TaskAdmin key={i} id={i} task={task} />
   ));
 
   return (

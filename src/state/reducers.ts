@@ -11,6 +11,11 @@ const rootReducer = (state: any[] = initialState, action: any): any => {
     case "DELETE_TASK":
       newState.splice(action.id, 1);
       return [...newState];
+    case "CLOSE_TASK":
+      const task = newState[action.id];
+      task.status = "closed";
+      newState.splice(action.id, 1, task);
+      return [...newState];
     default:
       return state;
   }

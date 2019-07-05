@@ -97,6 +97,24 @@
   margin-bottom: 10px;
 }
 
+.singleTaskContainer.clearBackground {
+  background: transparent;
+  padding: 0;
+}
+
+.singleTaskContainer.clearBackground .taskBottomInfo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.userView .implementationPlanTitle {
+  margin-bottom: 30px;
+}
+
+.userView .singleTaskContainer {
+  border-bottom: 2px solid #E2E2E2;
+}
+
 .taskControls {
   position: absolute;
   right: 0;
