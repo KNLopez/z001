@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import styles from "./Tasks.module.css";
 import { ReactComponent as DeletIcon } from "../../formBuilder/icons/icon_delete.svg";
 import { ReactComponent as EditIcon } from "../../formBuilder/icons/icon_edit.svg";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 // const mapStateToProps = (state: ApplicationState): StateProps => ({
 //   currentUserEmail: authSelectors.currentUserEmail(state),
@@ -69,6 +71,10 @@ const Task: React.FunctionComponent<TaskProps> = ({
     setTask({ ...currentTask, [name]: value });
   };
 
+  const handleDayChange = (day: any) => {
+    setTask({ ...currentTask, due_date: day.toLocaleDateString() });
+  };
+
   const singleTaskContainer = (
     <div className={styles.singleTaskContainer}>
       <div className={styles.taskControls}>
@@ -128,21 +134,22 @@ const Task: React.FunctionComponent<TaskProps> = ({
           </div>
           <div className={styles.formColumn}>
             <label>Due date</label>
-            <input
-              type="text"
-              name="due_date"
-              onChange={handleChange}
+            <DayPickerInput
+              format={""}
+              onDayChange={handleDayChange}
               value={currentTask.due_date}
             />
           </div>
           <div className={styles.formColumn}>
             <label>Status</label>
-            <input
-              type="text"
+            <select
               name="status"
               onChange={handleChange}
-              value={currentTask.status}
-            />
+              value={currentTask.status}>
+              <option value="open">Open</option>
+              <option value="pending">Pending</option>
+              <option value="closed">Closed</option>
+            </select>
           </div>
         </div>
         <div className={styles.formButtonContainer}>
