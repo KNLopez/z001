@@ -18,8 +18,8 @@ interface DispatchProps {
   addTask: any;
 }
 
-const mapStateToProps = (state: ApplicationState): StateProps => ({
-  tasks: state,
+const mapStateToProps = ({ tasks }: ApplicationState): StateProps => ({
+  tasks,
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => {
@@ -110,9 +110,9 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
     <div className={styles.implementationPlanContainer}>
       <div className={styles.topImplementationContainer}>
         <h2 className={styles.implementationPlanTitle}>Implementation Plan</h2>
-        <a className={styles.controls} onClick={showFormHandler}>
+        <span className={styles.controls} onClick={showFormHandler}>
           ADD TASK
-        </a>
+        </span>
       </div>
       {taskList}
       {showForm ? form : null}

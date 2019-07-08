@@ -1,6 +1,12 @@
-import { createStore } from "redux";
-import reducers from "./reducers";
+import { createStore, combineReducers } from "redux";
+import taskReducer from "./reducers";
 
-const store = createStore(reducers);
+const reducers = combineReducers({ tasks: taskReducer });
+
+const store = createStore(
+  reducers,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 export { store };

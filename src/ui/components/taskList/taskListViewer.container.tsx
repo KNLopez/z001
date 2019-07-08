@@ -12,8 +12,8 @@ interface StateProps {
   tasks: any;
 }
 
-const mapStateToProps = (state: ApplicationState): StateProps => ({
-  tasks: state,
+const mapStateToProps = ({ tasks }: ApplicationState): StateProps => ({
+  tasks,
 });
 
 export type TaskListPresenterProps = LocalProps & StateProps;
