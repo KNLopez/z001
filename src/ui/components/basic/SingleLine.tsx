@@ -26,11 +26,11 @@ const SingleLine: React.FunctionComponent<SingleLineProps> = ({
     <div className={styles.singleLine}>
       <label htmlFor={title}>{title}</label>
       <input
-        name="title"
+        name={title}
         type="text"
         placeholder={placeholder}
         onChange={setValue}
-        defaultValue={values ? values.title : null}
+        defaultValue={values ? values[title] : null}
       />
     </div>
   );
