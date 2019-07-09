@@ -1,20 +1,31 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import styles from "./BasicFields.module.css";
 
 interface MultipleHyperLinkProps {
   title: string;
   closed: boolean;
-  editMode: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
+  editMode?: boolean;
 }
 
 const MultipleHyperLink: React.FunctionComponent<MultipleHyperLinkProps> = ({
   title,
-  editMode,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [hyperLinks, addHyperLinks]: any[] = useState([]);
+  const defaultHyperLinks = values ? values.hyperLinks : [];
+  const [hyperLinks, addHyperLinks]: any[] = useState(defaultHyperLinks);
   const [hyperLink, setHyperLink] = useState();
   const [showInput, setShowInput] = useState(false);
+
+  useEffect(() => {
+    if (!editMode) updateValue(currentIndex, "hyperLinks", hyperLinks);
+  }, [hyperLinks]);
 
   const hyperLinkList =
     hyperLinks &&
