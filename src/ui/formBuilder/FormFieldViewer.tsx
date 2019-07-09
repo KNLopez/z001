@@ -93,6 +93,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           options={config.options || []}
           closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
         />
       );
       break;

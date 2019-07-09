@@ -5,21 +5,43 @@ interface RadioProps {
   title: string;
   options: any[];
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
+  editMode: boolean;
 }
 
 const RadioField: React.FunctionComponent<RadioProps> = ({
   title,
   options,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [otherChosen, chooseOther] = useState(false);
+  const setChosen = values ? values.other : false;
+  const [otherChosen, chooseOther] = useState(setChosen);
 
   const chosenHandler = (e: any) => {
     chooseOther(true);
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   const removeChosenHandler = (e: any) => {
     chooseOther(false);
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+      updateValue(currentIndex, "other", "");
+    }
+  };
+
+  const setValue = (e: any) => {
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   const radio = options.map((option, i) => {
@@ -34,11 +56,18 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
               type="radio"
               name={title}
               value={option}
+              defaultChecked={values ? option === values[title] : false}
             />
             <span className={styles.customRadio} />
           </label>
           {otherChosen ? (
-            <input type="text" placeholder="Enter choice" />
+            <input
+              name="other"
+              type="text"
+              placeholder="Enter choice"
+              onChange={setValue}
+              defaultValue={values ? values.other : null}
+            />
           ) : null}
         </Fragment>
       );
@@ -52,6 +81,7 @@ const RadioField: React.FunctionComponent<RadioProps> = ({
           name={title}
           value={option}
           onChange={removeChosenHandler}
+          defaultChecked={values ? option === values[title] : false}
         />
         <span className={styles.customRadio} />
       </label>
