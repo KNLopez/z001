@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useStateValue } from "../../state/formContext";
 import styles from "./FormBuilder.module.css";
 import FormFieldEditor from "./FormFieldEditor";
+import { formReducerType } from "../../state/ducks/formBuilder/reducer";
+import { connect } from "react-redux";
+import { formBuilderActions } from "../../state/ducks/formBuilder";
 
 const placeholder = document.createElement("div");
 placeholder.className = styles.placeholder;
 
-const FormEditorPresenter: React.FunctionComponent = () => {
-  const [{ elements }, dispatch]: any = useStateValue();
-  const [fields, setFields] = useState(elements);
+interface StateProps {
+  formBuilderState: formReducerType;
+}
+
+interface DispatchProps {
+  UPDATE_DRAG_DROP_FIELDS: typeof formBuilderActions.updateDragAndDropFields;
+}
+
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+type FormEdtiroPresenterProps = StateProps & DispatchProps;
+
+const FormEditorPresenter: React.FunctionComponent<
+  FormEdtiroPresenterProps
+> = ({ formBuilderState, UPDATE_DRAG_DROP_FIELDS }) => {
+  const [fields, setFields] = useState(formBuilderState.elements);
 
   useEffect(() => {
-    setFields(elements);
-  }, [elements]);
+    setFields(formBuilderState.elements);
+  }, [formBuilderState.elements]);
 
   let dragged: any;
   let container: any;
@@ -37,7 +54,7 @@ const FormEditorPresenter: React.FunctionComponent = () => {
         to--;
       }
       tempFields.splice(to, 0, tempFields.splice(from, 1)[0]);
-      dispatch({ type: "UPDATE_DRAG_DROP_FIELDS", fields: [...tempFields] });
+      UPDATE_DRAG_DROP_FIELDS([...tempFields]);
     }
   };
 
@@ -84,4 +101,7 @@ const FormEditorPresenter: React.FunctionComponent = () => {
   );
 };
 
-export default FormEditorPresenter;
+export default connect(
+  mapStateToProps,
+  { UPDATE_DRAG_DROP_FIELDS: formBuilderActions.updateDragAndDropFields },
+)(FormEditorPresenter);

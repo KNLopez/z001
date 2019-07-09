@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { CLOSE_SECTION } from "../../../state/formActions";
-import { useStateValue } from "../../../state/formContext";
 import styles from "../basic/BasicFields.module.css";
 
 interface CloseSectionProps {
@@ -16,7 +14,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   diff,
   currentIndex,
 }) => {
-  const [{}, dispatch]: any = useStateValue();
+  // const [{}, dispatch]: any = useStateValue();
   const [isClosed, setClosed] = useState(closed);
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   }, [isClosed]);
 
   const closeSection = () => {
-    dispatch(CLOSE_SECTION(currentIndex));
+    // dispatch(CLOSE_SECTION(currentIndex));
   };
 
   const button = (

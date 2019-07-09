@@ -1,30 +1,47 @@
 import React from "react";
-import { useStateValue } from "../../../state/formContext";
+import { connect } from "react-redux";
+import { formBuilderActions } from "../../../state/ducks/formBuilder";
 import EditFieldModal from "./EditFieldModal";
 import styles from "./Modal.module.css";
 import NewFieldModal from "./NewFieldModal";
+import { formReducerType } from "../../../state/ducks/formBuilder/reducer";
 
-const Modal: React.FunctionComponent = () => {
+interface DispatchProps {
+  hideModal: typeof formBuilderActions.hideModal;
+}
+interface StateProps {
+  formBuilderState: formReducerType;
+}
+
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+type ModalProps = StateProps & DispatchProps;
+
+const Modal: React.FunctionComponent<ModalProps> = ({
+  hideModal,
+  formBuilderState,
+}) => {
   // eslint-disable-next-line
-  const [{ currentField }, dispatch]: any = useStateValue();
 
   let modalContent;
 
-  if (!currentField) {
+  if (!formBuilderState.currentField) {
     modalContent = <NewFieldModal />;
   } else {
     modalContent = <EditFieldModal />;
   }
 
-  const hideModal = (e: any) => {
+  const hideStateModal = (e: any) => {
     e.stopPropagation();
-    dispatch({ type: "HIDE_MODAL" });
+    hideModal();
   };
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalBody}>
-        <div className={styles.close} onClick={hideModal}>
+        <div className={styles.close} onClick={hideStateModal}>
           X
         </div>
         {modalContent ? modalContent : null}
@@ -33,4 +50,7 @@ const Modal: React.FunctionComponent = () => {
   );
 };
 
-export default Modal;
+export default connect(
+  mapStateToProps,
+  { hideModal: formBuilderActions.hideModal },
+)(Modal);

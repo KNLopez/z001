@@ -1,14 +1,17 @@
 import React from "react";
-import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
-import { useStateValue } from "../../state/formContext";
+import { connect } from "react-redux";
+import { formBuilderActions } from "../../state/ducks/formBuilder";
+import ApprovalCollection from "../components/basic/ApprovalCollection";
+// import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import FileUpload from "../components/basic/FileUpload";
 import HyperLink from "../components/basic/HyperLink";
 import MultipleCheckbox from "../components/basic/MultipleCheckbox";
+import MultipleHyperLink from "../components/basic/MultipleHyperLink";
+import MultiplePackaging from "../components/basic/MultiplePackaging";
 import Numeric from "../components/basic/Numeric";
 import Paragraph from "../components/basic/Paragraph";
-import MultipleHyperLink from "../components/basic/MultipleHyperLink";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
@@ -19,10 +22,8 @@ import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
-import MultiplePackaging from "../components/basic/MultiplePackaging";
-import ApprovalCollection from "../components/basic/ApprovalCollection";
 
-interface FormFieldProps {
+interface FieldProps {
   order: string;
   type: string;
   closed: boolean;
@@ -46,6 +47,14 @@ interface FormFieldProps {
   onDragEnd: any;
 }
 
+interface DispatchProps {
+  DELETE_FIELD: typeof formBuilderActions.deleteField;
+  EDIT_FIELD: typeof formBuilderActions.editField;
+  SHOW_MODAL: typeof formBuilderActions.showModal;
+}
+
+type FormFieldProps = FieldProps & DispatchProps;
+
 const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   type,
   closed,
@@ -55,6 +64,9 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   onDragStart,
   diff,
   editMode,
+  DELETE_FIELD,
+  EDIT_FIELD,
+  SHOW_MODAL,
 }) => {
   let formField;
   switch (type) {
@@ -201,19 +213,17 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       );
       break;
   }
-  // eslint-disable-next-line
-  const [{}, dispatch]: any = useStateValue();
 
   const showModal = () => {
-    dispatch(SHOW_MODAL(order));
+    SHOW_MODAL(order);
   };
 
   const editField = () => {
-    dispatch(EDIT_FIELD(type, config, order, closed));
+    EDIT_FIELD(type, config, order, closed);
   };
 
   const removeField = () => {
-    dispatch(DELETE_FIELD(order));
+    DELETE_FIELD(order);
   };
   const showEdit = [
     "standards",
@@ -265,4 +275,11 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
   );
 };
 
-export default FormFieldEditor;
+export default connect(
+  null,
+  {
+    DELETE_FIELD: formBuilderActions.deleteField,
+    EDIT_FIELD: formBuilderActions.editField,
+    SHOW_MODAL: formBuilderActions.showModal,
+  },
+)(FormFieldEditor);

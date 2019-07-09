@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
-import { useStateValue } from "../../state/formContext";
+import React from "react";
 import FormFieldViewer from "./FormFieldViewer";
 import styles from "./FormBuilder.module.css";
 
-const FormViewer: React.FunctionComponent = ({}) => {
-  const [{ elements }]: any = useStateValue();
+interface FormViewerProps {
+  elements: any;
+}
+
+const FormViewer: React.FunctionComponent<FormViewerProps> = ({ elements }) => {
   const Fields = elements.map((elem: any, i: any) => {
     return (
       <FormFieldViewer

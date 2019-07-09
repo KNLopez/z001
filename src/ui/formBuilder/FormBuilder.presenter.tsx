@@ -1,28 +1,25 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useStateValue } from "../../state/formContext";
 import Modal from "../components/modal/Modal";
 import styles from "./FormBuilder.module.css";
 import FormViewerContainer from "./FormViewer.container";
 import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
 import FormImportExport from "./FormImportExport";
+import { connect } from "react-redux";
+import { ApplicationState } from "../../state/reducers";
 
 interface FormBuilderPresenterProps {
-  formNumber: string;
-  status: string;
-  title: string;
+  modalState: any;
 }
+
+const mapStateToProps = ({ formBuilderState }: ApplicationState) => ({
+  modalState: formBuilderState.modalState,
+});
 
 const FormBuilderPresenter: React.FunctionComponent<
   FormBuilderPresenterProps
-> = ({ formNumber, status, title }) => {
-  const [headerProps] = useState({ formNumber, status, title });
-  const [{ modalState }, dispatch]: any = useStateValue();
+> = ({ modalState }) => {
   const [viewFormMode, setViewFormMode] = useState(false);
-
-  useEffect(() => {
-    dispatch({ type: "SET_FORM_INFO", formNumber, status, title });
-  }, [headerProps, formNumber, dispatch, status, title]);
 
   const builderContainer = (
     <Fragment>
@@ -48,4 +45,4 @@ const FormBuilderPresenter: React.FunctionComponent<
   );
 };
 
-export default FormBuilderPresenter;
+export default connect(mapStateToProps)(FormBuilderPresenter);

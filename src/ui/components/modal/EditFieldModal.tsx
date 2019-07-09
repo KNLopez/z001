@@ -1,12 +1,34 @@
-import React, { Fragment, useState } from "react";
-import { RECORD_UPDATES, UPDATE_FIELD } from "../../../state/formActions";
-import { useStateValue } from "../../../state/formContext";
+import React, { Dispatch, Fragment, useState } from "react";
+import { connect } from "react-redux";
+import { formBuilderActions } from "../../../state/ducks/formBuilder";
+import { formReducerType } from "../../../state/ducks/formBuilder/reducer";
 import ModalFieldPresenter from "./helper/ModalFieldPresenter";
 import styles from "./Modal.module.css";
 
-const EditFieldModal: React.FunctionComponent = () => {
+interface DispatchProps {
+  HIDE_MODAL: typeof formBuilderActions.hideModal;
+  UPDATE_FIELD: typeof formBuilderActions.updateField;
+  RECORD_UPDATES: typeof formBuilderActions.recordUpdates;
+}
+
+interface StateProps {
+  formBuilderState: formReducerType;
+}
+
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+type EditFieldModalProps = StateProps & DispatchProps;
+
+const EditFieldModal: React.FunctionComponent<EditFieldModalProps> = ({
+  formBuilderState,
+  HIDE_MODAL,
+  UPDATE_FIELD,
+  RECORD_UPDATES,
+}) => {
   // eslint-disable-next-line
-  const [{ currentField }, dispatch]: any = useStateValue();
+  const { currentField } = formBuilderState;
   const [reason, setReason] = useState();
   const [withReason, setWithReason] = useState(false);
 
@@ -16,28 +38,24 @@ const EditFieldModal: React.FunctionComponent = () => {
       config.colWidth = "col-12";
     }
     if (currentField.closed) {
-      dispatch(
-        RECORD_UPDATES(
-          currentField.config,
-          config,
-          currentField.currentIndex,
-          reason,
-        ),
-      );
-    }
-    dispatch(
-      UPDATE_FIELD(
-        currentField.type,
+      RECORD_UPDATES(
+        currentField.config,
         config,
         currentField.currentIndex,
-        currentField.closed,
-      ),
+        reason,
+      );
+    }
+    UPDATE_FIELD(
+      currentField.type,
+      config,
+      currentField.currentIndex,
+      currentField.closed,
     );
   };
 
   const hideModal = (e: any) => {
     e.stopPropagation();
-    dispatch({ type: "HIDE_MODAL" });
+    HIDE_MODAL();
   };
 
   const submitReason = () => {
@@ -86,4 +104,11 @@ const EditFieldModal: React.FunctionComponent = () => {
   );
 };
 
-export default EditFieldModal;
+export default connect(
+  mapStateToProps,
+  {
+    HIDE_MODAL: formBuilderActions.hideModal,
+    RECORD_UPDATES: formBuilderActions.recordUpdates,
+    UPDATE_FIELD: formBuilderActions.updateField,
+  },
+)(EditFieldModal);

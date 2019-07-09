@@ -39,8 +39,9 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
 
   const packagingInput = (
     <div className={styles.inputContainer}>
-      <p>([unit 1 value] [unit 1 name] is equal to [unit 2 value] [ unit 2 name])</p>
-      {" "}
+      <p>
+        ([unit 1 value] [unit 1 name] is equal to [unit 2 value] [ unit 2 name])
+      </p>{" "}
       <input
         className={styles.halfInput}
         type="text"
@@ -69,7 +70,6 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
         placeholder="Enter Unit 2"
         onChange={handleChange}
       />
-
       <button className={styles.buttonDefault} onClick={addPackaging}>
         Save
       </button>
@@ -82,7 +82,7 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
   const packagingList =
     packagings &&
     packagings.map((packaging: any, i: any) => (
-      <div className={styles.package}>
+      <div key={i} className={styles.package}>
         {`${packaging.firstUnitValue}${packaging.firstUnit} is equal to ${
           packaging.secondUnitValue
         }${packaging.secondUnit}`}

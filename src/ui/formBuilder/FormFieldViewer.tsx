@@ -1,6 +1,6 @@
 import React from "react";
-import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
-import { useStateValue } from "../../state/formContext";
+// import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
+// import { useStateValue } from "../../state/formContext";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import FileUpload from "../components/basic/FileUpload";

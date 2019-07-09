@@ -1,34 +1,37 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
-import { ADD_FIELD } from "../../../state/formActions";
-import { useStateValue } from "../../../state/formContext";
 import { FieldConstants } from "./FieldConstants";
 import FieldPresenter from "./helper/ModalFieldPresenter";
 import styles from "./Modal.module.css";
+import { formBuilderActions } from "../../../state/ducks/formBuilder";
+import { connect } from "react-redux";
 
 interface BigObject<T> {
   [index: string]: T;
 }
 
-const NewFieldModal = () => {
-  // eslint-disable-next-line
-  const [{}, dispatch]: any = useStateValue();
+interface DispatchProps {
+  ADD_FIELD: typeof formBuilderActions.addField;
+}
+
+const NewFieldModal: React.FunctionComponent<DispatchProps> = ({
+  ADD_FIELD,
+}) => {
   const [chosenField, setChosenField] = useState();
   const [modalStateContent, setModalContent] = useState();
 
   const addField = useCallback(
     (e: any, config: any) => {
+      const field = {
+        type: chosenField,
+        config,
+      };
       e.preventDefault();
       if (!config.colWidth) {
         config.colWidth = "col-12";
       }
-      dispatch(
-        ADD_FIELD({
-          type: chosenField,
-          config,
-        }),
-      );
+      ADD_FIELD(field);
     },
-    [chosenField, dispatch],
+    [chosenField],
   );
 
   const handleClick = (field: string) => {
@@ -36,52 +39,48 @@ const NewFieldModal = () => {
   };
 
   const sections: BigObject<string> = FieldConstants.sections;
-  const sectionButtons = Object.keys(sections).map((value) => {
+  const sectionButtons = Object.keys(sections).map(value => {
     return (
       <button
         className={styles[value]}
         onClick={() => handleClick(value)}
-        key={value}
-      >
+        key={value}>
         {sections[value]}
       </button>
     );
   });
 
   const basicFields: BigObject<string> = FieldConstants.basicFields;
-  const basicFieldButtons = Object.keys(basicFields).map((value) => {
+  const basicFieldButtons = Object.keys(basicFields).map(value => {
     return (
       <button
         className={styles[value]}
         onClick={() => handleClick(value)}
-        key={value}
-      >
+        key={value}>
         {basicFields[value]}
       </button>
     );
   });
 
   const approvals: BigObject<string> = FieldConstants.approvals;
-  const approvalButtons = Object.keys(approvals).map((value) => {
+  const approvalButtons = Object.keys(approvals).map(value => {
     return (
       <button
         className={styles[value]}
         onClick={() => handleClick(value)}
-        key={value}
-      >
+        key={value}>
         {approvals[value]}
       </button>
     );
   });
 
   const lists: BigObject<string> = FieldConstants.lists;
-  const listButtons = Object.keys(lists).map((value) => {
+  const listButtons = Object.keys(lists).map(value => {
     return (
       <button
         className={styles[value]}
         onClick={() => handleClick(value)}
-        key={value}
-      >
+        key={value}>
         {lists[value]}
       </button>
     );
@@ -115,4 +114,7 @@ const NewFieldModal = () => {
   return <Fragment>{modalStateContent}</Fragment>;
 };
 
-export default NewFieldModal;
+export default connect(
+  null,
+  { ADD_FIELD: formBuilderActions.addField },
+)(NewFieldModal);

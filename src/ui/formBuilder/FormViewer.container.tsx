@@ -1,20 +1,34 @@
 import React, { Fragment } from "react";
-import { useStateValue } from "../../state/formContext";
 import styles from "./FormBuilder.module.css";
 import FormViewerPresenter from "./FormViewer.presenter";
+import { connect } from "react-redux";
+import { formReducerType } from "../../state/ducks/formBuilder/reducer";
 
-const FormViewerContainer = () => {
-  const [{ elements }, dispatch]: any = useStateValue();
+interface StateProps {
+  formBuilderState: formReducerType;
+}
 
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+const FormViewerContainer: React.FunctionComponent<StateProps> = ({
+  formBuilderState,
+}) => {
   const placeholder = (
     <div className={styles.formEditorContainer}>
       <span>NO FIELD</span>
     </div>
   );
 
-  const Presenter = elements.length > 0 ? <FormViewerPresenter /> : placeholder;
+  const Presenter =
+    formBuilderState.elements.length > 0 ? (
+      <FormViewerPresenter elements={formBuilderState.elements} />
+    ) : (
+      placeholder
+    );
 
   return <Fragment>{Presenter}</Fragment>;
 };
 
-export default FormViewerContainer;
+export default connect(mapStateToProps)(FormViewerContainer);

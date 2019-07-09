@@ -1,14 +1,32 @@
 import React, { useRef, useState } from "react";
-import { UPLOAD_TEMPLATE } from "../../state/formActions";
-import { useStateValue } from "../../state/formContext";
+import { formReducerType } from "../../state/ducks/formBuilder/reducer";
 import modalStyles from "../components/modal/Modal.module.css";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as ExportIcon } from "./icons/icon_export.svg";
 import { ReactComponent as ImportIcon } from "./icons/icon_import.svg";
+import { formBuilderActions } from "../../state/ducks/formBuilder";
+import { connect } from "react-redux";
 
-const FormImportExport: React.FunctionComponent = () => {
-  const [formData, dispatch]: any = useStateValue();
-  const [fileName, setFileName] = useState("");
+interface StateProps {
+  formBuilderState: formReducerType;
+}
+
+interface DispatchProps {
+  UPLOAD_TEMPLATE: typeof formBuilderActions.uploadTemplate;
+}
+
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+type FormImportExport = StateProps & DispatchProps;
+
+const FormImportExport: React.FunctionComponent<FormImportExport> = ({
+  formBuilderState,
+  UPLOAD_TEMPLATE,
+}) => {
+  const formData = formBuilderState;
+  const [fileName, setFileName] = useState(formBuilderState.title);
   const [modalVisible, setShowModal] = useState(false);
   const inputFile: any = useRef();
 
@@ -34,7 +52,7 @@ const FormImportExport: React.FunctionComponent = () => {
     const reader = new FileReader();
     reader.onload = (event: any) => {
       const elements = JSON.parse(event.target.result);
-      dispatch(UPLOAD_TEMPLATE(elements));
+      UPLOAD_TEMPLATE(elements);
     };
     reader.readAsText(e.target.files[0]);
   };
@@ -91,4 +109,9 @@ const FormImportExport: React.FunctionComponent = () => {
   );
 };
 
-export default FormImportExport;
+export default connect(
+  mapStateToProps,
+  {
+    UPLOAD_TEMPLATE: formBuilderActions.uploadTemplate,
+  },
+)(FormImportExport);

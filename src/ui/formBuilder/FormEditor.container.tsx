@@ -1,18 +1,40 @@
-import React, { Fragment } from "react";
-import { SHOW_MODAL } from "../../state/formActions";
-import { useStateValue } from "../../state/formContext";
+import React, { Fragment, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { formBuilderActions } from "../../state/ducks/formBuilder";
+import { formReducerType } from "../../state/ducks/formBuilder/reducer";
 import styles from "./FormBuilder.module.css";
 import FormEditorPresenter from "./FormEditor.presenter";
 
-const FormEditorContainer: React.FunctionComponent = () => {
-  const [{ elements }, dispatch]: any = useStateValue();
+interface FormBuilderState {
+  formBuilderState: formReducerType;
+}
 
-  const showModal = () => {
-    dispatch(SHOW_MODAL(0));
+interface DispatchProps {
+  showModal: typeof formBuilderActions.showModal;
+}
+
+const mapStateToProps = ({ formBuilderState }: formReducerType) => ({
+  formBuilderState,
+});
+
+type StateProps = FormBuilderState & DispatchProps;
+
+const FormEditorContainer: React.FunctionComponent<StateProps> = ({
+  formBuilderState,
+  showModal,
+}) => {
+  const toggleModal = () => {
+    showModal(0);
   };
 
+  const [elements, setElements] = useState(formBuilderState.elements);
+
+  useEffect(() => {
+    setElements(formBuilderState.elements);
+  }, [formBuilderState.elements]);
+
   const placeholder = (
-    <div className={styles.formEditorContainer} onClick={showModal}>
+    <div className={styles.formEditorContainer} onClick={toggleModal}>
       <span>ADD FIELD</span>
     </div>
   );
@@ -21,4 +43,9 @@ const FormEditorContainer: React.FunctionComponent = () => {
   return <Fragment>{Presenter}</Fragment>;
 };
 
-export default FormEditorContainer;
+export default connect(
+  mapStateToProps,
+  {
+    showModal: formBuilderActions.showModal,
+  },
+)(FormEditorContainer);

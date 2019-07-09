@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useStateValue } from "../../../../state/formContext";
 import CheckBoxModal from "../fields/CheckBoxModal";
 import DatePickerModal from "../fields/DatePickerModal";
 import FileUploadModal from "../fields/FileUploadModal";
@@ -14,6 +13,8 @@ import RadioModal from "../fields/RadioModal";
 import SectionModal from "../fields/SectionModal";
 import MultiplePackagingModal from "../fields/MultiplePackagingModal";
 import ApprovalCollectionModal from "../fields/ApprovalCollectionModal";
+import { formBuilderActions } from "../../../../state/ducks/formBuilder";
+import { connect } from "react-redux";
 
 interface FieldPresenter {
   chosenField: string;
@@ -21,13 +22,22 @@ interface FieldPresenter {
   currentConfig?: any;
 }
 
-const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
+interface DispatchProps {
+  ADD_FIELD: typeof formBuilderActions.addField;
+  ADD_LIST: typeof formBuilderActions.addList;
+}
+
+type FieldPresenterProps = FieldPresenter & DispatchProps;
+
+const FieldPresenter: React.FunctionComponent<FieldPresenterProps> = ({
   chosenField,
   currentConfig,
   clickHandler,
+  ADD_FIELD,
+  ADD_LIST,
 }) => {
   const [modalStateContent, setModalContent] = useState();
-  const [{}, dispatch]: any = useStateValue();
+
   useEffect(() => {
     switch (chosenField) {
       case "singleLine":
@@ -157,23 +167,17 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         );
         break;
       case "qa":
-        dispatch({
-          type: "ADD_FIELD",
-          field: {
-            type: chosenField,
-            closed: false,
-            config: { colWidth: "col-12", title: "Quality Assurance" },
-          },
+        ADD_FIELD({
+          type: chosenField,
+          closed: false,
+          config: { colWidth: "col-12", title: "Quality Assurance" },
         });
         break;
       case "operations":
-        dispatch({
-          type: "ADD_FIELD",
-          field: {
-            type: chosenField,
-            closed: false,
-            config: { colWidth: "col-12", title: "Operations" },
-          },
+        ADD_FIELD({
+          type: chosenField,
+          closed: false,
+          config: { colWidth: "col-12", title: "Operations" },
         });
         break;
       case "standards":
@@ -183,7 +187,7 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
       case "parts":
       case "sops":
       case "suppliers":
-        dispatch({ type: "ADD_LIST", fieldType: chosenField });
+        ADD_LIST(chosenField);
         break;
       case "custom":
         setModalContent(
@@ -194,14 +198,11 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
         );
         break;
       case "closeSection":
-        dispatch({
-          type: "ADD_FIELD",
-          field: {
-            type: chosenField,
-            closed: false,
-            diff: [],
-            config: { colWidth: "col-12" },
-          },
+        ADD_FIELD({
+          type: chosenField,
+          closed: false,
+          diff: [],
+          config: { colWidth: "col-12" },
         });
         break;
     }
@@ -210,4 +211,10 @@ const FieldPresenter: React.FunctionComponent<FieldPresenter> = ({
   return <div>{modalStateContent}</div>;
 };
 
-export default FieldPresenter;
+export default connect(
+  null,
+  {
+    ADD_FIELD: formBuilderActions.addField,
+    ADD_LIST: formBuilderActions.addList,
+  },
+)(FieldPresenter);

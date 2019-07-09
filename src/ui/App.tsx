@@ -1,9 +1,8 @@
 import React from "react";
 import AppStyles from "./App.module.css";
+import TaskListPreview from "./components/taskList/TaskLiskPreview";
 import FormBuilderContainer from "./formBuilder/FormBuilder.container";
 import StatusPresenter from "./formBuilder/Status.presenter";
-import TaskListPreview from "./components/taskList/TaskLiskPreview";
-import data from "../state/FormProps";
 
 const App: React.FunctionComponent = () => {
   if (window.location.pathname === "/status") {
@@ -23,7 +22,7 @@ const App: React.FunctionComponent = () => {
 
   return (
     <div className="App" style={AppStyles}>
-      <FormBuilderContainer data={data} />
+      <FormBuilderContainer />
     </div>
   );
 };
