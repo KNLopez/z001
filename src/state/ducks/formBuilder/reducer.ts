@@ -10,6 +10,7 @@ import {
   SHOW_MODAL,
   UPDATE_DRAG_DROP_FIELDS,
   UPDATE_FIELD,
+  UPDATE_FIELD_VALUE,
   UPLOAD_TEMPLATE,
 } from "./constants";
 
@@ -144,6 +145,22 @@ const formReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         elements: action.fields,
+      };
+
+    case UPDATE_FIELD_VALUE:
+      return {
+        ...state,
+        elements: state.elements.map((element: any, i: any) => {
+          if (action.currentIndex === i) {
+            return (element = {
+              ...element,
+              values: {
+                ...element.values,
+                [action.fieldName]: action.fieldValue,
+              },
+            });
+          }
+        }),
       };
     default:
       return state;

@@ -26,6 +26,8 @@ interface FormFieldProps {
   type: string;
   closed: boolean;
   diff?: any;
+  values: any;
+  updateValue: any;
   editMode: boolean;
   config: {
     colWidth: string;
@@ -50,6 +52,8 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
   order,
   diff,
   editMode,
+  values,
+  updateValue,
 }) => {
   let formField;
   switch (type) {
@@ -65,6 +69,9 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           placeholder={config.placeholder || ""}
           closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
         />
       );
       break;

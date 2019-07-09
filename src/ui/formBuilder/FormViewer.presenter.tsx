@@ -1,12 +1,23 @@
 import React from "react";
 import FormFieldViewer from "./FormFieldViewer";
 import styles from "./FormBuilder.module.css";
+import { formBuilderActions } from "../../state/ducks/formBuilder";
+import { connect } from "react-redux";
 
-interface FormViewerProps {
+interface OwnProps {
   elements: any;
 }
 
-const FormViewer: React.FunctionComponent<FormViewerProps> = ({ elements }) => {
+interface DispatchProps {
+  UPDATE_FIELD_VALUE: typeof formBuilderActions.updateFieldValue;
+}
+
+type FormViewerProps = OwnProps & DispatchProps;
+
+const FormViewer: React.FunctionComponent<FormViewerProps> = ({
+  elements,
+  UPDATE_FIELD_VALUE,
+}) => {
   const Fields = elements.map((elem: any, i: any) => {
     return (
       <FormFieldViewer
@@ -17,10 +28,15 @@ const FormViewer: React.FunctionComponent<FormViewerProps> = ({ elements }) => {
         type={elem.type}
         config={elem.config}
         editMode={false}
+        values={elem.values}
+        updateValue={UPDATE_FIELD_VALUE}
       />
     );
   });
   return <div className={styles.formEditorContainer}> {Fields} </div>;
 };
 
-export default FormViewer;
+export default connect(
+  null,
+  { UPDATE_FIELD_VALUE: formBuilderActions.updateFieldValue },
+)(FormViewer);

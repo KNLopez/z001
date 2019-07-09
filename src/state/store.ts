@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from "redux";
 import { formBuilderReducer } from "./ducks/formBuilder";
-import taskReducer from "./reducers";
+import taskReducer from "./ducks/tasksList/reducer";
 
 const rootReducer = combineReducers({
   tasks: taskReducer,

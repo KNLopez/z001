@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import { connect } from "react-redux";
-import { ApplicationState } from "../../../state/reducers";
+import { ApplicationState } from "../../../state/ducks/tasksList/reducer";
 import TaskAdmin from "./TaskAdmin";
 import styles from "./Tasks.module.css";
 
@@ -67,25 +67,51 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
         <div className={styles.formRow}>
           <div className={styles.formColumn}>
             <label>Title</label>
-            <input name="title" type="text" onChange={handleChange} />
+            <input
+              name="title"
+              type="text"
+              onChange={handleChange}
+              required={true}
+            />
           </div>
           <div className={styles.formColumn}>
             <label>Description</label>
-            <input type="text" name="description" onChange={handleChange} />
+            <input
+              type="text"
+              name="description"
+              onChange={handleChange}
+              required={true}
+            />
           </div>
         </div>
         <div className={styles.formRow}>
           <div className={styles.formColumn}>
             <label>Assigned to</label>
-            <input type="text" name="assignee" onChange={handleChange} />
+            <input
+              type="text"
+              name="assignee"
+              onChange={handleChange}
+              required={true}
+            />
           </div>
           <div className={styles.formColumn}>
             <label>Due date</label>
-            <DayPickerInput format={""} onDayChange={handleDayChange} />
+            <DayPickerInput
+              format={""}
+              onDayChange={handleDayChange}
+              inputProps={{ required: true }}
+            />
           </div>
           <div className={styles.formColumn}>
             <label>Status</label>
-            <select name="status" onChange={handleChange}>
+            <select
+              name="status"
+              onChange={handleChange}
+              defaultValue={""}
+              required={true}>
+              <option value="" disabled={true}>
+                Choose Status
+              </option>
               <option value="open">Open</option>
               <option value="pending">Pending</option>
               <option value="closed">Closed</option>

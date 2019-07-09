@@ -6,7 +6,7 @@ import FormEditorContainer from "./FormEditor.container";
 import FormHeaderContainer from "./FormHeader.container";
 import FormImportExport from "./FormImportExport";
 import { connect } from "react-redux";
-import { ApplicationState } from "../../state/reducers";
+import { ApplicationState } from "../../state/ducks/tasksList/reducer";
 
 interface FormBuilderPresenterProps {
   modalState: any;

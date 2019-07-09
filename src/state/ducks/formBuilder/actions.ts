@@ -9,6 +9,7 @@ import {
   SHOW_MODAL,
   UPDATE_DRAG_DROP_FIELDS,
   UPDATE_FIELD,
+  UPDATE_FIELD_VALUE,
   UPLOAD_TEMPLATE,
   ADD_LIST,
 } from "./constants";
@@ -133,6 +134,19 @@ export const updateDragAndDropFields = (fields: any) => {
   };
 };
 
+export const updateFieldValue = (
+  currentIndex: number | string,
+  fieldName: string,
+  fieldValue: any,
+) => {
+  return {
+    type: UPDATE_FIELD_VALUE,
+    currentIndex,
+    fieldName,
+    fieldValue,
+  };
+};
+
 export default {
   showModal,
   hideModal,
@@ -143,6 +157,7 @@ export default {
   deleteField,
   closeSection,
   recordUpdates,
+  updateFieldValue,
   setFormInfo,
   uploadTemplate,
   updateDragAndDropFields,
