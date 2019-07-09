@@ -1,20 +1,31 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import styles from "./BasicFields.module.css";
 
 interface MultiplePackagingProps {
   title: string;
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
   editMode: boolean;
 }
 
 const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
   title,
-  editMode,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [packagings, setPackagings]: any[] = useState([]);
+  const defaultPackages = values ? values.packagings : [];
+  const [packagings, setPackagings]: any[] = useState(defaultPackages);
   const [packaging, setPackaging] = useState();
   const [showInput, setShowInput] = useState(false);
+
+  useEffect(() => {
+    if (!editMode) updateValue(currentIndex, "packagings", packagings);
+  }, [packagings]);
 
   const removePackage = (e: any) => {
     const newPackages = [...packagings];

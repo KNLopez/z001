@@ -202,9 +202,9 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
         <MultiplePackaging
           title={config.title}
           closed={closed}
-          // values={values}
-          // updateValue={updateValue}
-          // currentIndex={order}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
           editMode={false}
         />
       );
@@ -214,9 +214,6 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
         <ApprovalCollection
           title={config.title}
           closed={closed}
-          // values={values}
-          // updateValue={updateValue}
-          // currentIndex={order}
           editMode={false}
         />
       );
