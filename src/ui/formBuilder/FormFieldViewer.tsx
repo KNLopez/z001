@@ -169,10 +169,6 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           textType={config.textType || ""}
           text={config.text || ""}
           closed={closed}
-          // values={values}
-          // updateValue={updateValue}
-          // currentIndex={order}
-          // editMode={false}
         />
       );
       break;
@@ -194,10 +190,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           options={config.options || []}
           closed={closed}
-          // values={values}
-          // updateValue={updateValue}
-          // currentIndex={order}
-          // editMode={false}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
         />
       );
       break;

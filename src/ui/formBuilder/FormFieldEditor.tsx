@@ -163,6 +163,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           options={config.options || []}
           closed={closed}
+          editMode={true}
         />
       );
       break;

@@ -1,21 +1,53 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import styles from "./BasicFields.module.css";
 
 interface MultipleCheckboxProps {
   title: string;
   options: any[];
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
+  editMode?: boolean;
 }
 
 const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
   title,
   options,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [otherChosen, chooseOther] = useState(false);
+  const setChosen = values ? values.other : false;
+  const setValues = values ? values[title] : [];
+  const [otherChosen, chooseOther] = useState(setChosen);
+  const [chosenOptions, setChosenOPtions] = useState(setValues);
+
+  useEffect(() => {
+    if (!editMode) {
+      updateValue(currentIndex, title, chosenOptions);
+    }
+  }, [chosenOptions]);
 
   const chosenHandler = (e: any) => {
     chooseOther(e.target.checked);
+    if (e.target.checked) {
+      setChosenOPtions([...chosenOptions, e.target.value]);
+    }
+  };
+
+  const addToChosen = (e: any) => {
+    if (e.target.checked) {
+      setChosenOPtions([...chosenOptions, e.target.value]);
+    }
+  };
+
+  const setValue = (e: any) => {
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   const checkBoxes = options.map((option, i) => {
@@ -28,13 +60,20 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
             <input
               onChange={chosenHandler}
               type="checkbox"
-              name={title}
+              name="otherBox"
               value={option}
+              defaultChecked={values ? values[title].includes(option) : false}
             />
             <span className={styles.innerCheck} />
           </label>
           {otherChosen ? (
-            <input type="text" placeholder="Enter choice" />
+            <input
+              type="text"
+              name="other"
+              placeholder="Enter choice"
+              onChange={setValue}
+              defaultValue={values ? values.other : null}
+            />
           ) : null}
         </Fragment>
       );
@@ -43,7 +82,13 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
         <label key={i} className={styles.checkBoxContainer}>
           {" "}
           {option}
-          <input name={option} type="checkbox" value={option} />
+          <input
+            name={option}
+            type="checkbox"
+            value={option}
+            onChange={addToChosen}
+            defaultChecked={values ? values[title].includes(option) : false}
+          />
           <span className={styles.innerCheck} />
         </label>
       );
