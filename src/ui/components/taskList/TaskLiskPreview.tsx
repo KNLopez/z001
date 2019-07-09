@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import TaskListContainer from "./TaskList.container";
-import { Provider } from "react-redux";
-import { store } from "../../../state/store";
 
 // const mapStateToProps = (state: ApplicationState): StateProps => ({
 //   currentUserEmail: authSelectors.currentUserEmail(state),
@@ -15,22 +13,20 @@ const TaskListPresenter: React.FunctionComponent = () => {
   };
 
   return (
-    <Provider store={store}>
-      <div style={{ maxWidth: "640px", margin: "50px auto" }}>
-        <select
-          onChange={selectUserHandler}
-          defaultValue="1"
-          style={{ marginBottom: "50px" }}>
-          <option value="1" disabled={true}>
-            Select User
-          </option>
-          <option value="admin">Admin</option>
-          <option value="mathew">Mathew</option>
-          <option value="smith">Smith</option>
-        </select>
-        <TaskListContainer currentUser={user} currentUserEmail={user} />
-      </div>
-    </Provider>
+    <div style={{ maxWidth: "640px", margin: "50px auto" }}>
+      <select
+        onChange={selectUserHandler}
+        defaultValue="1"
+        style={{ marginBottom: "50px" }}>
+        <option value="1" disabled={true}>
+          Select User
+        </option>
+        <option value="admin">Admin</option>
+        <option value="mathew">Mathew</option>
+        <option value="smith">Smith</option>
+      </select>
+      <TaskListContainer currentUser={user} currentUserEmail={user} />
+    </div>
   );
 };
 
