@@ -9,6 +9,10 @@ interface NumericProps {
   min?: string;
   max?: string;
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
+  editMode?: boolean;
 }
 
 interface Values {
@@ -25,12 +29,19 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   min,
   max,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [values, setValue] = useState<Values>({
-    value: "",
-    minValue: "",
-    maxValue: "",
-  });
+  const defaulValue = values
+    ? values
+    : {
+        value: "",
+        minValue: "",
+        maxValue: "",
+      };
+  const [fieldValues, setValue] = useState<Values>(defaulValue);
   const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,15 +50,14 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
     if (value !== "") {
       newValue = Number(value.replace(/\D/g, "")).toLocaleString();
     }
-    setValue({
-      ...values,
-      [e.target.name]: newValue,
-    });
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, newValue);
+    }
   };
 
   useEffect(() => {
-    setError(!performCheck(values));
-  }, [values]);
+    setError(!performCheck(fieldValues));
+  }, [fieldValues]);
 
   const performCheck = (stateValues: any) => {
     const { minValue, maxValue, value } = stateValues;
@@ -67,7 +77,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           onChange={handleChange}
           type="text"
           placeholder={min}
-          value={values.minValue}
+          value={fieldValues.minValue}
         />
         <span>{ToleranceSign}</span>
       </div>
@@ -77,7 +87,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           onChange={handleChange}
           type="text"
           placeholder={max}
-          value={values.maxValue}
+          value={fieldValues.maxValue}
         />
         <span>{ToleranceSign}</span>
       </div>
@@ -85,11 +95,15 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   );
 
   const showErrorMessage =
-    error && tolerance && values.minValue && values.value && values.maxValue;
+    error &&
+    tolerance &&
+    fieldValues.minValue &&
+    fieldValues.value &&
+    fieldValues.maxValue;
 
   const errorMessage = (
     <span className={styles.formError}>
-      The value {values.value} is beyond the tolerance level
+      The value {fieldValues.value} is beyond the tolerance level
     </span>
   );
 
@@ -102,9 +116,9 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           type="text"
           name="value"
           placeholder={placeholder}
-          min={values.minValue || undefined}
-          max={values.maxValue || undefined}
-          value={values.value}
+          min={fieldValues.minValue || undefined}
+          max={fieldValues.maxValue || undefined}
+          value={fieldValues.value}
         />
         {tolerance ? ToleranceDiv : null}
         {showErrorMessage ? errorMessage : null}

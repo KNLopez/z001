@@ -5,14 +5,23 @@ interface CheckBoxProps {
   title: string;
   notes?: string;
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex?: any;
+  editMode?: boolean;
 }
 
 const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
   title,
   notes,
   closed,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
 }) => {
-  const [note, showNote] = useState(false);
+  const defaulteNote = values ? values.text : false;
+  const [note, showNote] = useState(defaulteNote);
 
   const handleCheck = (e: any) => {
     if (e.target.checked) {
@@ -20,17 +29,37 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
     } else {
       showNote(false);
     }
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
+  };
+
+  const setValue = (e: any) => {
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   const input = (
-    <input type="text" className={styles.checkBoxNotes} placeholder={notes} />
+    <input
+      name="text"
+      type="text"
+      className={styles.checkBoxNotes}
+      placeholder={notes}
+      onChange={setValue}
+    />
   );
 
   const checkBoxField = (
     <div className={styles.checkBox}>
       <label className={styles.checkBoxContainer}>
         {title}
-        <input name={title} type="checkbox" onChange={handleCheck} />
+        <input
+          name={title}
+          type="checkbox"
+          onChange={handleCheck}
+          defaultChecked={values ? values[title] : null}
+        />
         <span className={styles.innerCheck} />
       </label>
       {note && notes && notes.length > 0 ? input : null}

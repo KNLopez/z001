@@ -110,16 +110,37 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           min={config.min}
           max={config.max}
           closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
         />
       );
       break;
     case "checkbox":
       formField = (
-        <CheckBox title={config.title} notes={config.notes} closed={closed} />
+        <CheckBox
+          title={config.title}
+          notes={config.notes}
+          closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
+        />
       );
       break;
     case "datepicker":
-      formField = <DatePicker title={config.title} closed={closed} />;
+      formField = (
+        <DatePicker
+          title={config.title}
+          closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          // editMode={false}
+        />
+      );
       break;
     case "hyperlink":
       formField = (
@@ -127,6 +148,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           url={config.url || ""}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          // editMode={false}
         />
       );
       break;
@@ -136,6 +161,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           editMode={editMode}
           title={config.title}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          // editMode={false}
         />
       );
       break;
@@ -145,12 +174,23 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           textType={config.textType || ""}
           text={config.text || ""}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          // editMode={false}
         />
       );
       break;
     case "fileUpload":
       formField = (
-        <FileUpload editMode={editMode} title={config.title} closed={closed} />
+        <FileUpload
+          title={config.title}
+          closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          editMode={false}
+        />
       );
       break;
     case "multipleCheckbox":
@@ -159,24 +199,34 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           options={config.options || []}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          // editMode={false}
         />
       );
       break;
     case "multiplePackaging":
       formField = (
         <MultiplePackaging
-          editMode={editMode}
           title={config.title}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          editMode={false}
         />
       );
       break;
     case "approvalCollection":
       formField = (
         <ApprovalCollection
-          editMode={editMode}
           title={config.title}
           closed={closed}
+          // values={values}
+          // updateValue={updateValue}
+          // currentIndex={order}
+          editMode={false}
         />
       );
       break;
