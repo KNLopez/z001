@@ -8,6 +8,7 @@ interface SingleLineProps {
   values?: any;
   updateValue?: any;
   currentIndex?: any;
+  editMode?: boolean;
 }
 
 const SingleLine: React.FunctionComponent<SingleLineProps> = ({
@@ -17,9 +18,12 @@ const SingleLine: React.FunctionComponent<SingleLineProps> = ({
   values,
   updateValue,
   currentIndex,
+  editMode = false,
 }) => {
   const setValue = (e: any) => {
-    updateValue(currentIndex, e.target.name, e.target.value);
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   const singLineField = (

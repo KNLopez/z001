@@ -82,6 +82,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           title={config.title}
           placeholder={config.placeholder || ""}
           closed={closed}
+          editMode={true}
         />
       );
       break;
