@@ -135,10 +135,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
         <DatePicker
           title={config.title}
           closed={closed}
-          // values={values}
-          // updateValue={updateValue}
-          // currentIndex={order}
-          // editMode={false}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
         />
       );
       break;

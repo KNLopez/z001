@@ -124,7 +124,16 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       );
       break;
     case "datepicker":
-      formField = <DatePicker title={config.title} closed={closed} />;
+      formField = (
+        <DatePicker
+          title={config.title}
+          closed={closed}
+          values={null}
+          updateValue={null}
+          currentIndex={order}
+          editMode={false}
+        />
+      );
       break;
     case "hyperlink":
       formField = (
