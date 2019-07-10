@@ -6,13 +6,24 @@ interface ListsProps {
   title: string;
   options?: any;
   closed: boolean;
+  values?: any;
+  updateValue?: any;
+  currentIndex: any;
+  editMode: boolean;
 }
 
 interface BigObject<T> {
   [index: string]: T;
 }
 
-const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
+const Lists: React.FunctionComponent<ListsProps> = ({
+  title,
+  options,
+  values,
+  updateValue,
+  currentIndex,
+  editMode,
+}) => {
   const [choices, setChoices] = useState([]);
   const [stringTitle, setStringTitle] = useState();
   const [other, setOther] = useState(false);
@@ -32,29 +43,49 @@ const Lists: React.FunctionComponent<ListsProps> = ({ title, options }) => {
   }, [stringTitle]);
 
   const selectOptions = choices.map((choice: string, i) => (
-    <option key={i} value={choice}>
+    <option
+      key={i}
+      value={choice}
+      selected={choice === (values ? values.selected : "")}>
       {choice}
     </option>
   ));
 
   const handeSelectChange = (e: any) => {
-    console.log(e.target.value);
     if (e.target.value === "[other]") {
       setOther(true);
     } else {
       setOther(false);
+    }
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
+  };
+
+  const handleChange = (e: any) => {
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
     }
   };
 
   const listField = (
     <div className={styles.select}>
       <label htmlFor={stringTitle}>{stringTitle}</label>
-      <select onChange={handeSelectChange}>
+      <select
+        name="selected"
+        onChange={handeSelectChange}
+        defaultValue={values ? values.selected : ""}>
         <option>Please select from {stringTitle}</option>
         {selectOptions}
       </select>
       {other ? (
-        <input type="text" placeholder="Please fill in your other option" />
+        <input
+          type="text"
+          placeholder="Please fill in your other option"
+          name="other"
+          onChange={handleChange}
+          defaultValue={values ? values.other : ""}
+        />
       ) : null}
     </div>
   );

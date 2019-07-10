@@ -208,11 +208,24 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "parts":
     case "sops":
     case "suppliers":
-      formField = <Lists title={config.title} closed={closed} />;
+      formField = (
+        <Lists
+          title={config.title}
+          closed={closed}
+          currentIndex={order}
+          editMode={true}
+        />
+      );
       break;
     case "custom":
       formField = (
-        <Lists title={config.title} options={config.options} closed={closed} />
+        <Lists
+          title={config.title}
+          options={config.options}
+          closed={closed}
+          currentIndex={order}
+          editMode={true}
+        />
       );
       break;
 

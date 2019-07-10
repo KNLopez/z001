@@ -231,11 +231,28 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
     case "parts":
     case "sops":
     case "suppliers":
-      formField = <Lists title={config.title} closed={closed} />;
+      formField = (
+        <Lists
+          title={config.title}
+          closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
+        />
+      );
       break;
     case "custom":
       formField = (
-        <Lists title={config.title} options={config.options} closed={closed} />
+        <Lists
+          title={config.title}
+          options={config.options}
+          closed={closed}
+          values={values}
+          updateValue={updateValue}
+          currentIndex={order}
+          editMode={false}
+        />
       );
       break;
 
