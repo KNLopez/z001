@@ -15,12 +15,6 @@ interface NumericProps {
   editMode?: boolean;
 }
 
-interface Values {
-  value?: string;
-  maxValue?: string;
-  minValue?: string;
-}
-
 const Numeric: React.FunctionComponent<NumericProps> = ({
   title,
   tolerance,
@@ -34,23 +28,24 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   currentIndex,
   editMode,
 }) => {
-  const defaulValue = values
+  let defaulValue = values
     ? values
     : {
         value: "",
         minValue: "",
         maxValue: "",
       };
-  const [fieldValues, setValue] = useState<Values>(defaulValue);
+  const [fieldValues, setValue] = useState(defaulValue);
   const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    let newValue = value;
-    if (value !== "") {
-      newValue = Number(value.replace(/\D/g, "")).toLocaleString();
+    let newValue = e.target.value;
+    if (e.target.value !== "") {
+      newValue = Number(e.target.value.replace(/\D/g, "")).toLocaleString();
     }
+
     if (!editMode) {
+      setValue({ ...fieldValues, [e.target.name]: newValue });
       updateValue(currentIndex, e.target.name, newValue);
     }
   };
@@ -77,7 +72,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           onChange={handleChange}
           type="text"
           placeholder={min}
-          value={fieldValues.minValue}
+          defaultValue={fieldValues.minValue}
         />
         <span>{ToleranceSign}</span>
       </div>
@@ -87,7 +82,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           onChange={handleChange}
           type="text"
           placeholder={max}
-          value={fieldValues.maxValue}
+          defaultValue={fieldValues.maxValue}
         />
         <span>{ToleranceSign}</span>
       </div>
@@ -118,7 +113,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
           placeholder={placeholder}
           min={fieldValues.minValue || undefined}
           max={fieldValues.maxValue || undefined}
-          value={fieldValues.value}
+          defaultValue={fieldValues.value}
         />
         {tolerance ? ToleranceDiv : null}
         {showErrorMessage ? errorMessage : null}
