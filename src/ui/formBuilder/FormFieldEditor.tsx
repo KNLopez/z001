@@ -114,6 +114,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           min={config.min}
           max={config.max}
           closed={closed}
+          editMode={true}
         />
       );
       break;
