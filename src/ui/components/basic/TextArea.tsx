@@ -7,6 +7,7 @@ interface TextAreaProps {
   values?: any;
   updateValue?: any;
   currentIndex?: any;
+  editMode: boolean;
 }
 
 const TextArea: React.FunctionComponent<TextAreaProps> = ({
@@ -16,9 +17,12 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
   values,
   updateValue,
   currentIndex,
+  editMode,
 }) => {
   const setValue = (e: any) => {
-    updateValue(currentIndex, e.target.name, e.target.value);
+    if (!editMode) {
+      updateValue(currentIndex, e.target.name, e.target.value);
+    }
   };
 
   return (

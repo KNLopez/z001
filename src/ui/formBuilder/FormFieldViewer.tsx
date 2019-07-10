@@ -85,6 +85,7 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
           values={values}
           updateValue={updateValue}
           currentIndex={order}
+          editMode={false}
         />
       );
       break;
