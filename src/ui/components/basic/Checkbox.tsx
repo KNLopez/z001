@@ -47,6 +47,7 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
       className={styles.checkBoxNotes}
       placeholder={notes}
       onChange={setValue}
+      defaultValue={values ? values.text : ""}
     />
   );
 

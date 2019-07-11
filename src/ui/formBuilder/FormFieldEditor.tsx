@@ -122,7 +122,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       break;
     case "checkbox":
       formField = (
-        <CheckBox title={config.title} notes={config.notes} closed={closed} />
+        <CheckBox
+          title={config.title}
+          notes={config.notes}
+          closed={closed}
+          editMode={true}
+        />
       );
       break;
     case "datepicker":
@@ -289,6 +294,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       draggable={true}
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
+      // tslint:disable-next-line: jsx-alignment
       className={containerStyle}>
       {hideTopControls ? null : topControls}
       {formField}

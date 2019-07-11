@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import TaskUser from "./TaskUser";
 import { ApplicationState } from "../../../state/ducks/tasksList/reducer";
 import styles from "./Tasks.module.css";
+import TaskUser from "./TaskUser";
 
 interface LocalProps {
   currentUser: string;

@@ -1,28 +1,41 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "../basic/BasicFields.module.css";
+import { formBuilderActions } from "../../../state/ducks/formBuilder";
+import { connect } from "react-redux";
 
-interface CloseSectionProps {
+interface OwnProps {
   closed: boolean;
   editMode: boolean;
   diff: any;
   currentIndex: any;
 }
 
+interface DispatchProps {
+  CLOSE_SECTION: typeof formBuilderActions.closeSection;
+}
+
+type CloseSectionProps = OwnProps & DispatchProps;
+
 const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   closed,
   editMode,
   diff,
   currentIndex,
+  CLOSE_SECTION,
 }) => {
-  // const [{}, dispatch]: any = useStateValue();
   const [isClosed, setClosed] = useState(closed);
+  const [stateDiff, setStateDiff] = useState(diff);
+
+  useEffect(() => {
+    setStateDiff(diff);
+  }, [diff]);
 
   useEffect(() => {
     setClosed(closed);
   }, [isClosed]);
 
   const closeSection = () => {
-    // dispatch(CLOSE_SECTION(currentIndex));
+    CLOSE_SECTION(currentIndex);
   };
 
   const button = (
@@ -62,14 +75,14 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   };
 
   let diffList = [];
-  if (diff) {
-    diffList = diff.map((diffItem: any, i: string) => {
-      const list = Object.keys(diffItem.changes[1]).map(diffItemKey => {
+  if (stateDiff) {
+    diffList = stateDiff.map((diffItem: any, i: string) => {
+      const list = Object.keys(diffItem.changes[1]).map((diffItemKey, j) => {
         if (
           diffItem.changes[1][diffItemKey] !== diffItem.changes[0][diffItemKey]
         ) {
           return (
-            <li key={i}>
+            <li key={j}>
               Changed the {getText(diffItemKey)} from{" "}
               <del>{diffItem.changes[0][diffItemKey]}</del> to{" "}
               <span className={styles.newText}>
@@ -104,4 +117,7 @@ const CloseSection: React.FunctionComponent<CloseSectionProps> = ({
   return <Fragment>{closed ? diffContainer : button}</Fragment>;
 };
 
-export default CloseSection;
+export default connect(
+  null,
+  { CLOSE_SECTION: formBuilderActions.closeSection },
+)(CloseSection);

@@ -28,7 +28,7 @@ const Numeric: React.FunctionComponent<NumericProps> = ({
   currentIndex,
   editMode,
 }) => {
-  let defaulValue = values
+  const defaulValue = values
     ? values
     : {
         value: "",

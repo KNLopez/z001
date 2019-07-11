@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import styles from "./BasicFields.module.css";
 
 interface MultipleCheckboxProps {
@@ -29,7 +29,6 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
     if (!editMode) {
       updateValue(currentIndex, title, chosenOptions);
     }
-    console.log(currentIndex);
   }, [chosenOptions]);
 
   const chosenHandler = (e: any) => {
@@ -51,6 +50,16 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
     }
   };
 
+  const inputOther = (
+    <input
+      type="text"
+      name="other"
+      placeholder="Enter choice"
+      onChange={setValue}
+      defaultValue={values ? values.other : null}
+    />
+  );
+
   const checkBoxes = options.map((option, i) => {
     if (option === "[other]") {
       return (
@@ -67,15 +76,7 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
             />
             <span className={styles.innerCheck} />
           </label>
-          {otherChosen ? (
-            <input
-              type="text"
-              name="other"
-              placeholder="Enter choice"
-              onChange={setValue}
-              defaultValue={values ? values.other : null}
-            />
-          ) : null}
+          {otherChosen ? inputOther : null}
         </Fragment>
       );
     } else {

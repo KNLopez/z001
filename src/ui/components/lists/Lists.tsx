@@ -46,6 +46,7 @@ const Lists: React.FunctionComponent<ListsProps> = ({
     <option
       key={i}
       value={choice}
+      // tslint:disable-next-line: jsx-alignment
       selected={choice === (values ? values.selected : "")}>
       {choice}
     </option>
@@ -68,25 +69,28 @@ const Lists: React.FunctionComponent<ListsProps> = ({
     }
   };
 
+  const otherInput = (
+    <input
+      type="text"
+      placeholder="Please fill in your other option"
+      name="other"
+      onChange={handleChange}
+      defaultValue={values ? values.other : ""}
+    />
+  );
+
   const listField = (
     <div className={styles.select}>
       <label htmlFor={stringTitle}>{stringTitle}</label>
       <select
         name="selected"
         onChange={handeSelectChange}
+        // tslint:disable-next-line: jsx-alignment
         defaultValue={values ? values.selected : ""}>
         <option>Please select from {stringTitle}</option>
         {selectOptions}
       </select>
-      {other ? (
-        <input
-          type="text"
-          placeholder="Please fill in your other option"
-          name="other"
-          onChange={handleChange}
-          defaultValue={values ? values.other : ""}
-        />
-      ) : null}
+      {other ? otherInput : null}
     </div>
   );
 

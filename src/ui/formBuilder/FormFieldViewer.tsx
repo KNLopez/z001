@@ -1,14 +1,14 @@
 import React from "react";
-// import { DELETE_FIELD, EDIT_FIELD, SHOW_MODAL } from "../../state/formActions";
-// import { useStateValue } from "../../state/formContext";
+import ApprovalCollection from "../components/basic/ApprovalCollection";
 import CheckBox from "../components/basic/Checkbox";
 import DatePicker from "../components/basic/DatePicker";
 import FileUpload from "../components/basic/FileUpload";
 import HyperLink from "../components/basic/HyperLink";
 import MultipleCheckbox from "../components/basic/MultipleCheckbox";
+import MultipleHyperLink from "../components/basic/MultipleHyperLink";
+import MultiplePackaging from "../components/basic/MultiplePackaging";
 import Numeric from "../components/basic/Numeric";
 import Paragraph from "../components/basic/Paragraph";
-import MultipleHyperLink from "../components/basic/MultipleHyperLink";
 import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
@@ -18,8 +18,6 @@ import CloseSection from "../components/sections/CloseSection";
 import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
-import MultiplePackaging from "../components/basic/MultiplePackaging";
-import ApprovalCollection from "../components/basic/ApprovalCollection";
 
 interface FormFieldProps {
   order: string;

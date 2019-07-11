@@ -108,6 +108,7 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
               name="status"
               onChange={handleChange}
               defaultValue={""}
+              // tslint:disable-next-line: jsx-alignment
               required={true}>
               <option value="" disabled={true}>
                 Choose Status
@@ -128,6 +129,7 @@ const TaskListPresenter: React.FunctionComponent<TaskListPresenterProps> = ({
     </div>
   );
 
+  // tslint:disable-next-line: no-shadowed-variable
   const taskList = tasks.map((task: any, i: any) => (
     <TaskAdmin key={i} id={i} task={task} />
   ));
