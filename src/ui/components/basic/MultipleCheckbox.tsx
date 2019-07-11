@@ -29,6 +29,7 @@ const MultipleCheckbox: React.FunctionComponent<MultipleCheckboxProps> = ({
     if (!editMode) {
       updateValue(currentIndex, title, chosenOptions);
     }
+    console.log(currentIndex);
   }, [chosenOptions]);
 
   const chosenHandler = (e: any) => {

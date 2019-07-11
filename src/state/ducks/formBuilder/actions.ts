@@ -1,5 +1,6 @@
 import {
   ADD_FIELD,
+  ADD_LIST,
   CLOSE_SECTION,
   DELETE_FIELD,
   EDIT_FIELD,
@@ -11,7 +12,6 @@ import {
   UPDATE_FIELD,
   UPDATE_FIELD_VALUE,
   UPLOAD_TEMPLATE,
-  ADD_LIST,
 } from "./constants";
 
 export const showModal = (currentIndex: number | string) => {

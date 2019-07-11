@@ -152,14 +152,15 @@ const formReducer = (state: any = initialState, action: any) => {
         ...state,
         elements: state.elements.map((element: any, i: any) => {
           if (action.currentIndex === i) {
-            return (element = {
+            return {
               ...element,
               values: {
                 ...element.values,
                 [action.fieldName]: action.fieldValue,
               },
-            });
+            };
           }
+          return element;
         }),
       };
     default:
