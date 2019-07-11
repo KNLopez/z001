@@ -13,7 +13,7 @@ const TaskListPresenter: React.FunctionComponent = () => {
   };
 
   return (
-    <div style={{ maxWidth: "640px", margin: "50px auto" }}>
+    <div style={{ maxWidth: "640px", margin: "150px auto" }}>
       <select
         onChange={selectUserHandler}
         defaultValue="1"
