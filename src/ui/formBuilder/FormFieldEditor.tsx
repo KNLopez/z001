@@ -138,7 +138,7 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           values={null}
           updateValue={null}
           currentIndex={order}
-          editMode={false}
+          editMode={true}
         />
       );
       break;
