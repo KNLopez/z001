@@ -110,6 +110,13 @@ const FieldPresenter: React.FunctionComponent<FieldPresenterProps> = ({
           />,
         );
         break;
+      case "actionItems":
+        ADD_FIELD({
+          type: chosenField,
+          closed: false,
+          config: { colWidth: "col-12", title: "Quality Assurance" },
+        });
+        break;
       case "hyperlink":
         setModalContent(
           <HyperLinkModal

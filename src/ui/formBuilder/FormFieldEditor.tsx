@@ -22,6 +22,7 @@ import Section from "../components/sections/Section";
 import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
+import TaskListContainer from "../components/taskList/TaskList.container";
 
 interface FieldProps {
   order: string;
@@ -139,6 +140,15 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
           updateValue={null}
           currentIndex={order}
           editMode={true}
+        />
+      );
+      break;
+
+    case "actionItems":
+      formField = (
+        <TaskListContainer
+          currentUserEmail="admin@enlil.com"
+          currentUser="admin"
         />
       );
       break;
