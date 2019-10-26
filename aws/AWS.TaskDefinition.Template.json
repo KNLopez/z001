@@ -11,8 +11,8 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-region": "us-west-2",
-          "awslogs-stream-prefix": "enlil-fb",
-          "awslogs-group": "/ecs-develop"
+          "awslogs-stream-prefix": "doc-fb",
+          "awslogs-group": "ecs-dev"
         }
       },
       "portMappings": [
