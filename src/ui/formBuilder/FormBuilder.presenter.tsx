@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Modal from "../components/modal/Modal";
+// import Modal from "../components/modal/Modal";
 import styles from "./FormBuilder.module.css";
 import FormViewerContainer from "./FormViewer.container";
 import FormEditorContainer from "./FormEditor.container";
@@ -35,7 +35,7 @@ const FormBuilderPresenter: React.FunctionComponent<
   return (
     <div className="FormBuilder">
       <FormHeaderContainer />
-      {modalState.show ? <Modal /> : null}
+      {/* {modalState.show ? <Modal /> : null} */}
       {viewFormMode ? <FormViewerContainer /> : builderContainer}
 
       <button onClick={toggleView} className={styles.viewForm}>

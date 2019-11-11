@@ -20,7 +20,7 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
 }) => {
   const defaultPackages = values ? values.packagings : [];
   const [packagings, setPackagings]: any[] = useState(defaultPackages);
-  const [packaging, setPackaging] = useState();
+  const [packaging, setPackaging] = useState({});
   const [showInput, setShowInput] = useState(false);
 
   useEffect(() => {
@@ -94,9 +94,7 @@ const MultiplePackaging: React.FunctionComponent<MultiplePackagingProps> = ({
     packagings &&
     packagings.map((packaging: any, i: any) => (
       <div key={i} className={styles.package}>
-        {`${packaging.firstUnitValue}${packaging.firstUnit} is equal to ${
-          packaging.secondUnitValue
-        }${packaging.secondUnit}`}
+        {`${packaging.firstUnitValue}${packaging.firstUnit} is equal to ${packaging.secondUnitValue}${packaging.secondUnit}`}
         <span data-id={i} onClick={removePackage}>
           remove
         </span>

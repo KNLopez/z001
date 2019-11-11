@@ -17,7 +17,7 @@ const FileUpload: React.FunctionComponent<FileUploadProps> = ({
   editMode,
   closed,
 }) => {
-  const inputFile: any = useRef();
+  const inputFile: any = useRef({});
   const [files, setFiles]: any = useState([]);
 
   const editModFileUploadField = (

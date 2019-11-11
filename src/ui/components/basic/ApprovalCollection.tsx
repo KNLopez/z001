@@ -13,7 +13,7 @@ const ApprovalCollection: React.FunctionComponent<ApprovalCollectionProps> = ({
   closed,
 }) => {
   const [approvalButtons, setApprovalButtons]: any[] = useState([]);
-  const [approvalButton, setApprovalButton] = useState();
+  const [approvalButton, setApprovalButton] = useState({});
   const [showInput, setShowInput] = useState(false);
 
   const approvalButtonColection =

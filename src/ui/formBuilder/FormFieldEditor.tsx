@@ -16,13 +16,13 @@ import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
 import ActionButton from "../components/buttons/ActionButton";
-import Lists from "../components/lists/Lists";
-import CloseSection from "../components/sections/CloseSection";
-import Section from "../components/sections/Section";
-import SubSection from "../components/sections/SubSection";
+// import Lists from "../components/lists/Lists";
+// import CloseSection from "../components/sections/CloseSection";
+// import Section from "../components/sections/Section";
+// import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
 import { ReactComponent as MoveHandle } from "./icons/icon_move.svg";
-import TaskListContainer from "../components/taskList/TaskList.container";
+// import TaskListContainer from "../components/taskList/TaskList.container";
 
 interface FieldProps {
   order: string;
@@ -71,12 +71,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
 }) => {
   let formField;
   switch (type) {
-    case "section":
-      formField = <Section title={config.title} closed={closed} />;
-      break;
-    case "subSection":
-      formField = <SubSection title={config.title} closed={closed} />;
-      break;
+    // case "section":
+    //   formField = <Section title={config.title} closed={closed} />;
+    //   break;
+    // case "subSection":
+    //   formField = <SubSection title={config.title} closed={closed} />;
+    //   break;
     case "singleLine":
       formField = (
         <SingleLine
@@ -145,12 +145,12 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       break;
 
     case "actionItems":
-      formField = (
-        <TaskListContainer
-          currentUserEmail="admin@enlil.com"
-          currentUser="admin"
-        />
-      );
+      // formField = (
+      //   <TaskListContainer
+      //     currentUserEmail="admin@enlil.com"
+      //     currentUser="admin"
+      //   />
+      // );
       break;
     case "hyperlink":
       formField = (
@@ -222,38 +222,38 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
     case "mpis":
     case "parts":
     case "sops":
-    case "suppliers":
-      formField = (
-        <Lists
-          title={config.title}
-          closed={closed}
-          currentIndex={order}
-          editMode={true}
-        />
-      );
-      break;
-    case "custom":
-      formField = (
-        <Lists
-          title={config.title}
-          options={config.options}
-          closed={closed}
-          currentIndex={order}
-          editMode={true}
-        />
-      );
-      break;
+    // case "suppliers":
+    //   formField = (
+    //     <Lists
+    //       title={config.title}
+    //       closed={closed}
+    //       currentIndex={order}
+    //       editMode={true}
+    //     />
+    //   );
+    //   break;
+    // case "custom":
+    //   formField = (
+    //     <Lists
+    //       title={config.title}
+    //       options={config.options}
+    //       closed={closed}
+    //       currentIndex={order}
+    //       editMode={true}
+    //     />
+    //   );
+    //   break;
 
-    case "closeSection":
-      formField = (
-        <CloseSection
-          editMode={true}
-          currentIndex={order}
-          diff={diff}
-          closed={closed}
-        />
-      );
-      break;
+    // case "closeSection":
+    //   formField = (
+    //     <CloseSection
+    //       editMode={true}
+    //       currentIndex={order}
+    //       diff={diff}
+    //       closed={closed}
+    //     />
+    //   );
+    //   break;
   }
 
   const showModal = () => {
@@ -305,7 +305,8 @@ const FormFieldEditor: React.FunctionComponent<FormFieldProps> = ({
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
       // tslint:disable-next-line: jsx-alignment
-      className={containerStyle}>
+      className={containerStyle}
+    >
       {hideTopControls ? null : topControls}
       {formField}
       <div className={styles.moveHandle}>

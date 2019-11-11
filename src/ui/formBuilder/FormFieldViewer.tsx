@@ -13,12 +13,12 @@ import RadioField from "../components/basic/Radio";
 import SingleLine from "../components/basic/SingleLine";
 import TextArea from "../components/basic/TextArea";
 import ActionButton from "../components/buttons/ActionButton";
-import Lists from "../components/lists/Lists";
-import CloseSection from "../components/sections/CloseSection";
-import Section from "../components/sections/Section";
-import SubSection from "../components/sections/SubSection";
+// import Lists from "../components/lists/Lists";
+// import CloseSection from "../components/sections/CloseSection";
+// import Section from "../components/sections/Section";
+// import SubSection from "../components/sections/SubSection";
 import styles from "./FormBuilder.module.css";
-import TaskListContainer from "../components/taskList/TaskList.container";
+// import TaskListContainer from "../components/taskList/TaskList.container";
 
 interface FormFieldProps {
   order: string;
@@ -57,10 +57,10 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
   let formField;
   switch (type) {
     case "section":
-      formField = <Section title={config.title} closed={closed} />;
+      // formField = <Section title={config.title} closed={closed} />;
       break;
     case "subSection":
-      formField = <SubSection title={config.title} closed={closed} />;
+      // formField = <SubSection title={config.title} closed={closed} />;
       break;
     case "singleLine":
       formField = (
@@ -143,14 +143,14 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
         />
       );
       break;
-    case "actionItems":
-      formField = (
-        <TaskListContainer
-          currentUserEmail="admin@enlil.com"
-          currentUser="admin"
-        />
-      );
-      break;
+    // case "actionItems":
+    //   formField = (
+    //     <TaskListContainer
+    //       currentUserEmail="admin@enlil.com"
+    //       currentUser="admin"
+    //     />
+    //   );
+    //   break;
     case "hyperlink":
       formField = (
         <HyperLink
@@ -237,42 +237,42 @@ const FormFieldViewer: React.FunctionComponent<FormFieldProps> = ({
     case "mpis":
     case "parts":
     case "sops":
-    case "suppliers":
-      formField = (
-        <Lists
-          title={config.title}
-          closed={closed}
-          values={values}
-          updateValue={updateValue}
-          currentIndex={order}
-          editMode={false}
-        />
-      );
-      break;
-    case "custom":
-      formField = (
-        <Lists
-          title={config.title}
-          options={config.options}
-          closed={closed}
-          values={values}
-          updateValue={updateValue}
-          currentIndex={order}
-          editMode={false}
-        />
-      );
-      break;
+    // case "suppliers":
+    //   formField = (
+    //     <Lists
+    //       title={config.title}
+    //       closed={closed}
+    //       values={values}
+    //       updateValue={updateValue}
+    //       currentIndex={order}
+    //       editMode={false}
+    //     />
+    //   );
+    //   break;
+    // case "custom":
+    //   formField = (
+    //     <Lists
+    //       title={config.title}
+    //       options={config.options}
+    //       closed={closed}
+    //       values={values}
+    //       updateValue={updateValue}
+    //       currentIndex={order}
+    //       editMode={false}
+    //     />
+    //   );
+    //   break;
 
-    case "closeSection":
-      formField = (
-        <CloseSection
-          editMode={editMode}
-          currentIndex={order}
-          diff={diff}
-          closed={closed}
-        />
-      );
-      break;
+    // case "closeSection":
+    //   formField = (
+    //     <CloseSection
+    //       editMode={editMode}
+    //       currentIndex={order}
+    //       diff={diff}
+    //       closed={closed}
+    //     />
+    //   );
+    //   break;
   }
 
   const width = ` ${styles[config ? config.colWidth : ""]}`;
