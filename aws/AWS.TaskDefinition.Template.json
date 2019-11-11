@@ -1,5 +1,5 @@
 {
-  "taskRoleArn": "arn:aws:iam::817083319299:role/shifamed-task-role",
+  "taskRoleArn": "arn:aws:iam::817083319299:role/shifamed-task-role-dev",
   "containerDefinitions": [
     {
       "name": "<container_name>",
@@ -11,8 +11,8 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-region": "us-west-2",
-          "awslogs-stream-prefix": "enlil-fb",
-          "awslogs-group": "/ecs-develop"
+          "awslogs-stream-prefix": "doc-fb",
+          "awslogs-group": "ecs-dev"
         }
       },
       "portMappings": [

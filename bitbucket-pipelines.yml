@@ -43,18 +43,15 @@ pipelines:
 
   # default:
   #     - step: *RUN_TESTS
-  # tags:
-  #   deploy-to-dev:
-  #     - step: *RUN_TESTS
-  #     - step: *DEPLOY_TO_DEVELOPMENT
+  tags:
+    deploy-to-dev:
+      - step: *DEPLOY_TO_DEVELOPMENT
   branches:
     # master:
     #   - step: *DEPLOY_TO_PRODUCTION
     develop:
-      # - step: *RUN_TESTS
       - step: *DEPLOY_TO_DEVELOPMENT
     infrastructure:
-      # - step: *RUN_TESTS
       - step: *DEPLOY_TO_DEVELOPMENT
       
 definitions:
