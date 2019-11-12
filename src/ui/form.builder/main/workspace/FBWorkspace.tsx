@@ -6,12 +6,12 @@ import FBForm from "../../components/form/FBForm";
 import FBStore from "../../stores/FBStore";
 import FBEditorDialog from "../editor/FBEditorDialog";
 import FBSortableContainer from "./FBSortableContainer";
+import FBEditorSwitcher from "../../components/custom/FBEditorSwitcher";
+import AppStyles from "../../../App.module.css";
 
 const FBWorkspace: React.FunctionComponent<{}> = () => {
   const { schema, mode } = FBStore;
   const isStarter = (mode === "design") && (schema.length === 0);
-
-  console.log(isStarter, schema.length)
 
   return (
     <FBForm initialValues={FBStore.values}>
@@ -19,6 +19,9 @@ const FBWorkspace: React.FunctionComponent<{}> = () => {
       {!isStarter && <FBSortableContainer items={schema} />}
       <FBTransportSchema />
       <FBEditorDialog />
+      <div className={AppStyles.switcher}>
+        <FBEditorSwitcher />
+      </div>
       {/* <Box display="flex" flexDirection="row-reverse">
         <FBButton label="Create" onClick={handleSubmit} />
       </Box> */}

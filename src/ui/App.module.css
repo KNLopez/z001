@@ -176,3 +176,9 @@ h6 {
   max-width: 720px;
   margin: 2em auto;
 }
+
+.switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}

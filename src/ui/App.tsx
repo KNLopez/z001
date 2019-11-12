@@ -5,6 +5,7 @@ import FBWorkspace from "./form.builder/main/workspace/FBWorkspace";
 import { IntlProvider } from "react-intl";
 import messagesEn from "../ui/translations/en.json";
 import Theme from "./Theme";
+import FBEditorSwitcher from "./form.builder/components/custom/FBEditorSwitcher";
 
 
 const messages = {
@@ -36,6 +37,7 @@ const App: React.FunctionComponent = () => {
           <IntlProvider locale={language} messages={messages[language]}>
             <FBWorkspace />
           </IntlProvider>
+
         </Theme>
       </div>
     </div>
