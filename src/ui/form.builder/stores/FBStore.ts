@@ -86,8 +86,8 @@ export class FormBuilderStore {
     switch (this.mode) {
       case "none":
       case "design":
-        this.schema = [];
-        this.values = {};
+        // this.schema = [];
+        // this.values = {};
         break;
       default:
         return;

@@ -1,6 +1,7 @@
 import { Box } from "@material-ui/core";
 import React, { useState } from "react";
 import Select from "react-select";
+import { Data } from "../../../../state/SampleData";
 import { withAutocompleteDefaults } from "../../hocs/withAutocompleteDefaults";
 import { FBAutocompleteProps } from "../../types/autocomplete";
 import { SelectOption } from "../../types/select";
@@ -14,7 +15,9 @@ const FBAutocomplete: React.FunctionComponent<FBAutocompleteProps> = ({
 }) => {
 
   // *NOTE: For demo only. Will be removed
-  const [options] = useState<SelectOption[]>([]);
+  // const [options] = useState<SelectOption[]>([]);
+  const options: any = Data[autocompleteList!].map((item: string) => ({ value: item, label: item }));
+
   return (
     <Box mb={4}>
       {labelRenderer}
