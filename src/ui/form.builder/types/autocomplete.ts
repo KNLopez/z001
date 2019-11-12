@@ -3,21 +3,17 @@ import { HTMLAttributes } from "react";
 import { SelectComponents } from "react-select/src/components";
 import { PlaceholderProps } from "react-select/src/components/Placeholder";
 import { ValueType } from "react-select/src/types";
+
 import { FBFormDefaultProps, FBOnChangeProps } from "./common";
+import { SelectOption } from "./select";
 
-export interface SelectOption {
-  value: string | number;
-  text: string;
-}
+export type InputComponentProps =
+  & Pick<BaseTextFieldProps, "inputRef">
+  & HTMLAttributes<HTMLDivElement>;
 
-export type InputComponentProps = Pick<BaseTextFieldProps, "inputRef"> &
-  HTMLAttributes<HTMLDivElement>;
-
-export type MuiPlaceholderProps = Omit<
-  PlaceholderProps<SelectOption>,
-  "innerProps"
-> &
-  Partial<Pick<PlaceholderProps<SelectOption>, "innerProps">>;
+export type MuiPlaceholderProps =
+  & Omit<PlaceholderProps<SelectOption>, "innerProps">
+  & Partial<Pick<PlaceholderProps<SelectOption>, "innerProps">>;
 
 export interface FBAutocompleteInjectedProps {
   isMulti: boolean;
@@ -32,6 +28,7 @@ export interface FBAutocompleteConfig {
   renderKey: string;
 }
 
-export type FBAutocompleteProps = FBAutocompleteInjectedProps &
-  FBFormDefaultProps &
-  FBOnChangeProps;
+export type FBAutocompleteProps =
+  & FBAutocompleteInjectedProps
+  & FBFormDefaultProps
+  & FBOnChangeProps;

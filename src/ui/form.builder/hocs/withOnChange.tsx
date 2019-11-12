@@ -1,6 +1,6 @@
 import React from "react";
 import { withFormik } from "../../components/hoc/formik";
-import formBuilderStore from "../stores/FBStore";
+import FBStore from "../stores/FBStore";
 import { FBOnChangeProps, Subtract } from "../types/common";
 
 export function withOnChange<T extends FBOnChangeProps>(
@@ -14,7 +14,7 @@ export function withOnChange<T extends FBOnChangeProps>(
       return (
         <Component
           {...(this.props as T)}
-          onChange={(onChange && onChange()) || this.handleChange()}
+          onChange={((onChange && onChange) || this.handleChange)}
           value={(field.value && field.value) || null}
         />
       );
@@ -28,7 +28,7 @@ export function withOnChange<T extends FBOnChangeProps>(
       );
     }
 
-    private handleChange = () => (trigger: any) => {
+    private handleChange = (trigger: any) => {
       const { form, field } = this.props;
       let value: any;
 
@@ -43,14 +43,13 @@ export function withOnChange<T extends FBOnChangeProps>(
       }
       form.setFieldValue(field.name, value);
 
-      if (formBuilderStore.mode === "design") {
-        return;
+      if (FBStore.mode === "form") {
+        FBStore.setValues({
+          ...FBStore.values,
+          [field.name as string]: value,
+        });
       }
-      formBuilderStore.values = {
-        ...formBuilderStore.values,
-        [field.name as string]: value,
-      };
-    };
+    }
   }
 
   return withFormik(HOC);

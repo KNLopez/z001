@@ -1,7 +1,5 @@
 import { CssBaseline, MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import * as React from "react";
-
-import { Overrides } from "@material-ui/core/styles/overrides";
 import { Palette } from "@material-ui/core/styles/createPalette";
 
 const Theme: React.FunctionComponent = ({ children }) => {

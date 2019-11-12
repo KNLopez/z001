@@ -4,12 +4,17 @@ import Text from "../../../components/Text";
 import editorStore from "../../stores/FBEditorStore";
 
 const FBAddFieldButton0: React.FunctionComponent<{}> = () => (
-  <Box display="flex" my={1} border={1} style={{ borderStyle: "dashed" }}>
+  <Box
+    display="flex"
+    my={1}
+    border={1}
+    style={{ borderStyle: "dashed" }}
+  >
     <Button
       color="primary"
       size="medium"
       fullWidth={true}
-      onClick={editorStore.setOpen}
+      onClick={editorStore.setOpen()}
     >
       <Text translation="form.builder.add.field" />
     </Button>

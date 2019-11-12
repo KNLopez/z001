@@ -1,4 +1,10 @@
 import { SelectProps } from "@material-ui/core/Select";
+
+export interface SelectOption {
+  value: string | number;
+  text: string;
+}
+
 import {
   FBFormDefaultProps,
   FBLabelRendererProps,
@@ -10,7 +16,8 @@ export interface FBSelectInjectedProps extends FBLabelRendererProps {
   items: JSX.Element[];
 }
 
-export type FBSelectProps = SelectProps &
+export type FBSelectProps =
+  SelectProps &
   FBFormDefaultProps &
   FBSelectInjectedProps &
   FBOnChangeProps & {

@@ -10,23 +10,30 @@ import { ControlProps } from "react-select/src/components/Control";
 import { MenuProps, NoticeProps } from "react-select/src/components/Menu";
 import { MultiValueProps } from "react-select/src/components/MultiValue";
 import { OptionProps } from "react-select/src/components/Option";
+
 import {
   FBAutocompleteInjectedProps,
   FBAutocompleteProps,
   InputComponentProps,
   MuiPlaceholderProps,
 } from "../types/autocomplete";
-import { Subtract, SelectOption } from "../types/common";
+import { Subtract } from "../types/common";
 import { withLabelRenderer } from "./withLabelRenderer";
 import { withOnChange } from "./withOnChange";
+import { SelectOption } from "../../components/forms/fields/FilledSelect";
 
 export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
   Component: React.ComponentType<T>,
 ) {
+
   class HOC extends React.Component<Subtract<T, FBAutocompleteInjectedProps>> {
+
     public render() {
       return (
-        <Component {...(this.props as T)} components={this.components()} />
+        <Component
+          {...this.props as T}
+          components={this.components()}
+        />
       );
     }
 
@@ -38,15 +45,16 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
       Option: this.Option,
       Placeholder: this.Placeholder,
       ValueContainer: this.ValueContainer,
-    });
+    })
 
-    private inputComponent = ({ inputRef, ...props }: InputComponentProps) => (
+    private inputComponent = ({ inputRef, ...props }: InputComponentProps) =>
       <div ref={inputRef} {...props} />
-    );
 
     private NoOptionsMessage = (props: NoticeProps<SelectOption>) => (
-      <Box p={1}>{props.children}</Box>
-    );
+      <Box p={1}>
+        {props.children}
+      </Box>
+    )
 
     private Control = (props: ControlProps<SelectOption>) => {
       const theme = useTheme();
@@ -77,7 +85,7 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
           variant="outlined"
         />
       );
-    };
+    }
 
     private Option = (props: OptionProps<SelectOption>) => (
       <div
@@ -87,9 +95,11 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
         }}
         {...props.innerProps}
       >
-        <MenuItem selected={props.isFocused}>{props.children}</MenuItem>
+        <MenuItem selected={props.isFocused}>
+          {props.children}
+        </MenuItem>
       </div>
-    );
+    )
 
     private Placeholder = (props: MuiPlaceholderProps) => (
       <Box
@@ -97,23 +107,28 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
         color="text.hint"
         px={1}
         {...props.innerProps}
-        hidden={
-          props.selectProps.inputId ===
-          (document.activeElement && document.activeElement.id)
-        }
+        hidden={props.selectProps.inputId === (document.activeElement && document.activeElement.id)}
       >
         {props.children}
       </Box>
-    );
+    )
 
     private ValueContainer = (props: ValueContainerProps<SelectOption>) => (
-      <Box display="flex" flexWrap="wrap" flex={1} alignItems="center">
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        flex={1}
+        alignItems="center"
+      >
         {props.children}
       </Box>
-    );
+    )
 
     private MultiValue = (props: MultiValueProps<SelectOption>) => (
-      <Box mx={0.5} my={0.25}>
+      <Box
+        mx={0.5}
+        my={0.25}
+      >
         <Chip
           tabIndex={-1}
           label={props.children}
@@ -121,7 +136,7 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
           deleteIcon={<CancelIcon {...props.removeProps} />}
         />
       </Box>
-    );
+    )
 
     private Menu = (props: MenuProps<SelectOption>) => (
       <Box
@@ -136,7 +151,7 @@ export function withAutocompleteDefaults<T extends FBAutocompleteProps>(
       >
         {props.children}
       </Box>
-    );
+    )
   }
 
   return withOnChange(withLabelRenderer(HOC));
