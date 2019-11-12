@@ -18,19 +18,19 @@ const FBTextEditorField: React.FunctionComponent<Props> = ({
   readOnly,
   ...props
 }) => (
-  <Box mb={4}>
-    {labelRenderer}
-    <ReactQuill
-      theme="snow"
-      modules={modules}
-      formats={formats}
-      onChange={props.onChange}
-      value={props.value || ""}
-      readOnly={disabled || readOnly}
-      style={{ minHeight: 120 }}
-      id={`field-${props.field.name}`}
-    />
-  </Box>
-);
+    <Box mb={4}>
+      {labelRenderer}
+      <ReactQuill
+        theme="snow"
+        modules={modules}
+        formats={formats}
+        onChange={props.onChange}
+        value={props.value || ""}
+        readOnly={disabled || readOnly}
+        style={{ minHeight: 120 }}
+        id={`field-${props.field.name}`}
+      />
+    </Box>
+  );
 
 export default withLabelRenderer(withOnChange(FBTextEditorField));
