@@ -6,9 +6,14 @@ import StatusPresenter from "./formBuilder/Status.presenter";
 import FBWorkspace from "./form.builder/main/workspace/FBWorkspace";
 import { IntlProvider } from "react-intl";
 import messagesEn from "../ui/translations/en.json";
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { orange } from "@material-ui/core/colors";
+import Theme from "./Theme";
+
 
 const messages = {
-  en: messagesEn,
+  en: messagesEn
 };
 
 const language = "en";
@@ -32,9 +37,11 @@ const App: React.FunctionComponent = () => {
   return (
     <div className="App" style={AppStyles}>
       <div className={AppStyles.container}>
-        <IntlProvider locale={language} messages={messages[language]}>
-          <FBWorkspace />
-        </IntlProvider>
+        <Theme>
+          <IntlProvider locale={language} messages={messages[language]}>
+            <FBWorkspace />
+          </IntlProvider>
+        </Theme>
       </div>
     </div>
   );
