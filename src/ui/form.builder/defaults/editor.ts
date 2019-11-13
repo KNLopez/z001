@@ -3,6 +3,7 @@ import FBAutocompleteEditor from "../components/editors/FBAutocompleteEditor";
 import FBControlEditor from "../components/editors/FBControlEditor";
 import FBControlGroupEditor from "../components/editors/FBControlGroupEditor";
 import FBHyperlinkEditor from "../components/editors/FBHyperlinkEditor";
+import FBInlineApprovalEditor from "../components/editors/FBInlineApprovalEditor";
 import FBLabelEditor from "../components/editors/FBLabelEditor";
 import FBSelectEditor from "../components/editors/FBSelectEditor";
 import FBTextFieldEditor from "../components/editors/FBTextFieldEditor";
@@ -10,6 +11,7 @@ import FBAutocomplete from "../components/inputs/FBAutocomplete";
 import FBCheckbox from "../components/inputs/FBCheckbox";
 import FBCheckboxGroup from "../components/inputs/FBCheckboxGroup";
 import FBDatePicker from "../components/inputs/FBDatePicker";
+import FBInlineApprover from "../components/inputs/FBInlineApprover";
 import FBRadio from "../components/inputs/FBRadio";
 import FBRadioGroup from "../components/inputs/FBRadioGroup";
 import FBSelect from "../components/inputs/FBSelect";
@@ -37,6 +39,7 @@ export const FBFieldEditorComponent: {
   autocomplete: FBAutocompleteEditor,
   hyperlink: FBHyperlinkEditor,
   fileupload: FBLabelEditor,
+  inlineApprover: FBInlineApprovalEditor,
 };
 
 export const FBFieldComponent: Dictionary<any> = {
@@ -53,9 +56,10 @@ export const FBFieldComponent: Dictionary<any> = {
   autocomplete: FBAutocomplete,
   hyperlink: FBLink,
   fileupload: FBFileUpload,
+  inlineApprover: FBInlineApprover,
 };
 
-export const FBGroupField: Dictionary<any>  = {
+export const FBGroupField: Dictionary<any> = {
   checkboxgroup: FBCheckbox,
   radiogroup: FBRadio,
 };
@@ -74,5 +78,6 @@ export const FBEditorSectionConfig: { [key: string]: FBEditorElementType[] } = {
     "radiogroup",
     "fileupload",
   ],
+  approvals: ["inlineApprover"],
   lists: ["autocomplete"],
 };

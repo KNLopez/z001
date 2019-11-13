@@ -20,7 +20,6 @@ export type FBEditorWrapperStateProps = Pick<
 >;
 
 export type FBEditorSectionType = "section" | "basicFields" | "lists";
-
 export type FBEditorElementType =
   | "textfield"
   | "checkbox"
@@ -34,7 +33,8 @@ export type FBEditorElementType =
   | "radiogroup"
   | "autocomplete"
   | "hyperlink"
-  | "fileupload";
+  | "fileupload"
+  | "inlineApprover";
 
 export type FBEditorModeType = "create" | "update";
 
