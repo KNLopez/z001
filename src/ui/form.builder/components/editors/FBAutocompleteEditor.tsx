@@ -31,6 +31,48 @@ export const tempOtions: FBAutocompleteConfig[] = [
     label: "Approvers",
     renderKey: "email",
   },
+  {
+    id: "4",
+    url: ``,
+    label: "Suppliers",
+    renderKey: "email",
+  },
+  {
+    id: "5",
+    url: ``,
+    label: "Parts",
+    renderKey: "email",
+  },
+  {
+    id: "6",
+    url: ``,
+    label: "Lots",
+    renderKey: "email",
+  },
+  {
+    id: "7",
+    url: ``,
+    label: "Standards",
+    renderKey: "email",
+  },
+  {
+    id: "8",
+    url: ``,
+    label: "Finished Goods",
+    renderKey: "email",
+  },
+  {
+    id: "9",
+    url: ``,
+    label: "MPIs",
+    renderKey: "email",
+  },
+  {
+    id: "10",
+    url: ``,
+    label: "SOPs",
+    renderKey: "email",
+  },
 ];
 
 const options = tempOtions.map((config) => ({
