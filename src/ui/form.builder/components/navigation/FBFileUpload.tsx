@@ -1,8 +1,8 @@
 import { Box } from "@material-ui/core";
 import { OutlinedTextFieldProps } from "@material-ui/core/TextField";
 import React from "react";
-// import AttachmentField from "../../../components/common/attachment.field/container";
-// import AttachmentIconField from "../../../components/common/attachment.icon/container";
+import AttachmentField from "../../../components/common/attachment.field/container"
+import AttachmentIconField from "../../../components/common/attachment.icon/container";
 import { withLabelRenderer } from "../../hocs/withLabelRenderer";
 import { withOnChange } from "../../hocs/withOnChange";
 import { FBFormDefaultProps, FBOnChangeProps } from "../../types/common";
@@ -18,8 +18,8 @@ const FBFileUpload: React.FunctionComponent<Props> = ({
 }) => (
     <Box mb={5} width="100%">
       {labelRenderer}
-      {/* <AttachmentField name={name} component="field" disabled={disabled} />
-    <AttachmentIconField name={name} disabled={disabled}  /> */}
+      <AttachmentField name={name} component="field" disabled={disabled} />
+      <AttachmentIconField name={name} disabled={disabled} />
     </Box>
   );
 

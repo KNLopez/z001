@@ -1,15 +1,13 @@
 import React from "react";
-import AppStyles from "./App.module.css";
-import StatusPresenter from "./formBuilder/Status.presenter";
-import FBWorkspace from "./form.builder/main/workspace/FBWorkspace";
 import { IntlProvider } from "react-intl";
 import messagesEn from "../ui/translations/en.json";
+import AppStyles from "./App.module.css";
+import FBWorkspace from "./form.builder/main/workspace/FBWorkspace";
+import StatusPresenter from "./formBuilder/Status.presenter";
 import Theme from "./Theme";
-import FBEditorSwitcher from "./form.builder/components/custom/FBEditorSwitcher";
-
 
 const messages = {
-  en: messagesEn
+  en: messagesEn,
 };
 
 const language = "en";
