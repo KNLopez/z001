@@ -35,7 +35,8 @@ export type FBEditorElementType =
   | "autocomplete"
   | "hyperlink"
   | "fileupload"
-  | "inlineApprover";
+  | "inlineApprover"
+  | "closeSection";
 
 export type FBEditorModeType = "create" | "update";
 

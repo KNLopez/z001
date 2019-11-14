@@ -314,6 +314,7 @@
   "form.builder.import.template": "Import Template",
   "form.builder.template.name": "Template Name",
   "form.builder.inlineApprover": "Approval Button",
+  "form.builder.closeSection": "Close Section",
   "attachment.download.file": "Download attached file {fileName}.{fileType}",
   "attachment.download.clean.copy": "Download generated clean copy of file  {fileName}.{fileType}",
   "training.completed": "Training completed",

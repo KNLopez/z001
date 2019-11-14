@@ -23,6 +23,7 @@ import FBFileUpload from "../components/navigation/FBFileUpload";
 import FBLink from "../components/navigation/FBLink";
 import { FBEditorElementType } from "../types/editor";
 import FBTaskList from "../components/inputs/FBTaskList";
+import FBCloseSection from "../components/inputs/FBCloseSection";
 
 export const FBFieldEditorComponent: {
   [key: string]: React.FunctionComponent<{}>;
@@ -42,6 +43,7 @@ export const FBFieldEditorComponent: {
   fileupload: FBLabelEditor,
   inlineApprover: FBInlineApprovalEditor,
   taskList: FBLabelEditor,
+  closeSection: FBLabelEditor,
 };
 
 export const FBFieldComponent: Dictionary<any> = {
@@ -60,6 +62,7 @@ export const FBFieldComponent: Dictionary<any> = {
   fileupload: FBFileUpload,
   inlineApprover: FBInlineApprover,
   taskList: FBTaskList,
+  closeSection: FBCloseSection,
 };
 
 export const FBGroupField: Dictionary<any> = {
@@ -68,7 +71,7 @@ export const FBGroupField: Dictionary<any> = {
 };
 
 export const FBEditorSectionConfig: { [key: string]: FBEditorElementType[] } = {
-  section: ["section", "subsection"],
+  section: ["section", "subsection", "closeSection"],
   basics: [
     "textfield",
     "checkbox",
