@@ -8,6 +8,7 @@ import {
   default as ReactDatePicker,
   ReactDatePickerProps,
 } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import { TypographyProps } from "../../../../state/ducks/common";
 import { styles } from "./DatePicker.styles";
 import Field, { FieldOwnProps } from "./Field";

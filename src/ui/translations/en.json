@@ -309,6 +309,7 @@
   "form.builder.field.name": "Field Name",
   "form.builder.hyperlink": "Hyperlink",
   "form.builder.fileupload": "File Upload",
+  "form.builder.taskList": "Task List",
   "form.builder.export.template": "Export Template",
   "form.builder.import.template": "Import Template",
   "form.builder.template.name": "Template Name",

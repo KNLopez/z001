@@ -21,6 +21,7 @@ export type FBEditorWrapperStateProps = Pick<
 
 export type FBEditorSectionType = "section" | "basicFields" | "lists";
 export type FBEditorElementType =
+  | "taskList"
   | "textfield"
   | "checkbox"
   | "checkboxgroup"

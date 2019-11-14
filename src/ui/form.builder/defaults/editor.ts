@@ -22,6 +22,7 @@ import FBSubSectionBox from "../components/layout/FBSubSectionBox";
 import FBFileUpload from "../components/navigation/FBFileUpload";
 import FBLink from "../components/navigation/FBLink";
 import { FBEditorElementType } from "../types/editor";
+import FBTaskList from "../components/inputs/FBTaskList";
 
 export const FBFieldEditorComponent: {
   [key: string]: React.FunctionComponent<{}>;
@@ -40,6 +41,7 @@ export const FBFieldEditorComponent: {
   hyperlink: FBHyperlinkEditor,
   fileupload: FBLabelEditor,
   inlineApprover: FBInlineApprovalEditor,
+  taskList: FBLabelEditor,
 };
 
 export const FBFieldComponent: Dictionary<any> = {
@@ -57,6 +59,7 @@ export const FBFieldComponent: Dictionary<any> = {
   hyperlink: FBLink,
   fileupload: FBFileUpload,
   inlineApprover: FBInlineApprover,
+  taskList: FBTaskList,
 };
 
 export const FBGroupField: Dictionary<any> = {
@@ -77,6 +80,7 @@ export const FBEditorSectionConfig: { [key: string]: FBEditorElementType[] } = {
     "radio",
     "radiogroup",
     "fileupload",
+    "taskList",
   ],
   approvals: ["inlineApprover"],
   lists: ["autocomplete"],
