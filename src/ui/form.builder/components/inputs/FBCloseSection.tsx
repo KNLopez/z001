@@ -28,19 +28,22 @@ const FBCloseSection: React.FunctionComponent<FBInlineApproverProps> = ({
   }
 
   const content = () => (
-    <div>
+    <Box mb={3}>
       <FBTextField
         label="Enter name"
         name="Enter name"
         onChange={changeHandler} />
-      <FBButton
-        onClick={closeDialog}
-        label="Submit " />
-    </div>)
+      <Box display="flex" flexDirection="row-reverse" mx={-1} my={-1}>
+        <FBButton
+          onClick={closeDialog}
+          label="Submit " />
+      </Box>
+    </Box>)
 
   return (
     <Box mb={4} width="100%">
       {labelRenderer}
+
       <FBButton label={"Close Section"} disabled={disabled} onClick={openDialog} />
       <FBDialog
         open={open}
