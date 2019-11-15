@@ -1,18 +1,57 @@
-import { Box } from "@material-ui/core";
-import React from "react";
+import { Box, Button, TextField } from "@material-ui/core";
+import React, { useState } from "react";
 import { withLabelRenderer } from "../../hocs/withLabelRenderer";
 import { FBInlineApproverProps } from "../../types/inlineApprover";
 import FBButton from "./FBButton";
+import FBDialog from "../feedback/FBDialog";
+import { Change } from "diff";
+import FBTextField from "./FBTextField";
 
 const FBCloseSection: React.FunctionComponent<FBInlineApproverProps> = ({
   labelRenderer,
   approvalType, disabled,
   ...props
-}) => (
+}) => {
+  const [open, setOpen] = useState(false)
+  const [name, setName] = useState("")
+
+  const openDialog = () => {
+    setOpen(true)
+  }
+
+  const closeDialog = () => {
+    setOpen(false)
+  }
+
+  const changeHandler = (e: any) => {
+    setName(e.currentTarget.value)
+  }
+
+  const content = () => (
+    <div>
+      <FBTextField
+        label="Enter name"
+        name="Enter name"
+        onChange={changeHandler} />
+      <FBButton
+        onClick={closeDialog}
+        label="Submit " />
+    </div>)
+
+  return (
     <Box mb={4} width="100%">
       {labelRenderer}
-      <FBButton label={"Close Section"} disabled={disabled} />
+      <FBButton label={"Close Section"} disabled={disabled} onClick={openDialog} />
+      <FBDialog
+        open={open}
+        content={content}
+        title={"Close Section"}
+        setDialogClose={closeDialog}
+      />
+      {name.length > 0 && !open ? <div>{name} closed this section</div> : null}
     </Box>
   );
+};
+
 
 export default withLabelRenderer(FBCloseSection);
