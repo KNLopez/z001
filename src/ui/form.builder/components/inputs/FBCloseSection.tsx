@@ -4,7 +4,6 @@ import { withLabelRenderer } from "../../hocs/withLabelRenderer";
 import { FBInlineApproverProps } from "../../types/inlineApprover";
 import FBButton from "./FBButton";
 import FBDialog from "../feedback/FBDialog";
-import { Change } from "diff";
 import FBTextField from "./FBTextField";
 
 const FBCloseSection: React.FunctionComponent<FBInlineApproverProps> = ({

@@ -11,7 +11,7 @@ export function withTransport<T extends FBTransportSchemaProps>(
 ) {
   class HOC extends React.Component<
     Subtract<T, FBTransportSchemaInjectedProps>
-  > {
+    > {
     public render() {
       return (
         <Component
@@ -52,7 +52,8 @@ export function withTransport<T extends FBTransportSchemaProps>(
 
     private exportSchema = () => {
       const schema = JSON.stringify(FBStore.getSchema());
-      const dataStr = `data:text/json;charset=utf-8, ${encodeURIComponent(schema)}`;
+      const values = JSON.stringify(FBStore.values)
+      const dataStr = `data:text/json;charset=utf-8, ${encodeURIComponent([schema, values].join())}`;
       const anchor = document.createElement("a");
       anchor.style.display = "none";
       document.body.appendChild(anchor);

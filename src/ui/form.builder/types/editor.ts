@@ -36,7 +36,8 @@ export type FBEditorElementType =
   | "hyperlink"
   | "fileupload"
   | "inlineApprover"
-  | "closeSection";
+  | "closeSection"
+  | "helloSign";
 
 export type FBEditorModeType = "create" | "update";
 

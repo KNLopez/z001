@@ -24,6 +24,7 @@ import FBLink from "../components/navigation/FBLink";
 import { FBEditorElementType } from "../types/editor";
 import FBTaskList from "../components/inputs/FBTaskList";
 import FBCloseSection from "../components/inputs/FBCloseSection";
+import FBHelloSign from "../components/inputs/FBHelloSign";
 
 export const FBFieldEditorComponent: {
   [key: string]: React.FunctionComponent<{}>;
@@ -44,6 +45,7 @@ export const FBFieldEditorComponent: {
   inlineApprover: FBInlineApprovalEditor,
   taskList: FBLabelEditor,
   closeSection: FBLabelEditor,
+  helloSign: FBLabelEditor,
 };
 
 export const FBFieldComponent: Dictionary<any> = {
@@ -63,6 +65,7 @@ export const FBFieldComponent: Dictionary<any> = {
   inlineApprover: FBInlineApprover,
   taskList: FBTaskList,
   closeSection: FBCloseSection,
+  helloSign: FBHelloSign,
 };
 
 export const FBGroupField: Dictionary<any> = {
@@ -85,6 +88,6 @@ export const FBEditorSectionConfig: { [key: string]: FBEditorElementType[] } = {
     "fileupload",
     "taskList",
   ],
-  approvals: ["inlineApprover"],
+  approvals: ["inlineApprover", "helloSign"],
   lists: ["autocomplete"],
 };
